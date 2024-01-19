@@ -41,7 +41,7 @@ export const StyledGoogleSignInButton = (props ) => {
          
           setAccessToken(tokenResponse.access_token);
           console.log(userInfo);
-          navigate("/Blog");
+          navigate("/");
         },
         onError: errorResponse => console.log(errorResponse),
         scope: "https://www.googleapis.com/auth/calendar",
