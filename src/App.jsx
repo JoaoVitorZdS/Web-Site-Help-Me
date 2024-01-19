@@ -3,6 +3,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import { StyledApp } from "./App.js";
+import './App.css'
 function App() {
   return (
     <>
@@ -11,9 +12,9 @@ function App() {
           <AppRoutes />
           <ToastContainer theme="dark" />
         </StyledApp>
-      </GoogleOAuthProvider>;
+      </GoogleOAuthProvider>
     </>
-  );
+  )
 }
 
 export default App;

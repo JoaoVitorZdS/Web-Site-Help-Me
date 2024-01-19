@@ -1,38 +1,22 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: 'BrokenFont';
+  src: url('/src/assets/fonts/sans-forgetica-regular.otf') format('opentype');
+  /* Adicione outros estilos desejados, como font-weight e font-style */
+}
+@font-face {
+  font-family: 'Contacto';
+  src: url('/src/assets/fonts/contacto.ttf') format('opentype');
+  /* Adicione outros estilos desejados, como font-weight e font-style */
+}
+@font-face {
+  font-family: 'DolceVita';
+  src: url('/src/assets/fonts/dolce-vita-heavy-bold.ttf') format('opentype');
+  /* Adicione outros estilos desejados, como font-weight e font-style */
+}
+@font-face {
+  font-family: 'TimesBold';
+  src: url('/src/assets/fonts/times-lt-bold.ttf') format('opentype');
+  /* Adicione outros estilos desejados, como font-weight e font-style */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

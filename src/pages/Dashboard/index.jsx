@@ -1,26 +1,71 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { StyledDashboardContainer } from "./style";
 import { DashboardBody } from "../../components/DashboardComponents/DashboardBody";
 import { Footer } from "../../components/Footer/Footer";
-const DashboardPage = () => {
-  const token = localStorage.getItem("token");
+import { AccessTokenContext } from "../../components/StyledButtons/ButtonLogInGoogle";
+import { DashboardHead } from "../../components/DashboardComponents/DashboardHead";
+import { FIREBASE_DB } from "../../firebaseconfig";
+import { collection, getDocs, query } from "firebase/firestore";
 
+
+
+
+const DashboardPage = () => {
+  const { userData, accessToken } = useContext(AccessTokenContext);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    // Função para verificar se o usuário é um administrador
+    const checkAdminStatus = async () => {
+      try {
+        // Substitua 'suaColecaoProfessionals' pelo nome correto da coleção no Firebase
+        const q = query(collection(FIREBASE_DB, 'professionals'));
+        const querySnapshot = await getDocs(q);
+
+        // Verifica o array "adms" no primeiro documento da coleção
+        if (querySnapshot.docs.length > 0) {
+          const firstDoc = querySnapshot.docs[0];
+          const isAdminUser = firstDoc.exists && firstDoc.data().adms.includes(userData.email);
+
+          // Atualiza o estado isAdmin com base na verificação
+          setIsAdmin(isAdminUser);
+        }
+      } catch (error) {
+        console.error("Erro ao verificar status de administrador:", error);
+      }
+    };
+
+    // Verifique o status de administrador apenas se houver um usuário logado
+    if (accessToken) {
+      checkAdminStatus();
+    }
+  }, [accessToken, userData.email]);
   return (
     <div>
-      {token ? (
+      {accessToken ? (
         <StyledDashboardContainer>
-          
-          <DashboardBody />
-          <Footer/>
+          {isAdmin ? (
+            // Se o usuário for um administrador, exiba a DashboardAdm
+            <>
+            <DashboardHead />
+            <DashboardBody />
+            <Footer />
+          </>
+          ) : (
+            // Caso contrário, exiba a Dashboard padrão
+            <>
+              <DashboardHead />
+              <DashboardBody />
+              <Footer />
+            </>
+          )}
         </StyledDashboardContainer>
       ) : (
-        
         <StyledDashboardContainer>
-          
+          <h1>Sem Usuário</h1>
           <DashboardBody />
-          <Footer/>
+          <Footer />
         </StyledDashboardContainer>
-       
       )}
     </div>
   );

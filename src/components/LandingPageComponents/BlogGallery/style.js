@@ -5,17 +5,19 @@ import GlobalStyleDefault from "../../../GlobalStyles";
 export const StyledGalleryContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+
   gap: 20px;
   justify-content: center;
   align-items: center;
   padding: 20px;
   margin: 0 auto;
+  
 `;
 
 export const Post = styled.div`
   width: 200px;
   height: 300px;
-  perspective: 1000px;
+  perspective: 500px;
   border-radius: 5px;
   .card {
     width: 100%;
