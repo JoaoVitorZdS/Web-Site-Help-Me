@@ -13,15 +13,20 @@ const AccessTokenContext = createContext();
 
 const AccessTokenProvider = ({ children }) => {
   const [accessToken, setAccessToken] = useState('');
+  const [userData, setUserData] = useState({
+    name: '',
+    email: '',
+    picture: ''
+  });
 
   return (
-    <AccessTokenContext.Provider value={{ accessToken, setAccessToken }}>
+    <AccessTokenContext.Provider value={{ accessToken, setAccessToken, userData, setUserData }}>
       {children}
     </AccessTokenContext.Provider>
   );
 };
 export const StyledGoogleSignInButton = (props ) => {
-    const { setAccessToken } = React.useContext(AccessTokenContext);
+    const { setUserData, setAccessToken } = React.useContext(AccessTokenContext);
     const navigate = useNavigate();
 
     const googleLogin = useGoogleLogin({
@@ -31,11 +36,15 @@ export const StyledGoogleSignInButton = (props ) => {
             'https://www.googleapis.com/oauth2/v3/userinfo',
             { headers: { Authorization: `Bearer ${tokenResponse.access_token}` } },
           );
+          const { name, email, picture } = userInfo.data;
+          setUserData({ name, email, picture });
+         
           setAccessToken(tokenResponse.access_token);
           console.log(userInfo);
-          navigate("/Dashboard");
+          navigate("/Blog");
         },
         onError: errorResponse => console.log(errorResponse),
+        scope: "https://www.googleapis.com/auth/calendar",
       });
 
     return(

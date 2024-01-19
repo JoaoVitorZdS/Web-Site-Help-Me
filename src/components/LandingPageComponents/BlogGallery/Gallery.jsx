@@ -1,6 +1,7 @@
 import { Post, StyledGalleryContainer } from "./style";
 import cardBack from '../../../assets/imgs/pinkClouds3.jpg';
 import cardFront from '../../../assets/imgs/Candle.jpg';
+import { useNavigate } from "react-router-dom";
 export function Gallery() {
     // Supondo que posts seja uma lista de dados de postagens
     const posts = [
@@ -12,13 +13,14 @@ export function Gallery() {
       { id: 6, title: 'Post 2', image: 'url-da-imagem-2.jpg', content: 'Conteúdo do Post 2' },
       { id: 7, title: 'Post 2', image: 'url-da-imagem-2.jpg', content: 'Conteúdo do Post 2' },
       { id: 8, title: 'Post 2', image: 'url-da-imagem-2.jpg', content: 'Conteúdo do Post 2' },
-      { id: 9, title: 'Post 2', image: 'url-da-imagem-2.jpg', content: 'Conteúdo do Post 2' },
-      { id: 10, title: 'Post 2', image: 'url-da-imagem-2.jpg', content: 'Conteúdo do Post 2' },
+
       // Adicione mais objetos de postagem conforme necessário
     ];
+    const navigate = useNavigate()
   
     return (
         <StyledGalleryContainer>
+          
           {posts.map(post => (
             <Post key={post.id}>
               <div className="card">

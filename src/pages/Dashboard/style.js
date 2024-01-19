@@ -5,5 +5,7 @@ export const StyledDashboardContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+
+  
 `;

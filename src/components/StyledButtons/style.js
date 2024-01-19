@@ -5,8 +5,11 @@ export const StyledButtonContainer = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 45%;
-  height: 50px;
+  align-content: center;
+  width: auto;
+  gap: 5px;
+  padding: 15px;
+  height: 30px;
   border-radius: 6px;
   border-width: 1px;
   background-color: ${GlobalStyleDefault.colors.tertiary};

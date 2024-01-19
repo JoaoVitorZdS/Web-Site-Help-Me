@@ -5,7 +5,6 @@ import candle from '../../../assets/imgs/banners/2.png';
 import mandalah from '../../../assets/imgs/banners/3.png';
 import fem from '../../../assets/imgs/banners/4.png';
 import dev from '../../../assets/imgs/banners/5.png';
-import { useNavigate } from 'react-router-dom';
 import { StyledButtonBanner } from '../../StyledButtons/ButtonsBanners';
 
 const CarouselContainer = styled.div`
@@ -16,6 +15,7 @@ const CarouselContainer = styled.div`
   top: 0;
   z-index: 2;
   
+  
 `;
 
 const Slide = styled.div`
@@ -24,20 +24,23 @@ const Slide = styled.div`
   width: 100%; /* Width based on number of slides */
   transition: transform 2.8s cubic-bezier(0.19, 1, 0.22, 1); /* Smooth transition */
   transform: ${({ translateValue }) => `translateX(${translateValue}%)`};
+  
 `;
 
 const SlideItem = styled.div`
   flex: 1 0 100%; /* Each slide takes full width */
   height: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: start;
+  justify-content: center;
+  align-items: center;
   background-repeat: no-repeat;
   background-position: center; /* Center the background image */
   background-size: contain; /* Cover the entire area */
+ 
   z-index: 3;
   border-width: 4px;
   border-radius: 25px;
+  
   
 `;
 
@@ -52,6 +55,7 @@ const Button = styled.button`
   cursor: pointer;
   z-index: 2;
   border-radius: 2px;
+  
 
   ${({ direction }) => (direction === 'prev' ? 'left: 0;' : 'right: 0;')}
 `;
@@ -60,7 +64,7 @@ const Carousel = () => {
   const [translateValue, setTranslateValue] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const slideCount = 6; // Adjust the number of slides here
-  const autoAdvanceTimeout = 3000; // Adjust the time interval for auto-advance (in milliseconds)
+  const autoAdvanceTimeout = 6000; // Adjust the time interval for auto-advance (in milliseconds)
 
 
   useEffect(() => {
@@ -117,14 +121,15 @@ const Carousel = () => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         >
-           {/* Conteúdo do slide (opcional) */}
+           
         </SlideItem>
         <SlideItem 
         style={{ backgroundImage: `url(${candle})` }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         >
-          {/* Conteúdo do slide (opcional) */}
+          <StyledButtonBanner label={"Agende uma consulta"} destiny={"Dashboard"} type='schedule'/>
+
         </SlideItem>
         <SlideItem 
         style={{ backgroundImage: `url(${fem})` }}
@@ -138,7 +143,7 @@ const Carousel = () => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         >
-          {/* Conteúdo do slide (opcional) */}
+        <StyledButtonBanner label={"Faça um teste"} destiny={"Dashboard"} type='tests'/>
         </SlideItem>
         <SlideItem 
         style={{ backgroundImage: `url(${dev})` }}

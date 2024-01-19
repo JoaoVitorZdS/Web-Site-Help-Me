@@ -1,14 +1,16 @@
 import styled from "styled-components";
-import GlobalStyleDefault from "../../GlobalStyles";
+import '../../App.css'
 export const StyledFooterContainer = styled.div`
   display: flex;
+  position: relative;
+  bottom: 0px;
   width: 100%;
-  height: 50px;
-  background-color: white;
+  height: 30px;
+  background-color: transparent;
   justify-content: space-between;
-  align-items: center;
-  box-shadow: ${GlobalStyleDefault.shadows.footer};
-  z-index: 1;
+  align-items: end;
+  flex-wrap: wrap;
+  z-index: 2;
   font-size: small;
 
   #propertyContainer {
@@ -18,6 +20,7 @@ export const StyledFooterContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: small;
   }
   #termsContainer {
     display: flex;
@@ -26,14 +29,14 @@ export const StyledFooterContainer = styled.div`
     height: 100%;
     justify-content: center;
     align-items: baseline;
+    font-family: "DolceVita"
     
     
     
   }
   #signContainer {
     display: flex;
-    width: 10%;
-    height: 100%;
+    width: 20%;
     justify-content: center;
     align-content: center;
     
@@ -42,6 +45,7 @@ export const StyledFooterContainer = styled.div`
   #buttonTermsFooter {
     background-color: transparent;
     border-color: transparent;
+    font-family: "DolceVita"
     
   }
   
