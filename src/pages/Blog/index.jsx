@@ -23,6 +23,7 @@ const BlogPage = () => {
       ) : (
         
         <StyledBlogContainer>
+          <Header/>
           <h1>Blog - Sem Usuário</h1>
           <BlogBody />
           <Footer/>

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { StyledButtonLogIn } from "../StyledButtons/ButtonsLogIn";
 import { useContext } from "react";
 import { AccessTokenContext } from "../StyledButtons/ButtonLogInGoogle";
-
+import { SiBloglovin } from "react-icons/si";
 export function Header() {
     const navigate = useNavigate()
     const { accessToken } = useContext(AccessTokenContext);
@@ -40,6 +40,7 @@ export function Header() {
             
             
             <StyledButtonLogIn label={"Perfil"} destiny={"Dashboard"} icon={'CgProfile'}/>
+            <StyledButtonLogIn label={"Blog"} destiny={"Blog"} icon={'SiBloglovin'}/>
           
         </div>
 
