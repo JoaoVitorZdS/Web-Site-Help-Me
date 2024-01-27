@@ -10,4 +10,5 @@ export const StyledApp = styled.div`
   margin: 0;
   overflow-x: hidden;
   color: ${GlobalStyleDefault.colors.text};
+  font-family: DolceVita;
 `;

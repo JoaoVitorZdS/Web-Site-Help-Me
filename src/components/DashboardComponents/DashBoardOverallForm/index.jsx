@@ -1,20 +1,17 @@
-import React, { useContext, useState, useEffect } from "react";
-import Modal from "react-modal";
-import CalendarAPI from "../../CalendarApi";
+import React, { useContext} from "react";
 import { AccessTokenContext } from "../../StyledButtons/ButtonLogInGoogle";
-import { getFirestore, collection, getDocs, addDoc } from "firebase/firestore";
 import "../../../firebaseconfig";
-import LoginPage from "../../../pages/Login";
 import { StyledDashboardEventForm } from "./style";
-
+import GlobalStyleDefault from "../../../GlobalStyles";
+import "../../../App.css"
 export const DashboardOverallForm = () => {
-  const { userData, accessToken } = useContext(AccessTokenContext)
+  const { accessToken } = useContext(AccessTokenContext)
   return (
     <>
       {accessToken ? (
         <>
       <StyledDashboardEventForm>
-      <h1>Gráfico</h1>
+      <h1 style={{color: `${GlobalStyleDefault.colors.secondary}`, fontFamily: "DolceVita"}}>Histórico</h1>
       </StyledDashboardEventForm>
         </>
       ) : (

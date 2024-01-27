@@ -6,6 +6,8 @@ import { AccessTokenContext } from "../../components/StyledButtons/ButtonLogInGo
 import { DashboardHead } from "../../components/DashboardComponents/DashboardHead";
 import { FIREBASE_DB } from "../../firebaseconfig";
 import { collection, getDocs, query } from "firebase/firestore";
+import { DashboardUserBody } from "../../components/DashboardUserComponents/DashboardUserBody";
+import { Header } from "../../components/Header/Header";
 
 
 
@@ -47,6 +49,7 @@ const DashboardPage = () => {
           {isAdmin ? (
             // Se o usuário for um administrador, exiba a DashboardAdm
             <>
+            <h1>ADM</h1>
             <DashboardHead />
             <DashboardBody />
             <Footer />
@@ -55,14 +58,14 @@ const DashboardPage = () => {
             // Caso contrário, exiba a Dashboard padrão
             <>
               <DashboardHead />
-              <DashboardBody />
+              <DashboardUserBody />
               <Footer />
             </>
           )}
         </StyledDashboardContainer>
       ) : (
         <StyledDashboardContainer>
-          <h1>Sem Usuário</h1>
+          <Header/>
           <DashboardBody />
           <Footer />
         </StyledDashboardContainer>

@@ -5,18 +5,14 @@ import { AccessTokenContext } from '../StyledButtons/ButtonLogInGoogle';
 import { StyledCalendarAPIBody } from './style';
 import { GiFountainPen } from "react-icons/gi";
 import { GiTrashCan } from "react-icons/gi";
+import { toast } from 'react-toastify';
+
 const CalendarAPI = () => {
   
-  const { accessToken } = useContext(AccessTokenContext);
+  const { accessToken, userData } = useContext(AccessTokenContext);
   const [loading, setLoading] = useState(false); // Estado para controlar o carregamento
   // ... outras constantes e estados
-  useEffect(() => {
-    // Quando a página carregar
-    setLoading(true); // Ativar tela de carregamento
-    getEvents()
-      .then(() => setLoading(false)) // Desativar tela de carregamento quando a chamada terminar
-      .catch(() => setLoading(false)); // Em caso de erro, também desativar
-  }, [accessToken]);
+  const profissional = "Doctor uno"
   const API_KEY = 'AIzaSyCyPwbJLpBVm7FKBmvStuA_p8DZk7aZYIQ'; // Replace with your API key
   const CALENDAR_ID = 'primary'
   //const CLIENT_ID = '752267844561-7d4860a0jkr77s0jal0cft1s0lbp2f8f.apps.googleusercontent.com';
@@ -75,7 +71,7 @@ const CalendarAPI = () => {
   };
   const getEvents = async () => {
     try {
-      console.log(accessToken)
+      //console.log(accessToken)
       const response = await axios.get(`https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -84,35 +80,50 @@ const CalendarAPI = () => {
           key: API_KEY,
         },
       });
-      console.log(response)
+      //console.log(response)
       setEvents(response.data.items);
-      console.log(events)
+      //console.log(events)
       
     } catch (error) {
+      toast("Erro de conexão com a agenda. Atualize a Página e tente novamente.", {type: "error"})
+
       console.error('Error fetching events: ', error);
     }
   };
+
+  useEffect(() => {
+    // Quando a página carregar
+    setLoading(true); // Ativar tela de carregamento
+    getEvents()
+      .then(() => setLoading(false)) // Desativar tela de carregamento quando a chamada terminar
+      .catch(() => setLoading(false)); // Em caso de erro, também desativar
+      // eslint-disable-next-line
+  }, [accessToken] );
   const createEvent = async (e) => {
     e.preventDefault();
     try {
+      // Criação automática do endDateTime
+      const startDateTime = new Date(formData.startDateTime);
+      const endDateTime = new Date(startDateTime.getTime() + 60 * 60 * 1000); // Adiciona 1 hora
+
       const event = {
-        summary: formData.summary,
-        location: formData.location,
+        summary: `${userData.name} consulta com ${profissional}`,
+        location: 'Online',
         description: formData.description,
         start: {
-          dateTime: new Date(formData.startDateTime).toISOString(),
+          dateTime: startDateTime.toISOString(),
           timeZone: 'America/Los_Angeles',
         },
         end: {
-          dateTime: new Date(formData.endDateTime).toISOString(),
+          dateTime: endDateTime.toISOString(),
           timeZone: 'America/Los_Angeles',
         },
-        attendees: [{ email: formData.attendees }],
+        attendees: [{ email: userData.email }],
         reminders: {
           useDefault: false,
           overrides: [
-            { method: 'email', minutes: parseInt(formData.emailReminders) },
-            { method: 'popup', minutes: parseInt(formData.popupReminders) },
+            { method: 'email', minutes: 180 }, // Lembrete por email em 3 horas
+            { method: 'popup', minutes: 60 }, // Lembrete por popup em 1 hora
           ],
         },
         conferenceData: {
@@ -124,49 +135,35 @@ const CalendarAPI = () => {
           },
         },
       };
-  
-      const response = await axios.post(
-        `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?conferenceDataVersion=1`,
-        event,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
+
+      try {
+        const response = await axios.post(
+          `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?conferenceDataVersion=1`,
+          event,
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
+      
+        if (response.status === 200) {
+          toast("Consulta Marcada!", { type: "success" });
         }
-      );
-  
-      console.log('Evento criado: ', response.data);
-  
-      // Verifica se a resposta inclui os dados da conferência
-      if (response.data.conferenceData && response.data.conferenceData.entryPoints) {
-        const meetLink = response.data.conferenceData.entryPoints.find(
-          (entry) => entry.entryPointType === 'video' && entry.uri
-        )?.uri;
-  
-        if (meetLink) {
-          console.log('Link para a reunião do Google Meet:', meetLink);
-          // Faça o que precisar com o link do Meet aqui
-        } else {
-          console.log('Não foi possível encontrar o link do Google Meet na resposta.');
-        }
-      } else {
-        console.log('Não há dados de conferência na resposta do evento.');
+      } catch (error) {
+        toast("Erro ao marcar consulta. Tente novamente em alguns minutos", { type: "error" });
+        console.error('Erro ao criar evento: ', error);
       }
-  
-      /*setFormData({
-        summary: '',
-        location: '',
-        description: '',
-        startDateTime: '',
-        endDateTime: '',
-        attendees: '',
-        emailReminders: '',
-        popupReminders: '',
-      });*/
-      getEvents()
+
+      //console.log('Evento criado: ', response.data);
+
+      // Atualiza a lista de eventos após a criação bem-sucedida, chamando a função `getEvents`
+      getEvents();
       closeCreateModal();
     } catch (error) {
-      console.error('Erro ao criar evento: ', error);
+      toast("Erro ao marcar consulta. Tente novamente em alguns minutos", {type: "error"})
+
+      //console.error('Erro ao criar evento: ', error);
     }
   };
   
@@ -181,14 +178,20 @@ const CalendarAPI = () => {
           },
         }
       );
-      console.log('Event updated: ', response.data);
-      // Atualiza a lista de eventos após a atualização bem-sucedida, chamando a função `getEvents`
-      getEvents();
+      
+      if (response.status === 200) {
+        toast("Evento Atualizado", { type: "success" });
+        // Atualiza a lista de eventos após a atualização bem-sucedida, chamando a função `getEvents`
+        getEvents();
+      } else {
+        toast("Erro ao atualizar evento. Tente novamente em alguns minutos", { type: "error" });
+      }
     } catch (error) {
+      toast("Erro ao atualizar evento. Tente novamente em alguns minutos", { type: "error" });
       console.error('Error updating event: ', error);
     }
   };
-
+  
   const deleteEvent = async (eventId) => {
     try {
       const response = await axios.delete(
@@ -199,13 +202,20 @@ const CalendarAPI = () => {
           },
         }
       );
-      console.log('Event deleted: ', response);
-      // Atualiza a lista de eventos após a remoção bem-sucedida, chamando a função `getEvents`
-      getEvents();
+        
+      if (response.status === 204) {
+        toast("Evento cancelado!", { type: "success" });
+        // Atualiza a lista de eventos após a remoção bem-sucedida, chamando a função `getEvents`
+        getEvents();
+      } else {
+        toast("Erro ao cancelar o evento. Tente novamente em alguns minutos", { type: "error" });
+      }
     } catch (error) {
+      toast("Erro ao cancelar o evento. Tente novamente em alguns minutos", { type: "error" });
       console.error('Error deleting event: ', error);
     }
   };
+  
   const handleUpdateEvent = async (eventId, e) => {
     e.preventDefault();
     try {
@@ -235,7 +245,9 @@ const CalendarAPI = () => {
   
       closeUpdateModal();
     } catch (error) {
-      console.error('Erro ao atualizar evento: ', error);
+      toast("Erro ao Atualizar Evento. Tente novamente mais tarde", {type: "error"})
+
+      //console.error('Erro ao atualizar evento: ', error);
     }
   };
   
@@ -246,38 +258,33 @@ const CalendarAPI = () => {
     : (
       <>
       {/*<button onClick={getEvents}>Get Events</button>*/}
-      <button onClick={openCreateModal}>Create Event</button>
+      
+      <button onClick={openCreateModal}>Criar Evento</button>
+
       {/* Other buttons for update and delete with respective onClick handlers */}
       {/* Display events */}
       <ul>
-      {events.length !== 0 ? (
-  <ul>
-    {events.map((event) => (
-      <li key={event.id}>
-        {event.summary} - 
-        <button onClick={() => openUpdateModal(event)}><GiFountainPen />Editar Evento</button>
-        <button onClick={() => deleteEvent(event.id)}><GiTrashCan />Deletar Evento</button>
-      </li>
-    ))}
-  </ul>
-  
-) : (
-  <>
-  <p>Sem Compromissos Agendados</p>
-  </>
-)}
+          {events.length !== 0 ? (
+            <ul>
+              {events.map((event) => (
+                <li key={event.id}>
+                {event.summary} - 
+                <button onClick={() => openUpdateModal(event)}><GiFountainPen />Editar Evento</button>
+                <button onClick={() => deleteEvent(event.id)}><GiTrashCan />Deletar Evento</button>
+              </li>
+                                       ))}
+            </ul> 
+      ) : (
+        <>
+        <p>Sem Compromissos Agendados</p>
+        </>
+      )}
       </ul>
       {showCreateModal && (
         <div className="EventCreationModal">
           <form onSubmit={(e) => createEvent(e)}>
-            <label>
-              Nome do evento na agenda:
-              <input id='inputCreationEvent' type="text" name="summary" value={formData.summary} onChange={handleChange} />
-            </label>
-            <label>
-              Localização:
-              <input id='inputCreationEvent' type="text" name="location" value={formData.location} onChange={handleChange} />
-            </label>
+            
+           
             <label>
               Descrição:
               <input id='inputCreationEvent' type="text" name="description" value={formData.description} onChange={handleChange} />
@@ -292,41 +299,12 @@ const CalendarAPI = () => {
                 onChange={handleChange}
               />
             </label>
-            <label>
-              Data e Hora de Término:
-              <input
-              id='inputCreationEvent'
-                type="datetime-local"
-                name="endDateTime"
-                value={formData.endDateTime}
-                onChange={handleChange}
-              />
-            </label>
+     
             <label>
               Participantes:
               <input id='inputCreationEvent' type="email" name="attendees" value={formData.attendees} onChange={handleChange} />
             </label>
             
-            <label>
-              Lembrete Por Email? (em minutos):
-              <input
-              id='inputCreationEvent'
-                type="number"
-                name="emailReminders"
-                value={formData.emailReminders}
-                onChange={handleChange}
-              />
-            </label>
-            <label>
-              Lembrete No Celular? (em minutos):
-              <input
-              id='inputCreationEvent'
-                type="number"
-                name="popupReminders"
-                value={formData.popupReminders}
-                onChange={handleChange}
-              />
-            </label>
             <div id='buttonCreationContainer'>
             <button type="submit">Marcar Consulta</button>
             <button onClick={closeCreateModal}>Cancel</button>

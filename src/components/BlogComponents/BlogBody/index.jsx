@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { AccessTokenContext } from "../../StyledButtons/ButtonLogInGoogle";
 import { getFirestore, collection, getDocs, doc, updateDoc } from "firebase/firestore";
 import "../../../firebaseconfig";
-import { StyledDashboardBody } from "./style";
+import { StyledBlogBody } from "./style";
 import { FcLike, FcDislike } from "react-icons/fc";
 import '../../../App.css'
 
@@ -10,7 +10,7 @@ import { RiDislikeLine, RiHeartLine  } from "react-icons/ri";
 import ReactModal from "react-modal";
 
 export const BlogBody = () => {
-  const { userData, accessToken } = useContext(AccessTokenContext);
+  const { userData } = useContext(AccessTokenContext);
   const [posts, setPosts] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null); // Track the selected post for the modal
   const openModal = (postId) => {
@@ -114,8 +114,8 @@ export const BlogBody = () => {
   }, []); // Chama fetchPosts uma vez, quando o componente é montado
   
   return (
-    <StyledDashboardBody>
-      {accessToken ? (
+    <StyledBlogBody>
+    
         <>  
           {posts.length !== 0 ? (
             <ul>
@@ -149,8 +149,12 @@ export const BlogBody = () => {
             contentLabel="Post Modal"
           >
             {selectedPost && (
-              <div>
+              <div className="BlogPostModal">
                 <h2>{selectedPost.title}</h2>
+                <div className="BlogPostModalIMG">
+                <img src={selectedPost.imageURL} alt=""  />
+
+                </div>
                 <p>{selectedPost.content}</p>
                 {/* Add any other details you want to display */}
                 <button onClick={closeModal}>Close</button>
@@ -158,9 +162,7 @@ export const BlogBody = () => {
             )}
           </ReactModal>
         </>
-      ) : (
-        <h1>Faça login</h1>
-      )}
-    </StyledDashboardBody>
+      
+    </StyledBlogBody>
   );
 };

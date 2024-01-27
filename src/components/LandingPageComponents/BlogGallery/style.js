@@ -19,6 +19,17 @@ export const Post = styled.div`
   height: 300px;
   perspective: 500px;
   border-radius: 5px;
+
+  @media (max-width: 770px) {
+    width: 120px;
+    height: 190px;
+    
+  }
+  @media (max-width: 570px) {
+    width: 100px;
+    height: 150px;
+    
+  }
   .card {
     width: 100%;
     height: 100%;
@@ -64,12 +75,13 @@ export const Post = styled.div`
   }
   .card-content {
     width: 100%;
-    height: 30%;
+    height: fit-content ;
     border-radius: 5px 5px 0px 0px;
     text-align: center;
     margin-top: 10px;
     background-color: #00000066;
     z-index: 5;
+    
   }
   .card-title {
     color: white

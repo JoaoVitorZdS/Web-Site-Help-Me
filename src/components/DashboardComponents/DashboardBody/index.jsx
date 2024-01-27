@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { AccessTokenContext } from "../../StyledButtons/ButtonLogInGoogle";
-
 import { StyledDashboardBody } from "./style";
 import { DashboardEventForm } from "../DashBoardEventForm";
 import { DashboardPostForm } from "../DashBoardPostsForm";
@@ -8,7 +7,7 @@ import { DashboardOverallForm } from "../DashBoardOverallForm";
 import { GiBrain } from "react-icons/gi";
 import { GiNotebook } from "react-icons/gi";
 import { GiChart } from "react-icons/gi";
-
+import "../../../App.css"
 export const DashboardBody = () => {
   const {accessToken } = useContext(AccessTokenContext);
  
@@ -73,7 +72,10 @@ export const DashboardBody = () => {
 </StyledDashboardBody>
         </>
       ) : (
-        <h1>Faça login</h1>
+        <div style={{display: "flex",justifyContent: "center", alignContent: "center",flexWrap: "wrap" , width: "100vw", height: "90vh"}}>
+        <h1 style={{fontFamily: "DolceVita"}}>Faça <a href="/login">login</a> para continuar.</h1>
+        </div>
+       
       )}
     </>
   );

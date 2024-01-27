@@ -4,6 +4,8 @@ import { AccessTokenContext } from "../../StyledButtons/ButtonLogInGoogle";
 import genericProfile from "../../../assets/imgs/GenericProfile.jpg"
 import { GiCharm } from "react-icons/gi";
 import { GiFountainPen } from "react-icons/gi";
+import GlobalStyleDefault from "../../../GlobalStyles";
+import "../../../App.css"
 export const DashboardHead = () => {
 
   const { userData, accessToken } = useContext(AccessTokenContext)
@@ -49,7 +51,7 @@ export const DashboardHead = () => {
         <img alt="googleProfilePic" src={genericProfile} style={{}}></img>
         </div>
         <div>
-        <h3>{`Faça Login Para Continuar`}</h3>
+        <h3 style={{color: `${GlobalStyleDefault.colors.secondary}`, fontFamily: "DolceVita"}}>Faça <a href="/login">Login</a> Para Continuar</h3>
         </div>
       </StyledDashboardHead>
       )}

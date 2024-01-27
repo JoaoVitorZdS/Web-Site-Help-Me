@@ -3,7 +3,6 @@ import { AccessTokenContext } from "../../StyledButtons/ButtonLogInGoogle";
 import "../../../firebaseconfig";
 import { StyledDashboardBody } from "./style";
 import { DashboardEventForm } from "../DashBoardEventForm";
-import { DashboardPostForm } from "../DashBoardPostsForm";
 import { DashboardOverallForm } from "../DashBoardOverallForm";
 
 
@@ -22,8 +21,6 @@ export const DashboardUserBody = () => {
     switch (activeCategory) {
       case "Consultas":
         return <DashboardEventForm/>;
-      case "Postagens":
-        return <DashboardPostForm/>;
       case "Extrato":
         return <DashboardOverallForm/>;
       default:
@@ -46,12 +43,7 @@ export const DashboardUserBody = () => {
             >
               Consultas
             </div>
-            <div
-              onClick={() => handleCategoryClick("Postagens")}
-              className={activeCategory === "Postagens" ? "active" : ""}
-              >
-              Postagens
-            </div>
+            
             <div
               onClick={() => handleCategoryClick("Extrato")}
               className={activeCategory === "Extrato" ? "active" : ""}

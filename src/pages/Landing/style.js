@@ -8,6 +8,17 @@ export const StyledLandingPageContainer = styled.div`
   align-items: center;
   background-color: ${GlobalStyleDefault.colors.primary};
   width: 100%;
-  height: 300vh;
+  height: 165vh;
+
+  @media (max-width: 620px) {
+   height: 130vh;
+      
+    
+  }
   
+  
+  
+
+
+
 `;

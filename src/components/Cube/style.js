@@ -1,6 +1,26 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import GlobalStyleDefault from "../../GlobalStyles";
 
+const rotateAnimation = keyframes`
+   0% {
+      transform: rotateX(-30deg) rotateY(0deg);
+   }
+   100% {
+      transform: rotateX(-30deg) rotateY(360deg);
+   }
+`;
+
+const burstAnimation = keyframes`
+   0% {
+      transform: rotateY(calc(90deg * var(--i))) translateZ(150px);
+   }
+   50% {
+      transform: rotateY(calc(80deg * var(--i))) translateZ(400px) rotateZ(90deg);
+   }
+   100% {
+      transform: rotateY(calc(90deg * var(--i))) translateZ(150px) rotateZ(0deg);
+   }
+`;
 
 export const StyledCubeContainer = styled.div`
    margin: 0;
@@ -9,46 +29,14 @@ export const StyledCubeContainer = styled.div`
    margin-bottom: 100px;
    margin-left: 50px;
 
-   body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background-color: rgb(0, 0, 0);
-   }
-
    .cube {
       position: relative;
       width: 301px;
       height: 301px;
       transform-style: preserve-3d;
       transform: rotateX(-30deg);
-      animation: animate 20s linear infinite;
+      animation: ${rotateAnimation} 20s linear infinite;
    }
-
-   @keyframes animate {
-      0% {
-         transform: rotateX(-30deg) rotateY(0deg);
-      }
-      100% {
-         transform: rotateX(-30deg) rotateY(360deg);
-      }
-   }
-   @keyframes burst {
-      0% {
-         transform: rotateY(calc(90deg * var(--i))) translateZ(150px);
-      }
-      50% {
-         transform: rotateY(calc(80deg * var(--i))) translateZ(400px)
-            rotateZ(90deg);
-      }
-      100% {
-         transform: rotateY(calc(90deg * var(--i))) translateZ(150px)
-            rotateZ(0deg);
-      }
-   }
-
-   /*animation: burst 5s backwards infinite;*/
 
    .cube div {
       position: absolute;
@@ -68,6 +56,7 @@ export const StyledCubeContainer = styled.div`
       background: linear-gradient(#151515, ${GlobalStyleDefault.colors.primary});
       transform: rotateY(calc(90deg * var(--i))) translateZ(150px);
    }
+
    .top {
       position: absolute;
       top: 0;
@@ -101,3 +90,10 @@ export const StyledCubeContainer = styled.div`
       margin-top: 35px;
    }
 `;
+
+export const StyledAnimatedCube = styled.div`
+   /* Adicione aqui as propriedades específicas do seu componente animado */
+   animation: ${burstAnimation} 5s backwards infinite;
+`;
+
+// Se necessário, você pode exportar outros componentes Styled Components daqui

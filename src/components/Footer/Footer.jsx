@@ -19,7 +19,7 @@ const navigate = useNavigate()
                 style={{alignSelf: "end"}}></img>
         </div>
         <div id="termsContainer">
-            <a href="/blog"> Termos de uso e Privacidade</a>
+            <a href="/terms"> Termos de uso e Privacidade</a>
         </div>
         <div id="propertyContainer">
             <p style={{fontSize: "smaller"}}>©2024 Help Me</p>

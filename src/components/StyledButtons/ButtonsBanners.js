@@ -18,7 +18,7 @@ export const StyledButtonBanner = (props ) => {
         <>
         {props.type 
         ? 
-        <div style={{width: "100%", alignSelf: "flex-end", justifySelf: "center", justifyContent: "center", display: "flex", paddingBottom: "50px"}}>
+        <div style={{width: "100%", alignSelf: "flex-end", justifySelf: "center", justifyContent: "center", display: "flex", paddingBottom: "10%"}}>
         <StyledButtonContainer onClick={() => {navigate(`/${props.destiny}`)}}>
         {props.type === "tests" 
         ? 
@@ -30,7 +30,7 @@ export const StyledButtonBanner = (props ) => {
         </StyledButtonContainer> 
         </div>
         : 
-        <div style={{width: "100%", alignSelf: "flex-end", justifySelf: "center", justifyContent: "center", display: "flex", paddingBottom: "50px"}}>
+        <div style={{width: "100%", alignSelf: "flex-end", justifySelf: "center", justifyContent: "center", display: "flex", paddingBottom: "10%"}}>
         <StyledButtonContainer onClick={scrollToFirstElementWithClass}>
         <IoIosBook size={22}/>
         <p id="labelStyledButton">{props.label}</p>

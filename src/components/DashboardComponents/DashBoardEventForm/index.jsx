@@ -3,29 +3,24 @@ import CalendarAPI from "../../CalendarApi";
 import { AccessTokenContext } from "../../StyledButtons/ButtonLogInGoogle";
 import "../../../firebaseconfig";
 import { StyledDashboardEventForm } from "./style";
-import Calendar from "react-calendar";
+import ProfessionalConsultations from "../../ConsultationComponents/ProfessionalSideConsultation/indes";
+import "../../../App.css"
+import GlobalStyleDefault from "../../../GlobalStyles";
+
 
 export const DashboardEventForm = () => {
-  const { userData, accessToken } = useContext(AccessTokenContext);
-
-  
-
-
-
-
-  
+  const {  accessToken } = useContext(AccessTokenContext);
   return (
     <>
       {accessToken ? (
         <>
-      <StyledDashboardEventForm>
-        <h1>Consultas</h1>
-        <Calendar/>
-       <CalendarAPI />
-</StyledDashboardEventForm>
+          <StyledDashboardEventForm>
+            <h1 style={{color: `${GlobalStyleDefault.colors.secondary}`, fontFamily: "DolceVita"}}>Consultas</h1>
+            <ProfessionalConsultations/>
+          </StyledDashboardEventForm>
         </>
       ) : (
-        <h1>Faça login</h1>
+        <h1>Faça <a href="/login">login</a> para continuar.</h1>
       )}
     </>
   );

@@ -10,7 +10,7 @@ function App() {
       <GoogleOAuthProvider clientId="752267844561-7d4860a0jkr77s0jal0cft1s0lbp2f8f.apps.googleusercontent.com">
         <StyledApp>
           <AppRoutes />
-          <ToastContainer theme="dark" />
+          <ToastContainer  />
         </StyledApp>
       </GoogleOAuthProvider>
     </>
