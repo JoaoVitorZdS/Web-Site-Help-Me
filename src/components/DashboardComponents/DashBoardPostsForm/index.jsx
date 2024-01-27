@@ -5,7 +5,8 @@ import { getFirestore, collection, getDocs, addDoc, doc, updateDoc } from "fireb
 import "../../../firebaseconfig";
 import { StyledDashboardEventForm } from "./style";
 import { PostRenderDashboard } from "./PostRenderDashboard";
-
+import GlobalStyleDefault from "../../../GlobalStyles";
+import "../../../App.css"
 export const DashboardPostForm = () => {
   const { userData, accessToken } = useContext(AccessTokenContext);
   const [posts, setPosts] = useState([]);
@@ -171,7 +172,7 @@ const updateDislikesInFirestore = async (postId, updatedDislikes) => {
       {accessToken ? (
         <>
       <StyledDashboardEventForm>
-      <h1>Posts Blog</h1>
+      <h1 style={{color: `${GlobalStyleDefault.colors.secondary}`, fontFamily: "DolceVita"}}>Posts Blog</h1>
       {posts.length !== 0 ? (
         <PostRenderDashboard/>
       ) : (

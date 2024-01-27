@@ -5,9 +5,26 @@ export const StyledBodyContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
-  justify-content: space-between;
+  height: fit-content;
+  min-height: 250vh;
+  justify-content: space-around;
   align-items: center;
+
+  @media (max-width: 620px) {
+    #firstContainer{
+      min-height: 15% !important;
+    }
+    #secondContainer{
+      min-height: 35% !important;
+     
+    }
+    #thirdContainer{
+      min-height: 10% !important;
+      
+      
+    }
+  }
+  
 
   #firstContainer {
     display: flex;
@@ -17,6 +34,8 @@ export const StyledBodyContainer = styled.div`
     justify-content: center;
     align-items: center;
     margin-top: 1%;
+    border-radius: 25px;
+    
   }
   #secondContainer {
     display: flex;
@@ -28,17 +47,30 @@ export const StyledBodyContainer = styled.div`
     flex-direction: column;
     position: relative;
     bottom: 0%;
+    font-size: large;
+   
     
+    
+  }
+  #TitleSecondContainer{
+    border-top: 1px  solid grey;
+    border-bottom: 1px  solid grey;
+    width: 80%;
+    justify-content: center;
+    display: flex;
+    padding: 5px;
   }
   #thirdContainer {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     gap: 15px;
     width: 100%;
-    height: 35%;
+    height: fit-content;
+    max-height: max-content;
     background-color: ${GlobalStyleDefault.colors.primary};
     justify-content: center;
     align-items: center;
+    margin-bottom:5%;
   }
 `;

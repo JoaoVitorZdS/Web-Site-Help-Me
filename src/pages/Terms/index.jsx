@@ -1,23 +1,23 @@
 import React from "react";
-import { StyledFAQContainer } from "./style";
+import { StyledTermsContainer } from "./style";
 import { Footer } from "../../components/Footer/Footer";
 import { FAQPageBody } from "../../components/FAQComponents/FAQBody";
 import { Header } from "../../components/Header/Header";
 
 
 
-const FAQPage = () => {
+const TermsPage = () => {
 
   return (
     <div>
-        <StyledFAQContainer>
+        <StyledTermsContainer>
           <Header/>
           
           <FAQPageBody />
           <Footer/>
-        </StyledFAQContainer>
+        </StyledTermsContainer>
     </div>
   );
 };
 
-export default FAQPage;
+export default TermsPage;

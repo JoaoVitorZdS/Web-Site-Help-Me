@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import GlobalStyleDefault from "../../../GlobalStyles";
 
-export const StyledDashboardBody = styled.div`
+export const StyledBlogBody = styled.div`
   
   height: auto;
   background-color: transparent;
@@ -17,27 +17,31 @@ export const StyledDashboardBody = styled.div`
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Duas colunas com mínimo de 300px de largura */
-    gap: 10px; /* Espaçamento entre os posts */
+    gap: 50px; /* Espaçamento entre os posts */
     list-style: none;
     padding: 5%;
+    height: 800px;
   
   }
   li{
+   
     
+
+  }
+
+  .PostDiv{
     border-top: 1px solid grey;
     border-bottom: 1px solid grey;
     background-color: ${GlobalStyleDefault.colors.offwhite};
     border-radius: 15px;
     margin-top: 15px;
     padding: 10px;
-
-  }
-
-  .PostDiv{
-    
-    height: 400px;
+  
+    height: 100%;
+  
     display: flex;
     flex-direction: column;
+    padding: 15px;
 
     p{
       align-self: center;
@@ -64,10 +68,23 @@ export const StyledDashboardBody = styled.div`
 
     }
     p {
+      padding-top: 15px;
+      padding-bottom: 25px;
       display: -webkit-box;
-      -webkit-line-clamp: 6; /* Número de linhas desejado */
+      -webkit-line-clamp: 5; /* Número de linhas desejado */
       -webkit-box-orient: vertical;
       overflow: hidden;
+    }
+    .BlogPostModal{
+      width: 200px;
+        height: 200px;
+
+
+    }
+    .BlogPostModalIMG{
+        width: 20px;
+        height: 20px;
+
     }
 
   }

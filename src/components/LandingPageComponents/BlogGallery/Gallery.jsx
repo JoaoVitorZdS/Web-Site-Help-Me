@@ -11,8 +11,7 @@ export function Gallery() {
       { id: 4, title: 'Post 2', image: 'url-da-imagem-2.jpg', content: 'Conteúdo do Post 2' },
       { id: 5, title: 'Post 2', image: 'url-da-imagem-2.jpg', content: 'Conteúdo do Post 2' },
       { id: 6, title: 'Post 2', image: 'url-da-imagem-2.jpg', content: 'Conteúdo do Post 2' },
-      { id: 7, title: 'Post 2', image: 'url-da-imagem-2.jpg', content: 'Conteúdo do Post 2' },
-      { id: 8, title: 'Post 2', image: 'url-da-imagem-2.jpg', content: 'Conteúdo do Post 2' },
+  
 
       // Adicione mais objetos de postagem conforme necessário
     ];

@@ -14,8 +14,8 @@ const CarouselContainer = styled.div`
   position: relative;
   top: 0;
   z-index: 2;
-  
-  
+  border-radius: 25px;
+
 `;
 
 const Slide = styled.div`
@@ -24,6 +24,7 @@ const Slide = styled.div`
   width: 100%; /* Width based on number of slides */
   transition: transform 2.8s cubic-bezier(0.19, 1, 0.22, 1); /* Smooth transition */
   transform: ${({ translateValue }) => `translateX(${translateValue}%)`};
+  border-radius: 25px;
   
 `;
 
@@ -55,6 +56,11 @@ const Button = styled.button`
   cursor: pointer;
   z-index: 2;
   border-radius: 2px;
+
+  
+
+  
+  
   
 
   ${({ direction }) => (direction === 'prev' ? 'left: 0;' : 'right: 0;')}
@@ -65,7 +71,7 @@ const Carousel = () => {
   const [isHovered, setIsHovered] = useState(false);
   const slideCount = 6; // Adjust the number of slides here
   const autoAdvanceTimeout = 6000; // Adjust the time interval for auto-advance (in milliseconds)
-
+ 
 
   useEffect(() => {
     let interval;
@@ -114,7 +120,7 @@ const Carousel = () => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         >
-        <StyledButtonBanner label="Blog" destinyClass="card"/>
+        
         </SlideItem>
         <SlideItem 
         style={{ backgroundImage: `url(${mandalah})` }}
@@ -128,7 +134,7 @@ const Carousel = () => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         >
-          <StyledButtonBanner label={"Agende uma consulta"} destiny={"Dashboard"} type='schedule'/>
+       
 
         </SlideItem>
         <SlideItem 
@@ -143,7 +149,7 @@ const Carousel = () => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         >
-        <StyledButtonBanner label={"Faça um teste"} destiny={"Dashboard"} type='tests'/>
+        
         </SlideItem>
         <SlideItem 
         style={{ backgroundImage: `url(${dev})` }}
@@ -157,7 +163,9 @@ const Carousel = () => {
         Anterior
       </Button>
       <Button direction="next" onClick={nextSlide}>
+       
         Próximo
+       
       </Button>
     </CarouselContainer>
   );

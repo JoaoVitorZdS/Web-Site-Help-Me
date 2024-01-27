@@ -3,7 +3,7 @@ import { TestsButtonsLandingPage } from "../../StyledButtons/TestsButtons";
 import { Gallery } from "../BlogGallery/Gallery";
 import Carousel from "../Carousel/Carousel";
 import { StyledBodyContainer } from "./style";
-
+import "../../../App.css"
 
 export function Body() {
     
@@ -15,13 +15,13 @@ export function Body() {
         <div id="firstContainer">
            <Carousel/>
         </div>
-        <div id="secondContainer">
-            <h2>Posts Recomendados</h2>
-            <Gallery/>
-        </div>
         <div id="thirdContainer">
             <TestsButtonsLandingPage label={"Faça um teste"} destiny={"Dashboard"} type='tests'/>
-            <TestsButtonsLandingPage label={"Agende uma consulta"} destiny={"Dashboard"}/>
+            <TestsButtonsLandingPage label={"Agende uma consulta"} destiny={"consultation"}/>
+        </div>
+        <div id="secondContainer">
+            <i id="TitleSecondContainer" style={{fontSize: "1em", fontFamily: "DolceVita"}}>Posts Recomendados</i>
+            <Gallery/>
         </div>
         <FixedButtons/>
         

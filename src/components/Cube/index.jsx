@@ -1,6 +1,6 @@
 import React from "react";
 import { StyledCubeContainer } from "./style";
-
+import "./index.css"
 
 
 export const Cube = () => {

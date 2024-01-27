@@ -5,7 +5,7 @@ import "../../../firebaseconfig";
 import { StyledDashboardEventForm } from "./style";
 
 export const DashboardEventForm = () => {
-  const { userData, accessToken } = useContext(AccessTokenContext);
+  const { accessToken } = useContext(AccessTokenContext);
 
   
 

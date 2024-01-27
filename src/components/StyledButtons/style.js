@@ -10,6 +10,7 @@ export const StyledButtonContainer = styled.button`
   gap: 5px;
   padding: 15px;
   height: 30px;
+  min-width: 90px;
   border-radius: 6px;
   border-width: 1px;
   background-color: ${GlobalStyleDefault.colors.tertiary};
@@ -38,6 +39,8 @@ export const StyledButtonContainer = styled.button`
     font-family: 'Roboto', sans-serif;
     text-decoration: dotted;
   }
+
+ 
 `;
 
 export const StyledGoogleButtonContainer = styled.button`
