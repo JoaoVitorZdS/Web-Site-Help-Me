@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import GlobalStyleDefault from "../../../GlobalStyles";
-import "../../../App.css"
 
 export const StyledBlogBody = styled.div`
   height: auto;
@@ -26,82 +25,17 @@ export const StyledBlogBody = styled.div`
     background-color: ${GlobalStyleDefault.colors.offwhite};
     border-radius: 12px;
     margin-top: 15px;
-   
+    overflow: hidden;
     min-width: 300px;
     display: flex;
     flex-direction: column;
     padding: 15px;
-
-    a{
-      width: 100%;
-      display: flex;
-      
-      position: relative;
-
-      h3{
-        width: 100%;
-      }
-    }
-
-    .tagToFullPageContainer {
-  display: flex;
-  flex-direction: row;
-  position: absolute;
-  width: 20px;
-  height: 100%;
-  right: 0;
-  top: 0;
- 
-}
-
-.tagToFullPage {
-  width: 150px;  /* Ajuste a largura conforme necessário */
-  height: 50px;
-  font-size: 0.8rem;
-  font-family: DolceVita;
-  position: absolute;
-  left: -550%;
-  bottom: -120%;
-  
-  text-align: center;
-  color: ${GlobalStyleDefault.colors.tertiary};
-  
- 
- 
-}
-
-.tagToFullPage:hover {
-  animation: debounce  infinite 1s;
-}
-
-
-
-
-
-/* Adicione as seguintes linhas para a animação de debounce */
-@keyframes debounce {
-  0% {
-    
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-50%);
-  }
- 
-  100% {
-    transform: translateY(0);
-  }
-}
-
-
     .reactionContainerWrapper{
-      width: 100%;
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: center;
       align-content: center;
-      
+      width: 150px;
     }
     .reactionContainer{
       display: flex;

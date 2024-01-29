@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
-import CalendarAPI from "../../CalendarApi";
-import { AccessTokenContext } from "../../StyledButtons/ButtonLogInGoogle";
 import "../../../firebaseconfig";
+import "../../../App.css"
+import React, { useContext } from "react";
+import { AccessTokenContext } from "../../StyledButtons/ButtonLogInGoogle";
 import { StyledDashboardEventForm } from "./style";
 import ProfessionalConsultations from "../../ConsultationComponents/ProfessionalSideConsultation/indes";
-import "../../../App.css"
 import GlobalStyleDefault from "../../../GlobalStyles";
 
 

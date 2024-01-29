@@ -1,42 +1,49 @@
 import styled from "styled-components";
-import GlobalStyleDefault from "../../../GlobalStyles";
 
 export const StyledDashboardHead = styled.div`
-  height: 100px;
-  
+  height: 20vh;
   margin: 0 auto;
-  width: 70vw;
-  min-width: 320px;
+  width: 98vw;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
 
  
   #userInfoContainer{
-    width: 30%;
+    width: 70%;
     height: 90%;
     display: flex;
     flex-direction: column-reverse;
     justify-content: center;
-    align-items: center;
+    align-items: end;
+
+  i{
+    margin-right: 5%;
+
+  }
 
    
   }
   
   #userPicContainer{
-    width: 13%;
-    height: 90%;
+    width: 23%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
   }
 
   #buttonsContainer{
    display: flex;
+   
    flex-direction: row;
    margin-bottom: 5%;
   }
 
   img {
-   width: 100%;
+  
+   height: 100%;
     border-radius: 25px;
   }
   button {
@@ -47,7 +54,7 @@ export const StyledDashboardHead = styled.div`
     width: 100px;
     border-radius: 15px;
     padding: 5px;
-    margin-left: 3% ;
+    margin: 3% ;
     
     div {
       font-size: smaller;
@@ -56,37 +63,12 @@ export const StyledDashboardHead = styled.div`
     }
   }
 
-  @media screen and (max-width: 320px) {
+  @media (max-width: 320px) {
     font-size: small;
   img {
     width: 80%;
    
   }
 }
-  @media screen and (min-width: 320px) {
-    font-size: small;
-  img {
-    width: 80%;
-   
-  }
-}
-  @media screen and (min-width: 768px) {
-    font-size: medium;
-  img {
-    width: 90%;
-   
-  }
-}
-  @media screen and (min-width: 1024px) {
-    
-  img {
-    width: 100%;
-  }
-}
-  @media screen and (min-width: 1440px) {
-   
-  img {
-   
-  }
-}
+
 `;

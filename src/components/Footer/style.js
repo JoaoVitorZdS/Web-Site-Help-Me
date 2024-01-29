@@ -29,7 +29,8 @@ export const StyledFooterContainer = styled.div`
     height: 100%;
     justify-content: center;
     align-items: baseline;
-    font-family: "DolceVita"
+    font-family: "DolceVita";
+    font-size: 0.8rem;
     
     
     
@@ -57,5 +58,19 @@ export const StyledFooterContainer = styled.div`
   .logo{
     width: 70%;
     
+  }
+
+  @media (max-width: 857px) {
+    #termsContainer{
+      font-size: 0.6rem;
+    }
+ 
+  }
+  @media (max-width: 632px) {
+    #termsContainer{
+      text-align: center;
+      
+    }
+ 
   }
 `;

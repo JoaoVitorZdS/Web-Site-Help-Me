@@ -30,7 +30,7 @@ export const StyledBodyContainer = styled.div`
     display: flex;
     width: 100%;
     min-height: 25%;
-    background-color: ${GlobalStyleDefault.colors.primary};
+    
     justify-content: center;
     align-items: center;
     margin-top: 1%;
@@ -41,7 +41,7 @@ export const StyledBodyContainer = styled.div`
     display: flex;
     width: 100%;
     height: fit-content;
-    background-color: ${GlobalStyleDefault.colors.primary};
+   
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -68,7 +68,7 @@ export const StyledBodyContainer = styled.div`
     width: 100%;
     height: fit-content;
     max-height: max-content;
-    background-color: ${GlobalStyleDefault.colors.primary};
+  
     justify-content: center;
     align-items: center;
     margin-bottom:5%;

@@ -6,6 +6,7 @@ import ptBR from "date-fns/locale/pt-BR";
 import ConfirmationModal from "./ConfirmationModal";
 import GlobalStyleDefault from "../../../GlobalStyles";
 import "../../../App.css"
+import { ProfessionalSideConsultationStyledDiv } from "./style";
 
 const ProfessionalConsultations = () => {
   const { userData } = useContext(AccessTokenContext);
@@ -143,7 +144,7 @@ const ProfessionalConsultations = () => {
         return 'Pendente';
       case 'confirmed':
         return 'Confirmada';
-      case 'canceled':
+      case 'cancelled':
         return 'Cancelada';
       default:
         return 'Desconhecido';
@@ -151,7 +152,18 @@ const ProfessionalConsultations = () => {
   };
 
   const renderConsultations = () => {
-    return consultations.map((consultation) => {
+
+    const sortedConsultations = [...consultations].sort((a, b) => {
+      if (a.status === "pending" && (b.status === "confirmed" || b.status === "cancelled")) {
+        return -1;
+      } else if (a.status === "confirmed" && b.status === "cancelled") {
+        return -1;
+      } else if (a.status === "pending" && b.status === "cancelled") {
+        return -1;
+      }
+      return 0;
+    });
+    return sortedConsultations.map((consultation) => {
       const formattedDateTime = format(
         parse(consultation.date, "dd 'de' MMMM yyyy HH:mm", new Date(), { locale: ptBR }),
         "dd 'de' MMMM yyyy HH:mm",
@@ -181,9 +193,9 @@ const ProfessionalConsultations = () => {
       }
   
       return (
-        <div key={consultation.id} style={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignContent: "center", minWidth: "520px",  border: `2px double ${tagColor}`, marginTop: "15px", padding: "5px", backgroundColor: "whitesmoke"}}>
-          <div>
-          <div style={{ backgroundColor: tagColor, width: "20px", height: "100%" }} />
+        <ProfessionalSideConsultationStyledDiv key={consultation.id} style={{border: `2px double ${tagColor}`}} >
+          <div className="Profesional_consultation_tag_container" >
+          <div className="Profesional_consultation_tag" style={{ backgroundColor: tagColor}} />
           </div>
           <div style={{fontFamily: "TimesBold"}}>
           <p>Consulta com a cliente {consultation.client_name}</p>
@@ -193,14 +205,13 @@ const ProfessionalConsultations = () => {
           <p>Solicitação do cliente: {consultation.description}</p>
           <p style={{fontFamily: "Contacto", color: tagColor}}>{getStatusLabel(consultation.status)}</p>
           </div>
-          <div
-          style={{width: "min-content"}}>
-          <button onClick={primaryButtonAction} style={{borderRadius: "15px", border: "1px dotted grey", width: "100px", height:"25px", backgroundColor: `${GlobalStyleDefault.colors.secondary}`, color: "white"}}>{primaryButtonLabel}</button>
+          <div className="Accept_Decline_or_Reject_Buttons_container">
+          <button onClick={primaryButtonAction} >{primaryButtonLabel}</button>
           {secondaryButtonLabel && (
-            <button onClick={secondaryButtonAction} style={{marginTop: "15px" ,borderRadius: "15px", border: "1px dotted grey", width: "100px", height:"25px", backgroundColor: `${GlobalStyleDefault.colors.secondary}`, color: "white"}}>{secondaryButtonLabel}</button>
+            <button onClick={secondaryButtonAction} style={{marginTop: "15px" }}>{secondaryButtonLabel}</button>
             )}
           </div>
-        </div>
+        </ProfessionalSideConsultationStyledDiv>
       );
     });
   };

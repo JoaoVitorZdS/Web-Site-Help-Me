@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 
 const ConfirmationModal = ({ isOpen, onClose, onConfirm, actionLabel, consultationInfo }) => {
+  // eslint-disable-next-line
   const [additionalInfo, setAdditionalInfo] = useState("");
 
   const handleConfirm = () => {

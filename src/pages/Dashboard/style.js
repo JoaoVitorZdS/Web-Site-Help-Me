@@ -6,6 +6,7 @@ export const StyledDashboardContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   min-height: 100vh;
+  width: 100vw;
 
   
 `;

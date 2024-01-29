@@ -29,7 +29,7 @@ export const StyledDashboardBody = styled.div`
     align-items: center;
     justify-content: space-around;
     height: 50px;
-    width: 33%;
+    width: 90vw;
     border-top: 1px solid grey;
     border-bottom: 1px solid grey;
     color: ${GlobalStyleDefault.colors.text};
@@ -39,10 +39,18 @@ export const StyledDashboardBody = styled.div`
 
 
   @media (max-width: 535px) {
-    div {
-      flex-direction: column;
-      align-items: flex-start;
-      padding-left: 25px;
-    }
+
+    padding: 0;
+    
   }
+
+  @media (max-width: 330px) {
+
+   
+    .userSectionsContainer{
+      font-size: small;
+ 
+  }
+  }
+ 
 `;

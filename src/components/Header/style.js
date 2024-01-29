@@ -7,7 +7,7 @@ export const StyledHeaderContainer = styled.div`
   max-height: 125px;
   justify-content: space-between;
   align-items: center;
-  background-color: ${GlobalStyleDefault.colors.primary};
+  background-color: ${GlobalStyleDefault.colors.gradient};
   box-shadow: ${GlobalStyleDefault.shadows.large};
   z-index: 1;
 

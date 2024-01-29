@@ -10,7 +10,15 @@ if (selector === 1) {
       tertiary: '#FD68B9',
       background: '#f2f2f2',
       offwhite: '#FAEED0',
+      backgroundwhite: '#fff',
+      textwhite: '#fff',
       text: '#000',
+      cardOutline: "#8E3884",
+      cardOutline2: "#5B388F",
+      cardOutline3: "#FD68B9",
+      gradient: 'linear-gradient(180deg, #9384D756, #FD68B9)',
+      
+      
       
     },
     fonts: {
