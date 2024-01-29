@@ -21,7 +21,7 @@ export const DashboardHead = () => {
        </div>
        
     <div id="userInfoContainer">
-      <div>{`${userData.name}`}</div>
+      <i>{`${userData.name}`}</i>
         <div id="buttonsContainer">
           
           <button>

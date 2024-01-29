@@ -7,7 +7,7 @@ import { DashboardHead } from "../../components/DashboardComponents/DashboardHea
 import { FIREBASE_DB } from "../../firebaseconfig";
 import { collection, getDocs, query } from "firebase/firestore";
 import { DashboardUserBody } from "../../components/DashboardUserComponents/DashboardUserBody";
-import { Header } from "../../components/Header/Header";
+import { Header} from "../../components/Header/Header";
 
 
 
@@ -49,7 +49,7 @@ const DashboardPage = () => {
           {isAdmin ? (
             // Se o usuário for um administrador, exiba a DashboardAdm
             <>
-            <h1>ADM</h1>
+            <Header/>
             <DashboardHead />
             <DashboardBody />
             <Footer />
@@ -57,6 +57,7 @@ const DashboardPage = () => {
           ) : (
             // Caso contrário, exiba a Dashboard padrão
             <>
+              <Header/>
               <DashboardHead />
               <DashboardUserBody />
               <Footer />

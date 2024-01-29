@@ -5,7 +5,6 @@ import candle from '../../../assets/imgs/banners/2.png';
 import mandalah from '../../../assets/imgs/banners/3.png';
 import fem from '../../../assets/imgs/banners/4.png';
 import dev from '../../../assets/imgs/banners/5.png';
-import { StyledButtonBanner } from '../../StyledButtons/ButtonsBanners';
 
 const CarouselContainer = styled.div`
   overflow: hidden;

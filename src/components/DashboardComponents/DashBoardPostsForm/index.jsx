@@ -3,13 +3,19 @@ import Modal from "react-modal";
 import { AccessTokenContext } from "../../StyledButtons/ButtonLogInGoogle";
 import { getFirestore, collection, getDocs, addDoc, doc, updateDoc } from "firebase/firestore";
 import "../../../firebaseconfig";
-import { StyledDashboardEventForm } from "./style";
+import { StyledDashboardEventForm, StyledForm } from "./style";
 import { PostRenderDashboard } from "./PostRenderDashboard";
 import GlobalStyleDefault from "../../../GlobalStyles";
 import "../../../App.css"
+import { FcEditImage } from "react-icons/fc";
+import MyQuillEditor from "../../QuillEditor";
+import Quill from "quill";
+import { useBlogContext } from "../../BlogComponents/BlogBody/BlogContext";
 export const DashboardPostForm = () => {
   const { userData, accessToken } = useContext(AccessTokenContext);
   const [posts, setPosts] = useState([]);
+  
+  const { globalPosts, setGlobalPosts } = useBlogContext();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [newPostData, setNewPostData] = useState({
     id: null, // Utilize null para permitir que o Firestore gere o ID automaticamente
@@ -23,7 +29,12 @@ export const DashboardPostForm = () => {
     tags: [],
     title: ""
   });
-  
+  // eslint-disable-next-line
+  const [quillContent, setQuillContent] = useState({ ops: [] }); // Estado para armazenar o conteúdo JSON
+  const handleQuillChange = (delta) => {
+    setQuillContent(delta);
+    setNewPostData({ ...newPostData, content: delta });
+  };
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -46,8 +57,7 @@ export const DashboardPostForm = () => {
     const tags = e.target.value.split(",").map((tag) => tag.trim());
     setNewPostData({ ...newPostData, tags });
   };
-  // ...
-
+// eslint-disable-next-line
 const handleLike = async (postId) => {
   const updatedPosts = posts.map((post) => {
     if (post.id === postId) {
@@ -70,7 +80,7 @@ const handleLike = async (postId) => {
 
   setPosts(updatedPosts);
 };
-
+// eslint-disable-next-line
 const handleDislike = async (postId) => {
   const updatedPosts = posts.map((post) => {
     if (post.id === postId) {
@@ -123,35 +133,48 @@ const updateDislikesInFirestore = async (postId, updatedDislikes) => {
 // ...
 
 
-  const createNewPost = async () => {
-    const db = getFirestore();
-    const postsCollection = collection(db, `posts`);
+const createNewPost = async () => {
+  const db = getFirestore();
+  const postsCollection = collection(db, `posts`);
 
-    try {
-      const postsSnapshot = await getDocs(postsCollection);
-      const newId = postsSnapshot.size + 1; // Gera um novo ID baseado no tamanho da coleção
-      const postDataWithId = { ...newPostData, id: newId };
+  try {
+    const postsSnapshot = await getDocs(postsCollection);
+    const newId = postsSnapshot.size + 1; // Gera um novo ID baseado no tamanho da coleção
+    
+    // Converte o objeto Delta para HTML
+    const delta = newPostData.content;
+    const quill = new Quill(document.createElement('div'));
+    quill.setContents(delta);
+    const contentHTML = quill.root.innerHTML;
 
-      await addDoc(postsCollection, postDataWithId);
-      console.log("Novo post criado com sucesso!");
-      setModalIsOpen(false);
-      setNewPostData({
-        id: null,
-        content: "",
-        created_by: userData.name,
-        dislikes: 0,
-        imageURL: "",
-        is_public: true,
-        likes: 0,
-        sub_title: "",
-        tags: [],
-        title: ""
-      });
-      fetchPosts();
-    } catch (error) {
-      console.error("Erro ao criar o novo post:", error);
-    }
-  };
+    // Cria um novo objeto de dados para armazenar no Firestore
+    const postDataWithId = {
+      ...newPostData,
+      id: newId,
+      content: contentHTML,
+    };
+
+    await addDoc(postsCollection, postDataWithId);
+    console.log("Novo post criado com sucesso!");
+    setModalIsOpen(false);
+    setNewPostData({
+      id: null,
+      content: "",
+      created_by: userData.name,
+      dislikes: 0,
+      imageURL: "",
+      is_public: true,
+      likes: 0,
+      sub_title: "",
+      tags: [],
+      title: ""
+    });
+    fetchPosts();
+  } catch (error) {
+    console.error("Erro ao criar o novo post:", error);
+  }
+};
+
   const fetchPosts = async () => {
     const db = getFirestore();
     const postsCollection = collection(db, `posts`);
@@ -164,16 +187,33 @@ const updateDislikesInFirestore = async (postId, updatedDislikes) => {
   };
 
   useEffect(() => {
-    fetchPosts();
-  }, []); // Chama fetchPosts uma vez, quando o componente é montado
+    console.log("GLobalPosts:",globalPosts)
+    if (globalPosts.length === 0) {
+      fetchPosts();
+      setGlobalPosts(posts)
+    }
+  }, [globalPosts, posts, setGlobalPosts]); // Chama fetchPosts uma vez, quando o componente é montado
   
+  const deleteFirstTollbar = async () => {
+    const toolbarDiv = document.querySelector('.ql-toolbar')
+  if (toolbarDiv) {
+    toolbarDiv.parentNode.removeChild(toolbarDiv);
+  }
+  }
   return (
     <>
       {accessToken ? (
         <>
       <StyledDashboardEventForm>
       <h1 style={{color: `${GlobalStyleDefault.colors.secondary}`, fontFamily: "DolceVita"}}>Posts Blog</h1>
-      {posts.length !== 0 ? (
+    
+      <button onClick={openModal}   className="ButtonCreateNewPostADMDashboard">
+      <FcEditImage size={22} />
+        <i>
+          Criar Novo Post
+        </i>
+      </button>
+      {globalPosts.length !== 0 ? (
         <PostRenderDashboard/>
       ) : (
         <>
@@ -181,31 +221,32 @@ const updateDislikesInFirestore = async (postId, updatedDislikes) => {
         </>
       )}
 
-<button onClick={openModal}>Criar Novo Post</button>
+
 
 <Modal
   isOpen={modalIsOpen}
+  onAfterOpen={deleteFirstTollbar}
   onRequestClose={closeModal}
   style={{
     overlay: {
       backgroundColor: "rgba(0, 0, 0, 0.5)",
+      zIndex: "5"
     },
     content: {
-      width: "50%",
-      height: "80%",
-      background: "white",
-      display: "flex",
-      flexDirection: "column",
-      flexWrap: "wrap",
-      justifyContent: "center",
-      alignItems: "center",
+      width: "90%",
       margin: "auto",
+      fontFamily: "DolceVita",
+      overflowY: "auto",
+      maxHeight: "80vh", // Defina a altura máxima desejada
+      display: "flex",
+      justifyContent: "center"
+      
     },
   }}
 >
-  <div style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
-    <h2>Criar Novo Post</h2>
-    <form style={{ width: "80%", margin: "auto" }}>
+  <div style={{ width: "80%", height: "max-content", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", gap: "15px" }}>
+    <h2 style={{color: GlobalStyleDefault.colors.secondary}}>Criar Novo Post</h2>
+    <StyledForm >
       <input
       placeholder="Título"
         type="text"
@@ -213,14 +254,8 @@ const updateDislikesInFirestore = async (postId, updatedDislikes) => {
         value={newPostData.title}
         onChange={handleInputChange}
       />
-      <textarea
-        placeholder="Conteúdo"
-        name="content"
-        value={newPostData.content}
-        onChange={handleInputChange}
-        rows={10} // Defina o número inicial de linhas
-        cols={40} // Defina o número inicial de colunas
-      />
+
+      <MyQuillEditor onChange={handleQuillChange}/>
       <input
        placeholder="Subtítulo (Opcional)"
         type="text"
@@ -244,6 +279,7 @@ const updateDislikesInFirestore = async (postId, updatedDislikes) => {
         value={newPostData.imageURL}
         onChange={handleInputChange}
       />
+      <img src={newPostData.imageURL} alt="" />
   
     <label>
       Público:
@@ -258,7 +294,7 @@ const updateDislikesInFirestore = async (postId, updatedDislikes) => {
     <button type="button" onClick={closeModal}>
       Fechar
     </button>
-  </form>
+  </StyledForm>
   </div>
 </Modal>
       

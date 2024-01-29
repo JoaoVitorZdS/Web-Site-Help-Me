@@ -1,102 +1,36 @@
 import React, { useContext, useState, useEffect } from "react";
 import { AccessTokenContext } from "../../StyledButtons/ButtonLogInGoogle";
-import { getFirestore, collection, getDocs, doc, updateDoc } from "firebase/firestore";
+import { getFirestore, collection, getDocs, updateDoc, where, query } from "firebase/firestore";
 import "../../../firebaseconfig";
 import { StyledBlogBody } from "./style";
 import { FcLike, FcDislike } from "react-icons/fc";
 import '../../../App.css'
+import { RiArrowRightUpFill, RiDislikeLine, RiHeartLine  } from "react-icons/ri";
+import Modal from "react-modal";
+import GlobalStyleDefault from "../../../GlobalStyles";
+import BlogPostModal from "./ExpandBlogPostModal";
+import { Link, Outlet } from "react-router-dom";
+import { useBlogContext } from "./BlogContext";
+import { handleDislike, handleLike } from "../handlePostsFunctions";
 
-import { RiDislikeLine, RiHeartLine  } from "react-icons/ri";
-import ReactModal from "react-modal";
 
 export const BlogBody = () => {
   const { userData } = useContext(AccessTokenContext);
+  const { globalPosts, setGlobalPosts } = useBlogContext();
   const [posts, setPosts] = useState([]);
+  // eslint-disable-next-line
+  const [IsOpen, setIsOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null); // Track the selected post for the modal
   const openModal = (postId) => {
-    const selectedPost = posts.find((post) => post.id === postId);
+    const selectedPost = globalPosts.find((post) => post.id === postId);
     setSelectedPost(selectedPost);
+    console.log(selectedPost)
   };
 
   const closeModal = () => {
     setSelectedPost(null);
   };
-  const handleLike = async (postId) => {
-    const updatedPosts = posts.map((post) => {
-      if (post.id === postId) {
-        const userLiked = post.likes && post.likes.includes(userData.email);
-  
-        let updatedLikes = post.likes ? [...post.likes] : [];
-        let updatedDislikes = post.dislikes ? [...post.dislikes] : [];
-  
-        if (userLiked) {
-          updatedLikes = updatedLikes.filter((email) => email !== userData.email);
-        } else {
-          updatedLikes.push(userData.email);
-          updatedDislikes = updatedDislikes.filter((email) => email !== userData.email);
-        }
-  
-        updateLikesInFirestore(postId, updatedLikes);
-        updateDislikesInFirestore(postId, updatedDislikes);
-  
-        return { ...post, likes: updatedLikes, dislikes: updatedDislikes };
-      }
-  
-      return post;
-    });
-  
-    setPosts(updatedPosts);
-  };
-  
-  const handleDislike = async (postId) => {
-    const updatedPosts = posts.map((post) => {
-      if (post.id === postId) {
-        const userDisliked = post.dislikes && post.dislikes.includes(userData.email);
-  
-        let updatedDislikes = post.dislikes ? [...post.dislikes] : [];
-        let updatedLikes = post.likes ? [...post.likes] : [];
-  
-        if (userDisliked) {
-          updatedDislikes = updatedDislikes.filter((email) => email !== userData.email);
-        } else {
-          updatedDislikes.push(userData.email);
-          updatedLikes = updatedLikes.filter((email) => email !== userData.email);
-        }
-  
-        updateLikesInFirestore(postId, updatedLikes);
-        updateDislikesInFirestore(postId, updatedDislikes);
-  
-        return { ...post, likes: updatedLikes, dislikes: updatedDislikes };
-      }
-  
-      return post;
-    });
-  
-    setPosts(updatedPosts);
-  };
-  
-  
-  
 
-  const updateLikesInFirestore = async (postId, updatedLikes) => {
-    const db = getFirestore();
-    const postsCollection = collection(db, "posts");
-    const postRef = doc(postsCollection, postId.toString());
-    await updateDoc(postRef, { likes: updatedLikes });
-  };
-  
-  
-  
-  
-  
-  const updateDislikesInFirestore = async (postId, updatedDislikes) => {
-    const db = getFirestore();
-    const postsCollection = collection(db, "posts");
-    const postRef = doc(postsCollection, postId.toString());
-    await updateDoc(postRef, { dislikes: updatedDislikes });
-  };
-  
- 
 
   const fetchPosts = async () => {
     const db = getFirestore();
@@ -110,31 +44,53 @@ export const BlogBody = () => {
   };
 
   useEffect(() => {
-    fetchPosts();
-  }, []); // Chama fetchPosts uma vez, quando o componente é montado
-  
+    console.log("GLobalPosts:",globalPosts)
+    if (globalPosts.length === 0) {
+      fetchPosts();
+      setGlobalPosts(posts)
+    }
+  }, [globalPosts, posts, setGlobalPosts]); // Chama fetchPosts uma vez, quando o componente é montado
+
   return (
     <StyledBlogBody>
     
         <>  
-          {posts.length !== 0 ? (
+          {globalPosts.length !== 0 ? (
             <ul>
-              {posts.map((post) => (
-                <li key={post.id} className="PostDiv" >
-                  <h3 style={{fontFamily: "DolceVita"}}>{`${post.title}`}</h3>
-                  <div onClick={() => openModal(post.id)} style={{ backgroundImage: `url(${post.imageURL})` }} className="PostImageContainer"></div>
+              {globalPosts.map((post) => (
+                <li key={post.id} className="PostDiv"  >
+                  <div className="TitleContainer">
+                    <Link to={`/Blog/${post.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <div>
+                      <h3 onClick={() => openModal(post.id)} style={{fontFamily: "DolceVita", alignSelf: "center"}}>{`${post.title}`}</h3>
+                    </div>
+                    <div className="tagToFullPageContainer">
+                      <Link to={`/Blog/${post.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                      <i className="tagToFullPage"> Ver Página Completa</i>
+                      </Link>
+                    </div>
+                    </Link>
+                  </div>
                   <i style={{fontSize: "12px"}}>Criado por: {`${post.created_by}`}</i>
-                  <p>{post.content}</p>
-                  <div >
-                    <i>{`${(post.likes && post.likes.length) || 0}`}</i>
-                      <button onClick={() => handleLike(post.id)} id="likeButton">
-                        {post.likes && post.likes.includes(userData.email) ? <FcLike /> : <RiHeartLine  />}
+                  <div onClick={() => openModal(post.id)}  style={{ alignSelf: "center", backgroundImage: `url(${post.imageURL})`, backgroundPosition: "center", backgroundSize: "contain", height:"30vh", width: "40vw", borderRadius: "30px" }} className="PostImageContainer">
+                  </div>
+                  <p>{post.sub_title}</p>
+                  <div className="reactionContainerWrapper" >
+                    <div className="reactionContainer">
+
+                    <i className="reactionCounterNumber">{`${(post.likes && post.likes.length) || 0}`}</i>
+                      <button onClick={() => handleLike(post.id, globalPosts, setGlobalPosts, userData)} id="likeButton">
+                        {post.likes && post.likes.includes(userData.email) ? <FcLike size={"1rem"} /> : <RiHeartLine size={"1rem"}  />}
                       </button>
-                    <i>{`${(post.dislikes && post.dislikes.length) || 0}`}</i>
-                      <button onClick={() => handleDislike(post.id)} id="dislikeButton">
+                    </div>
+                    <div className="reactionContainer">
+
+                    <i className="reactionCounterNumber">{`${(post.dislikes && post.dislikes.length) || 0}`}</i>
+                      <button onClick={() => handleDislike(post.id, globalPosts, setGlobalPosts, userData)} id="dislikeButton">
                        
-                        {post.dislikes && post.dislikes.includes(userData.email) ? <FcDislike /> : <RiDislikeLine />}
+                        {post.dislikes && post.dislikes.includes(userData.email) ? <FcDislike size={"1rem"} /> : <RiDislikeLine size={"1rem"} />}
                       </button>
+                    </div>
                   </div>
                 </li>
               ))}
@@ -143,26 +99,34 @@ export const BlogBody = () => {
             <p>Sem Posts</p>
           )}
           {/* Modal for displaying the complete content of the selected post */}
-          <ReactModal
-            isOpen={!!selectedPost}
-            onRequestClose={closeModal}
-            contentLabel="Post Modal"
-          >
-            {selectedPost && (
-              <div className="BlogPostModal">
-                <h2>{selectedPost.title}</h2>
-                <div className="BlogPostModalIMG">
-                <img src={selectedPost.imageURL} alt=""  />
-
-                </div>
-                <p>{selectedPost.content}</p>
-                {/* Add any other details you want to display */}
-                <button onClick={closeModal}>Close</button>
-              </div>
-            )}
-          </ReactModal>
+          <Modal
+        isOpen={!!selectedPost}
+        onRequestClose={() => {
+          closeModal();
+          setIsOpen(false);
+        }}
+        contentLabel="Post Modal"
+        style={{
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            zIndex: "5",
+          },
+          content: {
+            backgroundColor: `${GlobalStyleDefault.colors.offwhite}`,
+            width: "90%",
+            margin: "auto",
+            overflowY: "auto",
+            maxHeight: "90vh",
+            padding: "3%",
+            display: "flex",
+            justifyContent: "center",
+          },
+        }}
+      >
+        <BlogPostModal selectedPost={selectedPost} closeModal={closeModal} />
+      </Modal>
         </>
-      
+      <Outlet/>
     </StyledBlogBody>
   );
 };

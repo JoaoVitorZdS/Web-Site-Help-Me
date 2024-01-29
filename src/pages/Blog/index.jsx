@@ -13,8 +13,8 @@ const BlogPage = () => {
   return (
     <div>
      
-        <StyledBlogContainer>
-          
+        <StyledBlogContainer >
+        
           <Header/>
           <BlogBody />
           <Footer/>

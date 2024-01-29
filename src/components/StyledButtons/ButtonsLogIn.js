@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { StyledButtonContainer } from "./style";
 import { IoMdLogIn } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
-import { SiBloglovin } from "react-icons/si";
 
 export const StyledButtonLogIn = (props ) => {
     const navigate = useNavigate();

@@ -2,10 +2,10 @@ import styled from "styled-components";
 import GlobalStyleDefault from "../../../GlobalStyles";
 
 export const StyledDashboardEventForm = styled.div`
-  height: 100%;
+  height: auto;
   background-color: transparent;
   margin: 0;
-  width: 50vw;
+  width: 90vw;
   padding: 25px;
   display: flex;
   flex-direction: column;
@@ -13,13 +13,15 @@ export const StyledDashboardEventForm = styled.div`
   justify-content: start;
   align-items: center;
   background-color: ${GlobalStyleDefault.colors.offwhite};
-
+  margin-left: -22vw;
+ 
   .active{
     box-shadow: ${GlobalStyleDefault.shadows.card};
   }
   .component-container{
-    width: 50%;
+    width: 50vw;
     height: 50%;
+    
   }
   .userSectionsContainer{
     display: flex;
@@ -49,10 +51,9 @@ export const StyledDashboardEventForm = styled.div`
   }
 
   @media (max-width: 535px) {
-    div {
-      flex-direction: column;
-      align-items: flex-start;
-      padding-left: 25px;
-    }
+    width: 100vw;
+    margin-left: -25vw;
   }
+
+ 
 `;
