@@ -6,7 +6,7 @@ export const StyledDashboardEventForm = styled.div`
   height: 100%;
   background-color: transparent;
   margin: 0;
-  width: 90vw;
+  width: 100vw;
   padding: 25px;
   display: flex;
   flex-direction: column;
@@ -14,7 +14,7 @@ export const StyledDashboardEventForm = styled.div`
   justify-content: start;
   align-items: center;
   background-color: ${GlobalStyleDefault.colors.offwhite};
-  margin-left: -22vw;
+
 
   .active{
     box-shadow: ${GlobalStyleDefault.shadows.card};

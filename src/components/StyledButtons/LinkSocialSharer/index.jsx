@@ -2,7 +2,16 @@ import React from "react";
 import "./style.css"; // Certifique-se de corrigir o caminho correto
 
 const SocialSharer = () => {
+  const handleWhatsAppShare = () => {
+    const postUrl = encodeURIComponent(window.location.href);
+    window.open(`https://api.whatsapp.com/send?text=${postUrl}`, "_blank");
+  };
+  
+  // No seu componente render:
+  
   return (
+    <div className="tooltip-wrapper">
+  
     <div className="tooltip-container">
       <span className="text">
         <svg
@@ -43,7 +52,7 @@ const SocialSharer = () => {
       ></path>
         </svg>
       </span>
-      <span className="tooltip3">
+      <span className="tooltip3" onClick={() => {handleWhatsAppShare()}}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -125,6 +134,7 @@ const SocialSharer = () => {
         </svg>
       </span>
       <span className="tooltip9"> </span>
+    </div>
     </div>
   );
 };

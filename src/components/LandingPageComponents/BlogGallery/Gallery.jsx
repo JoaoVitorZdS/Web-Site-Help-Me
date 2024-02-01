@@ -4,43 +4,66 @@ import cardBack from '../../../assets/imgs/pinkClouds3.jpg';
 import cardFront from '../../../assets/imgs/Candle.jpg';
 // eslint-disable-next-line
 import { useNavigate } from "react-router-dom";
+import { useBlogContext } from "../../BlogComponents/BlogBody/BlogContext";
+import ButtonSeeMore from "../../StyledButtons/SeeMoreAnimatedButton";
+import { FaArrowRight } from "react-icons/fa6";
 
 export function Gallery() {
-  const posts = [
-    { id: 1, title: 'Post 1', image: '', content: 'Conteúdo do Post 1' },
-    { id: 2, title: 'Post 2', image: 'url-da-imagem-2.jpg', content: 'Conteúdo do Post 2' },
-    { id: 3, title: 'Post 2', image: 'url-da-imagem-2.jpg', content: 'Conteúdo do Post 2' },
-    { id: 4, title: 'Post 2', image: 'url-da-imagem-2.jpg', content: 'Conteúdo do Post 2' },
-    { id: 5, title: 'Post 2', image: 'url-da-imagem-2.jpg', content: 'Conteúdo do Post 2' },
-    { id: 6, title: 'Post 2', image: 'url-da-imagem-2.jpg', content: 'Conteúdo do Post 2' },
-  ];
+  const { globalPosts, setGlobalPosts } = useBlogContext();
+  
 
+  const gerarChaveAleatoria = () => {
+    return Math.random()}
+ 
   // const navigate = useNavigate();
 
   return (
     <StyledGalleryContainer>
-      {posts.map(post => (
-        
-          <div class="card">
+      {globalPosts.map(post => (
+        console.log(post),
+      <div className="card">
 
-<div class="content">
+        <div className="content">
 
-    <div class="back">
-    
-        <div class="back-content">
+          <div className="back">
+            
+            <div className="back-content">
+              
+              <h4>{post.title}</h4>
+
+            </div>
+              
+              
+          </div>
+            
+          <div className="front">
+            
+          <div className="img">
+        <div className="circle">
         </div>
-      
-    </div>
-    
-    <div class="front">
-    
-      <div class="front-content">
+        <div className="circle" id="right">
+        </div>
+        <div className="circle" id="bottom">
+        </div>
       </div>
-      
-    </div>
-    
-</div>
-</div>
+      <div className="front-content">
+      <ul className="tagsList">
+  {post.tags.map((tag) => (
+    <li key={tag}>
+      <button class="button" data-text="Awesome">
+        <span class="actual-text">&nbsp;{tag}&nbsp;</span>
+        <span aria-hidden="true" class="hover-text">&nbsp;{tag}&nbsp;</span>
+      </button>
+    </li>
+  ))}
+</ul>
+      <ButtonSeeMore destiny={`/blog/${post.id}`} text={"Abrir artigo"} icon={<FaArrowRight/> }/>
+      </div>
+          </div>
+            
+        </div>
+
+      </div>
 
         
       ))}

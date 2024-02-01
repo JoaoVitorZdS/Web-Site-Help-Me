@@ -12,6 +12,7 @@ import BlogPostModal from "./ExpandBlogPostModal";
 import { Link, Outlet } from "react-router-dom";
 import { useBlogContext } from "./BlogContext";
 import { handleDislike, handleLike } from "../handlePostsFunctions";
+import SocialSharer from "../../StyledButtons/LinkSocialSharer";
 
 
 export const BlogBody = () => {
@@ -72,24 +73,28 @@ export const BlogBody = () => {
                     </Link>
                   </div>
                   <i style={{fontSize: "12px"}}>Criado por: {`${post.created_by}`}</i>
-                  <div onClick={() => openModal(post.id)}  style={{ alignSelf: "center", backgroundImage: `url(${post.imageURL})`, backgroundPosition: "center", backgroundSize: "contain", height:"30vh", width: "40vw", borderRadius: "30px" }} className="PostImageContainer">
+                  <div onClick={() => openModal(post.id)}  style={{ backgroundImage: `url(${post.imageURL})` }} className="PostImageContainer">
+                  
                   </div>
                   <p>{post.sub_title}</p>
                   <div className="reactionContainerWrapper" >
-                    <div className="reactionContainer">
+                    <div className="reactionContainer" onClick={() => handleLike(post.id, globalPosts, setGlobalPosts, userData)}>
 
-                    <i className="reactionCounterNumber">{`${(post.likes && post.likes.length) || 0}`}</i>
-                      <button onClick={() => handleLike(post.id, globalPosts, setGlobalPosts, userData)} id="likeButton">
-                        {post.likes && post.likes.includes(userData.email) ? <FcLike size={"1rem"} /> : <RiHeartLine size={"1rem"}  />}
+                    <i className="reactionCounterNumber" >{`${(post.likes && post.likes.length) || 0}`}</i>
+                      <button  id="likeButton">
+                        {post.likes && post.likes.includes(userData.email) ? <FcLike size={"1rem"} /> : <RiHeartLine size={"1rem"} color={GlobalStyleDefault.colors.textwhite}  />}
                       </button>
                     </div>
-                    <div className="reactionContainer">
+                    <div className="reactionContainer" onClick={() => handleDislike(post.id, globalPosts, setGlobalPosts, userData)}>
 
                     <i className="reactionCounterNumber">{`${(post.dislikes && post.dislikes.length) || 0}`}</i>
-                      <button onClick={() => handleDislike(post.id, globalPosts, setGlobalPosts, userData)} id="dislikeButton">
+                      <button  id="dislikeButton">
                        
-                        {post.dislikes && post.dislikes.includes(userData.email) ? <FcDislike size={"1rem"} /> : <RiDislikeLine size={"1rem"} />}
+                        {post.dislikes && post.dislikes.includes(userData.email) ? <FcDislike size={"1rem"} /> : <RiDislikeLine size={"1rem"} color={GlobalStyleDefault.colors.textwhite} />}
                       </button>
+                    </div>
+                    <div className="SocialSharerContainer">
+                    <SocialSharer />
                     </div>
                   </div>
                 </li>

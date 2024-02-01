@@ -23,17 +23,18 @@ export const PostRenderDashboardBody = styled.div`
   
   }
   .PostDiv{
-    width: 100%;
+    box-sizing: border-box;
+    width: 96%;
     border-top: 1px solid grey;
     border-bottom: 1px solid grey;
-    background-color: ${GlobalStyleDefault.colors.backgroundwhite};
+    background-color: ${GlobalStyleDefault.colors.secondary};
     border-radius: 15px;
     margin-top: 15px;
-    padding: 10px;
+    padding: 2%;
     min-height: 600px;
     height: 300px;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    
+   
 
   }
   .expandDashboardRendererPost{

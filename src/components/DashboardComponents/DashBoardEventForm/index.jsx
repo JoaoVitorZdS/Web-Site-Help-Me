@@ -12,12 +12,12 @@ export const DashboardEventForm = () => {
   return (
     <>
       {accessToken ? (
-        <>
+        
           <StyledDashboardEventForm>
             <h1 style={{color: `${GlobalStyleDefault.colors.secondary}`, fontFamily: "DolceVita"}}>Consultas</h1>
             <ProfessionalConsultations/>
           </StyledDashboardEventForm>
-        </>
+       
       ) : (
         <h1>Faça <a href="/login">login</a> para continuar.</h1>
       )}

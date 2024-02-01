@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import GlobalStyleDefault from "../../GlobalStyles";
 
@@ -28,6 +29,7 @@ export const StyledCubeContainer = styled.div`
    box-sizing: border-box;
    margin-bottom: 100px;
    margin-left: 50px;
+  
 
    .cube {
       position: relative;
@@ -45,6 +47,8 @@ export const StyledCubeContainer = styled.div`
       width: 100%;
       height: 100%;
       transform-style: preserve-3d;
+
+   
    }
 
    .cube div span {
@@ -53,26 +57,10 @@ export const StyledCubeContainer = styled.div`
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(
-    to bottom,
-    hsl(330, 3.13%, 25.1%) 0%,
-    hsl(177.27, 21.71%, 32.06%) 5.5%,
-    hsl(176.67, 34.1%, 36.88%) 12.1%,
-    hsl(176.61, 42.28%, 40.7%) 19.6%,
-    hsl(176.63, 48.32%, 43.88%) 27.9%,
-    hsl(176.66, 53.07%, 46.58%) 36.6%,
-    hsl(176.7, 56.94%, 48.91%) 45.6%,
-    hsl(176.74, 62.39%, 50.91%) 54.6%,
-    hsl(176.77, 69.86%, 52.62%) 63.4%,
-    hsl(176.8, 76.78%, 54.08%) 71.7%,
-    hsl(176.83, 83.02%, 55.29%) 79.4%,
-    hsl(176.85, 88.44%, 56.28%) 86.2%,
-    hsl(176.86, 92.9%, 57.04%) 91.9%,
-    hsl(176.88, 96.24%, 57.59%) 96.3%,
-    hsl(176.88, 98.34%, 57.93%) 99%,
-    hsl(176.89, 99.07%, 58.04%) 100%
-  );
+      background: linear-gradient(${GlobalStyleDefault.colors.tertiary}, ${GlobalStyleDefault.colors.secondary});
       transform: rotateY(calc(90deg * var(--i))) translateZ(150px);
+      cursor: pointer;
+      animation: ${({ animate }) => (animate ? burstAnimation : "none")} 5s backwards infinite;
    }
 
    .top {
@@ -85,7 +73,7 @@ export const StyledCubeContainer = styled.div`
       object-fit: cover;
       background-position: center;
       background-repeat: no-repeat;
-      background-color: hsl(330, 3.13%, 25.1%);
+      background-color: ${GlobalStyleDefault.colors.tertiary};
       transform: rotateX(90deg) translateZ(150px);
    }
 
@@ -113,5 +101,3 @@ export const StyledAnimatedCube = styled.div`
    /* Adicione aqui as propriedades específicas do seu componente animado */
    animation: ${burstAnimation} 5s backwards infinite;
 `;
-
-// Se necessário, você pode exportar outros componentes Styled Components daqui

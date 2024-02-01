@@ -11,7 +11,6 @@ const LoginPage = () => {
   return (
     <StyledLoginPageContainer>
       
-      <img id="fullHexagon2" src={Hexagons2} alt="Backgroud - Display's pink clouds"></img>
       
         <LoginHead />
         

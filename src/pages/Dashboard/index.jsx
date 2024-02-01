@@ -45,27 +45,27 @@ const DashboardPage = () => {
   return (
     <div>
       {accessToken ? (
-        <StyledDashboardContainer>
+        <>
           {isAdmin ? (
             // Se o usuário for um administrador, exiba a DashboardAdm
-            <>
+            <StyledDashboardContainer>
             <Header/>
             <DashboardHead />
             <DashboardBody />
             <Footer />
-          </>
+          </StyledDashboardContainer>
           ) : (
             // Caso contrário, exiba a Dashboard padrão
-            <>
+            <StyledDashboardContainer>
               <Header/>
               <DashboardHead />
               <DashboardUserBody />
               <Footer />
-            </>
+            </StyledDashboardContainer>
           )}
-        </StyledDashboardContainer>
+        </>
       ) : (
-        <StyledDashboardContainer>
+        <StyledDashboardContainer style={{overflow: "hidden"}}>
           <Header/>
           <DashboardBody />
           <Footer />

@@ -1,95 +1,99 @@
 import styled from "styled-components";
 import GlobalStyleDefault from "../../../GlobalStyles";
 
-export const StyledBlogBody = styled.div`
-  height: auto;
+export const StyledBlogPostDetailBody = styled.div`
+  min-height: 100vh;
+  height: 100vh;
+  width: 99vw;
   background-color: transparent;
   margin: 0;
-  width: 99vw;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  display: flex;
+  flex-direction: column;
+  
+  // display: grid;
+ // grid-template-columns: repeat(3, 1fr);
+ // grid-template-rows: repeat(3, 1fr);
   gap: 20px;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
-  padding: 5%;
-
-  ul {
-    width: 100%;
-    list-style: none;
-  }
-
-  li {
-    border-top: 2px double ${GlobalStyleDefault.colors.secondary};
-    border-bottom: 2px double grey;
-    background-color: ${GlobalStyleDefault.colors.offwhite};
-    border-radius: 12px;
-    margin-top: 15px;
-    overflow: hidden;
-    min-width: 300px;
+  
+  .post-render{
+    width: 90vw;
+    padding: 4%;
+    
     display: flex;
     flex-direction: column;
-    padding: 15px;
-    .reactionContainerWrapper{
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-content: center;
-      width: 150px;
-    }
-    .reactionContainer{
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      width: 45%;
-      height: 100%;
-      gap: 5px;
+    justify-content: space-around;
+    
+  }
+  .postOwnerDiv{
+    position: absolute;
+    right: 5%;
+    top: 70%;
+    background-color: #00000066;
+    padding: 1%;
+    color: ${GlobalStyleDefault.colors.textwhite};
+    h5{
+      margin-bottom: -10%;
     }
 
-    .reactionCounterNumber{
-      font-size: 1rem;
+    ul{
+      list-style: none;
+      padding: 0;
+
+      li{
+        
+        /* === removing default button style ===*/
+.button {
+  width: fit-content;
+  margin: 0;
+  height: auto;
+  background: transparent;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 2%;
+}
+
+/* button styling */
+.button {
+  --border-right: 6px;
+  --text-stroke-color: rgba(255,255,255,0.6);
+  --animation-color: #37FF8B;
+  --fs-size: 1em;
+  letter-spacing: 3px;
+  text-decoration: none;
+  font-size: var(--fs-size);
+  font-family: "Arial";
+  position: relative;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text-stroke-color);
+}
+/* this is the text, when you hover on button */
+.hover-text {
+  position: absolute;
+  box-sizing: border-box;
+  content: attr(data-text);
+  color: var(--animation-color);
+  width: 0%;
+  inset: 0;
+  border-right: var(--border-right) solid var(--animation-color);
+  overflow: hidden;
+  transition: 0.5s;
+  -webkit-text-stroke: 3px var(--animation-color);
+}
+/* hover */
+.button:hover .hover-text {
+  width: 100%;
+  filter: drop-shadow(0 0 23px var(--animation-color))
+}
+      }
       
     }
-
-    #likeButton {
-      background-color: transparent;
-      border: transparent;
-    }
-
-    #dislikeButton {
-      background-color: transparent;
-      border: transparent;
-    }
-    #likeButton:hover {
-      animation: zoom 1s infinite; /* 2s de duração, repetição infinita */
-    }
-
-    #dislikeButton:hover {
-      animation: zoom 1s infinite; /* 2s de duração, repetição infinita */
-    }
-
-    .PostImageContainer {
-      width: 100%;
-      height: 50%;
-      background-position: left;
-      background-repeat: no-repeat;
-      background-size: cover;
-      border-radius: 35px;
-    }
-
-    p {
-      align-self: center;
-      padding-top: 15px;
-      padding-bottom: 25px;
-      display: -webkit-box;
-      -webkit-line-clamp: 5;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
   }
+
+  
 
 
   
@@ -101,15 +105,6 @@ export const StyledBlogBody = styled.div`
     transform: scale(1.5);
   }
 }
-  @media (max-width: 1024px) {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-  }
 
-  @media (max-width: 535px) {
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    padding: 15px;
-  }
 `;
 

@@ -3,33 +3,58 @@ import GlobalStyleDefault from "../../../GlobalStyles";
 
 export const ProfessionalSideConsultationStyledDiv = styled.div`
  display: flex ;
- flex-direction: row;
- 
+ flex-direction: column;
  justify-content: space-between;
  align-content: center;
- min-width: 320px;
- margin-top: 15px;
- padding: 5px;
- background-color: whitesmoke;
- min-height: min-content;
- max-height: max-content;
+ width: 500px;
+ height: 250px;
+ padding: 1%;
+ box-shadow: ${GlobalStyleDefault.shadows.large};
+ background-color: ${GlobalStyleDefault.colors.secondary};
+  border-radius: 15px;
+  margin-bottom: 5%;
+  &:hover{
+    box-shadow: ${GlobalStyleDefault.shadows.card};
+
+  }
+ 
  p{
     margin-top: 2px;
+    font-weight: 700 ;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  p i {
+    font-family: monospace;
+    font-weight: 500;
+    font-size: large;
+  }
+
+  textarea{
+    width: 100%;
+    resize: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    background-color: transparent;
+    border-radius: 5px;
+    padding: 2px;
+    color: black;
+   
+    
+    
   }
 
 
- .Profesional_consultation_tag{
-  width: 20px;
-  height: 100%;
-  margin-right: 5px;
- }
+ 
  
  .Accept_Decline_or_Reject_Buttons_container{
   width: min-content;
   display: flex;
   justify-content: center;
-  flex-direction: column;
-  margin-left: 10px;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  gap: 5%;
 
   button{
     border-radius: 15px;
@@ -37,7 +62,13 @@ export const ProfessionalSideConsultationStyledDiv = styled.div`
     width: 70px;
     height: 25px;
     background-color: ${GlobalStyleDefault.colors.secondary};
+    box-shadow: ${GlobalStyleDefault.shadows.large};
     color: white;
+  }
+
+  button:hover{
+    box-shadow: ${GlobalStyleDefault.shadows.card};
+
   }
  
  }
