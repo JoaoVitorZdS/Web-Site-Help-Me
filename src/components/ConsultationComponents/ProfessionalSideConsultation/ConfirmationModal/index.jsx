@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
+import { ProfessionalSideConsultationStyledDiv } from "../style";
+import GlobalStyleDefault from "../../../../GlobalStyles";
 
 const ConfirmationModal = ({ isOpen, onClose, onConfirm, actionLabel, consultationInfo }) => {
   // eslint-disable-next-line
@@ -32,11 +34,12 @@ const ConfirmationModal = ({ isOpen, onClose, onConfirm, actionLabel, consultati
       style={{
         content: {
           position: "absolute",
-          inset: "20% 35%",
-          width: "320px",
+          inset: "25% 25%",
+          width: "fit-content",
+          height: "fit-content",
           border: "none",
           background: "white",
-          overflow: "auto",
+          overflow: "hidden",
           WebkitOverflowScrolling: "touch",
           outline: "none",
           padding: "20px",
@@ -44,21 +47,27 @@ const ConfirmationModal = ({ isOpen, onClose, onConfirm, actionLabel, consultati
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-        },
+          borderRadius: "15px",
+          boxShadow: `${GlobalStyleDefault.shadows.card}`
+        }
+        
         
         
       }}
       shouldCloseOnEsc={true}
 
     >
-      <div>
+      <ProfessionalSideConsultationStyledDiv >
 
       
       <h3>Deseja realmente {actionLabel.toLowerCase()} esta consulta?</h3>
-      <p>Informações da consulta:</p>
-      <p>Data e Hora: {consultationInfo.formattedDateTime}</p>
+      
+      <p>{consultationInfo.formattedDateTime}</p>
       <p>Status Atual: {getStatusLabel(consultationInfo.status)}</p>
-      </div>
+      <p>Email do Cliente: {consultationInfo.client_email}</p>
+      <p>Celular do Cliente: {consultationInfo.client_phone}</p>
+     
+      </ProfessionalSideConsultationStyledDiv>
 
       {/* Se precisar de mais informações, adicione aqui */}
       {/* <p>Outras informações: {consultationInfo.additionalInfo}</p> */}

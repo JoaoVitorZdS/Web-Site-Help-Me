@@ -20,7 +20,7 @@ export const DashboardUserBody = () => {
   const renderActiveComponent = () => {
     switch (activeCategory) {
       case "Consultas":
-        return <DashboardEventForm/>;
+        return <></>;
       case "Extrato":
         return <DashboardOverallForm/>;
       default:

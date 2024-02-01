@@ -5,27 +5,29 @@ if (selector === 1) {
   
   GlobalStyleDefault = {
     colors: {
-      primary: '#F1D4D6',
-      secondary: '#9384D7',
-      tertiary: '#FD68B9',
+      primary: '#F692BEaa',
+      secondary: '#8F7EE966',
+      secondarystrong: '#8F7EE9',
+      tertiary: '#F76DBE66',
+      tertiarystrong: '#F76DBE',
       background: '#f2f2f2',
       offwhite: '#FAEED0',
       backgroundwhite: '#fff',
       textwhite: '#fff',
       text: '#000',
-      cardOutline: "#8E3884",
+      cardOutline: "#1d743e",
       cardOutline2: "#5B388F",
       cardOutline3: "#FD68B9",
-      gradient: 'linear-gradient(180deg, #9384D756, #FD68B9)',
+      gradient: 'linear-gradient(180deg,#8F7EE9d0, #F692BEd0, #F76DBEd0)',
+      gradientheader: 'linear-gradient( #8F7EE966, transparent)',
+      plantgreen: "#1d743e",
+      plantgreenblur: "#1d743ecc"
+      
       
       
       
     },
-    fonts: {
-      main: 'Roboto, sans-serif',
-      heading: 'Georgia, serif',
-        
-      },
+    
       fontSize: {
         smaller: "1rem",
         small: "1.2rem",
@@ -40,6 +42,7 @@ if (selector === 1) {
         medium: '0px 4px 8px rgba(0, 0, 0, 0.2)',
         large: '0px 8px 16px rgba(0, 0, 0, 0.3)',
         card: '10px 18px 16px rgba(0, 0, 0, 0.6)',
+        cardMainBlog: '0px 10px 15px 6px rgba(0, 0, 0, 0.6)',
         activeCategorie: '4px 4px 2px rgba(147, 132, 215, 0.6)',
         banner: '10px 18px 16px rgba(0, 0, 0, 0.6)',
         footer: '0px -6px 16px rgba(0, 0, 0, 0.3)',

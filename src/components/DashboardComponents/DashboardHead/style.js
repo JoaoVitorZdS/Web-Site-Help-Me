@@ -3,19 +3,21 @@ import styled from "styled-components";
 export const StyledDashboardHead = styled.div`
   height: 20vh;
   margin: 0 auto;
-  width: 98vw;
+  width: 85vw;
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   align-items: center;
+  margin-top: 3%;
+  gap: 3%;
 
  
   #userInfoContainer{
-    width: 70%;
+    width: fit-content;
     height: 90%;
     display: flex;
-    flex-direction: column-reverse;
-    justify-content: center;
-    align-items: end;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 
   i{
     margin-right: 5%;
@@ -26,8 +28,8 @@ export const StyledDashboardHead = styled.div`
   }
   
   #userPicContainer{
-    width: 23%;
-    height: 50%;
+    width: fit-content;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

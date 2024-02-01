@@ -5,32 +5,39 @@ import "../../../App.css"
 export const StyledBlogBody = styled.div`
   height: auto;
   background-color: transparent;
-  margin: 0;
-  width: 99vw;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  gap: 20px;
-  justify-content: start;
+  margin: 0 auto;
+  width: 100vw;
+  justify-content: center;
   align-items: center;
-  padding: 5%;
-
+  padding: 0;
   ul {
-    width: 100%;
+    width: 94%;
+    padding-right: 2%;
+    padding-left: 2%;
     list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(auto-fill, minmax(15vw, 1fr)); // Ajuste a altura conforme necessário
+    gap: 0 3%;
+    padding-bottom: 30%;
+   
   }
 
   li {
     border-top: 2px double ${GlobalStyleDefault.colors.secondary};
     border-bottom: 2px double grey;
-    background-color: ${GlobalStyleDefault.colors.offwhite};
+    background-color: ${GlobalStyleDefault.colors.secondary};
+    box-shadow: ${GlobalStyleDefault.shadows.large};
     border-radius: 12px;
     margin-top: 15px;
-   
-    min-width: 300px;
+    color: ${GlobalStyleDefault.colors.textwhite};
+    
+    height: 95%;
+   justify-content: space-around;
     display: flex;
     flex-direction: column;
-    padding: 15px;
+    padding: 5px;
+    position: relative;
 
     a{
       width: 100%;
@@ -60,11 +67,11 @@ export const StyledBlogBody = styled.div`
   font-size: 0.8rem;
   font-family: DolceVita;
   position: absolute;
-  left: -550%;
-  bottom: -120%;
+  left: -650%;
+  bottom: -90%;
   
   text-align: center;
-  color: ${GlobalStyleDefault.colors.tertiary};
+  color: ${GlobalStyleDefault.colors.textwhite};
   
  
  
@@ -86,7 +93,7 @@ export const StyledBlogBody = styled.div`
   }
 
   50% {
-    transform: translateY(-50%);
+    transform: translateY(-30%);
   }
  
   100% {
@@ -97,21 +104,37 @@ export const StyledBlogBody = styled.div`
 
     .reactionContainerWrapper{
       width: 100%;
+      height: 30px;
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: left;
       align-content: center;
+      gap: 25px;
+      padding-left: 5%;
+      
       
     }
+    
     .reactionContainer{
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      width: 45%;
+      width: 33%;
       height: 100%;
-      gap: 5px;
+      border-radius: 50px;
+      box-shadow: ${GlobalStyleDefault.shadows.medium};
+      background-color: ${GlobalStyleDefault.colors.tertiary};
+    }
+    .reactionContainer:hover{
+      background-color: ${GlobalStyleDefault.colors.tertiarystrong};
+    }
+
+    .SocialSharerContainer{
+      position: absolute;
+      right: -70px;
+      bottom: -70px;
     }
 
     .reactionCounterNumber{
@@ -128,33 +151,47 @@ export const StyledBlogBody = styled.div`
       background-color: transparent;
       border: transparent;
     }
-    #likeButton:hover {
+    .reactionContainer:hover #likeButton{
       animation: zoom 1s infinite; /* 2s de duração, repetição infinita */
     }
 
-    #dislikeButton:hover {
+    .reactionContainer:hover #dislikeButton{
       animation: zoom 1s infinite; /* 2s de duração, repetição infinita */
     }
 
     .PostImageContainer {
       width: 100%;
-      height: 50%;
-      background-position: left;
+      height: 50vh;
+      background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
       border-radius: 35px;
+      align-self: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-content: end;
+      overflow: hidden;
+      
+
+      
+     
     }
 
     p {
       align-self: center;
-      padding-top: 15px;
-      padding-bottom: 25px;
+      
+      
       display: -webkit-box;
-      -webkit-line-clamp: 5;
+      -webkit-line-clamp: 6;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
 
+  }
+  li:hover{
+    box-shadow: ${GlobalStyleDefault.shadows.small};
+    
   }
 
 

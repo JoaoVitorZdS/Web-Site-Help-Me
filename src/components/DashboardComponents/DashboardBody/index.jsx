@@ -43,24 +43,30 @@ export const DashboardBody = () => {
         <div className="userSectionsContainer">
             <div
               onClick={() => handleCategoryClick("Consultas")}
-              className={activeCategory === "Consultas" ? "active" : ""}
+              className={activeCategory === "Consultas" ? "active" : "nonactive"}
             >
+              
               <GiBrain />
               Consultas
+             
             </div>
             <div
               onClick={() => handleCategoryClick("Postagens")}
-              className={activeCategory === "Postagens" ? "active" : ""}
+              className={activeCategory === "Postagens" ? "active" : "nonactive"}
               >
+               
                <GiNotebook />
               Postagens
+             
             </div>
             <div
               onClick={() => handleCategoryClick("Extrato")}
-              className={activeCategory === "Extrato" ? "active" : ""}
+              className={activeCategory === "Extrato" ? "active" : "nonactive"}
               >
+               
                 <GiChart />
               Extrato
+                
             </div>
             {/* Other category names */}
           </div>

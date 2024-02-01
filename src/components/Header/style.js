@@ -2,13 +2,16 @@ import styled from "styled-components";
 import GlobalStyleDefault from "../../GlobalStyles";
 export const StyledHeaderContainer = styled.div`
   display: flex;
-  width: 100%;
-  min-height: 105px;
-  max-height: 125px;
+  width: 98%;
+  min-height: 125px;
+  height: 135px;
+  max-height: 145px;
   justify-content: space-between;
   align-items: center;
-  background-color: ${GlobalStyleDefault.colors.gradient};
-  box-shadow: ${GlobalStyleDefault.shadows.large};
+  //background-color: ${GlobalStyleDefault.colors.secondary};
+  padding-top: 1%;
+
+  
   z-index: 1;
 
   @media (max-width: 520px) {
@@ -55,50 +58,74 @@ export const StyledHeaderContainer = styled.div`
 
   #logoContainer {
     display: flex;
-    width: 23%;
-    height: 100%;
-    justify-content: start;
-    align-items: center;
-    padding-left: 2%;
-
-    img{
-      min-width: 80px;
-    }
-  }
-  #sloganContainer {
-    padding-top: 1%;
-    display: flex;
-    width: 52%;
+  
+    min-width: fit-content;
     height: 100%;
     justify-content: center;
     align-items: center;
+    padding: 0.5rem;
+    box-shadow: ${GlobalStyleDefault.shadows.medium};
+    z-index: 7;
+    background: ${GlobalStyleDefault.colors.gradientheader};
+    border-radius:  10% / 50%;
+
+    .name{
+      height: 100%;
+    width: 70%;
+  }
+    .logo{
+    height: 99%;
+    width: 28%;
+    border-radius: 250px;
+    
+    background-color: #ffffff88;
+   
+
+  }
+  }
+  #sloganContainer {
+    
+    padding: 1%;
+    display: flex;
+    max-width: 30%;
+    width: fit-content;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    z-index: 7;
+   
+    border-radius:  10% / 50%;
+  
     img{
       min-width: 80px;
       
     }
+    .slogan{
+    height: 100%;
+    
+  
+  }
   }
   #buttonsContainer {
     display: flex;
-    width: 25%;
+    max-width: min-content;
+    min-width: fit-content;
     height: 100%;
-    padding-right: 2%;
+    padding-inline: 2%;
     gap: 15px;
-    justify-content: end;
+    justify-content: center;
     align-items: center;
+    z-index: 7;
+    box-shadow: ${GlobalStyleDefault.shadows.medium};
+    background: ${GlobalStyleDefault.colors.gradientheader};
+    border-radius:  10% / 50%;
+    background-blend-mode: soft-light;
     
   }
  
-  .logo{
-    width: 40%;
-    
-  }
-  .name{
-    width: 70%;
-  }
-  .slogan{
-    width: 50%;
   
-  }
+  
+  
 
   @media (max-width: 330px) {
   

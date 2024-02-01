@@ -7,10 +7,26 @@ export const StyledApp = styled.div`
   height: 100vh;
   min-height: 90vh;
   background-color: ${GlobalStyleDefault.colors.primary};
+  --gap: 5em;
+  --line: 1px;
+  --color: rgba(255, 255, 255, 0.2);
+
+  background-image: linear-gradient(
+      -90deg,
+      transparent calc(var(--gap) - var(--line)),
+      var(--color) calc(var(--gap) - var(--line) + 1px),
+      var(--color) var(--gap)
+    ),
+    linear-gradient(
+      0deg,
+      transparent calc(var(--gap) - var(--line)),
+      var(--color) calc(var(--gap) - var(--line) + 1px),
+      var(--color) var(--gap)
+    );
+    background-size: var(--gap) var(--gap);
   margin: 0;
   overflow-x: hidden;
   color: ${GlobalStyleDefault.colors.text};
-  background: ${GlobalStyleDefault.colors.gradient};
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+  backdrop-filter: blur(10px);
   
 `;

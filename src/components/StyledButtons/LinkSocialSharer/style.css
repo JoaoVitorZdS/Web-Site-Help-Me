@@ -12,9 +12,19 @@
     padding: 0.7em 0.7em;
     border-radius: 50px;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    width: 22px;
+    height: 22px;
     
   }
-  .tooltip-container:hover {
+  .tooltip-wrapper{
+    
+    width: 170px;
+    height: 170px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  .tooltip-wrapper:hover .tooltip-container {
     background: #fff;
     transition: all 0.6s;
   }
@@ -25,7 +35,7 @@
     fill: #fff;
     transition: all 0.2s;
   }
-  .tooltip-container:hover .text {
+  .tooltip-wrapper:hover .text {
     fill: rgb(3, 169, 244);
     transition: all 0.6s;
   }
@@ -47,7 +57,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
   
-  .tooltip-container:hover .tooltip1 {
+  .tooltip-wrapper:hover .tooltip1 {
     top: 150%;
     opacity: 1;
     visibility: visible;
@@ -58,7 +68,7 @@
     align-items: center;
     justify-content: center;
   }
-  .tooltip-container:hover .tooltip1:hover {
+  .tooltip-wrapper:hover .tooltip1:hover {
     background: #03a9f4;
     fill: #fff;
   }
@@ -81,7 +91,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
   
-  .tooltip-container:hover .tooltip2 {
+  .tooltip-wrapper:hover .tooltip2 {
     top: -120%;
     opacity: 1;
     visibility: visible;
@@ -93,7 +103,7 @@
     justify-content: center;
   }
   
-  .tooltip-container:hover .tooltip2:hover {
+  .tooltip-wrapper:hover .tooltip2:hover {
     background: #0462df;
     fill: #fff;
   }
@@ -116,7 +126,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
   
-  .tooltip-container:hover .tooltip3 {
+  .tooltip-wrapper:hover .tooltip3 {
     top: 10%;
     opacity: 1;
     visibility: visible;
@@ -127,7 +137,7 @@
     align-items: center;
     justify-content: center;
   }
-  .tooltip-container:hover .tooltip3:hover {
+  .tooltip-wrapper:hover .tooltip3:hover {
     background: #1db954;
     fill: #fff;
   }
@@ -150,7 +160,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
   
-  .tooltip-container:hover .tooltip4 {
+  .tooltip-wrapper:hover .tooltip4 {
     top: 10%;
     opacity: 1;
     visibility: visible;
@@ -161,7 +171,7 @@
     align-items: center;
     justify-content: center;
   }
-  .tooltip-container:hover .tooltip4:hover {
+  .tooltip-wrapper:hover .tooltip4:hover {
     background: #8c9eff;
     fill: #fff;
   }
@@ -184,7 +194,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
   
-  .tooltip-container:hover .tooltip5 {
+  .tooltip-wrapper:hover .tooltip5 {
     top: -78%;
     opacity: 1;
     visibility: visible;
@@ -195,7 +205,7 @@
     align-items: center;
     justify-content: center;
   }
-  .tooltip-container:hover .tooltip5:hover {
+  .tooltip-wrapper:hover .tooltip5:hover {
     background: #bd081c;
     fill: #fff;
   }
@@ -218,7 +228,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
   
-  .tooltip-container:hover .tooltip6 {
+  .tooltip-wrapper:hover .tooltip6 {
     top: -79%;
     opacity: 1;
     visibility: visible;
@@ -229,7 +239,7 @@
     align-items: center;
     justify-content: center;
   }
-  .tooltip-container:hover .tooltip6:hover {
+  .tooltip-wrapper:hover .tooltip6:hover {
     background: #ea4c89;
     fill: #fff;
   }
@@ -252,7 +262,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
   
-  .tooltip-container:hover .tooltip7 {
+  .tooltip-wrapper:hover .tooltip7 {
     top: 104%;
     opacity: 1;
     visibility: visible;
@@ -263,7 +273,7 @@
     align-items: center;
     justify-content: center;
   }
-  .tooltip-container:hover .tooltip7:hover {
+  .tooltip-wrapper:hover .tooltip7:hover {
     background: #000;
     fill: #fff;
   }
@@ -286,7 +296,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
   
-  .tooltip-container:hover .tooltip8 {
+  .tooltip-wrapper:hover .tooltip8 {
     top: 101%;
     opacity: 1;
     visibility: visible;
@@ -297,7 +307,7 @@
     align-items: center;
     justify-content: center;
   }
-  .tooltip-container:hover .tooltip8:hover {
+  .tooltip-wrapper:hover .tooltip8:hover {
     background: #ff4500;
     fill: #fff;
   }
@@ -315,7 +325,7 @@
     z-index: -1;
   }
   
-  .tooltip-container:hover .tooltip9 {
+  .tooltip-wrapper:hover .tooltip9 {
     top: -110%;
     opacity: 1;
     visibility: visible;

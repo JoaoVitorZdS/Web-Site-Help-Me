@@ -15,6 +15,7 @@ const ProfessionalConsultations = () => {
   const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
   const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  
   const [isDeclineModalOpen, setIsDeclineModalOpen] = useState(false);
 
   const openAcceptModal = (consultation) => {
@@ -151,75 +152,98 @@ const ProfessionalConsultations = () => {
     }
   };
 
-  const renderConsultations = () => {
 
-    const sortedConsultations = [...consultations].sort((a, b) => {
-      if (a.status === "pending" && (b.status === "confirmed" || b.status === "cancelled")) {
-        return -1;
-      } else if (a.status === "confirmed" && b.status === "cancelled") {
-        return -1;
-      } else if (a.status === "pending" && b.status === "cancelled") {
-        return -1;
-      }
-      return 0;
-    });
-    return sortedConsultations.map((consultation) => {
-      const formattedDateTime = format(
-        parse(consultation.date, "dd 'de' MMMM yyyy HH:mm", new Date(), { locale: ptBR }),
-        "dd 'de' MMMM yyyy HH:mm",
-        { locale: ptBR }
-      );
-  
-      let tagColor = "";
-      let primaryButtonLabel = "";
-      let secondaryButtonLabel = "";
-      let primaryButtonAction = () => {};
-      let secondaryButtonAction = () => {};
-  
-      if (consultation.status === "pending") {
-        tagColor = "yellow";
-        primaryButtonLabel = "Aceitar";
-        secondaryButtonLabel = "Recusar";
-        primaryButtonAction = () => openAcceptModal(consultation);
-        secondaryButtonAction = () => openDeclineModal(consultation);
-      } else if (consultation.status === "confirmed") {
-        tagColor = "green";
-        primaryButtonLabel = "Cancelar";
-        primaryButtonAction = () => openCancelModal(consultation);
-      } else if (consultation.status === "cancelled") {
-        tagColor = "red";
-        primaryButtonLabel = "Apagar";
-        primaryButtonAction = () => openDeleteModal(consultation);
-      }
-  
-      return (
-        <ProfessionalSideConsultationStyledDiv key={consultation.id} style={{border: `2px double ${tagColor}`}} >
-          <div className="Profesional_consultation_tag_container" >
-          <div className="Profesional_consultation_tag" style={{ backgroundColor: tagColor}} />
-          </div>
-          <div style={{fontFamily: "TimesBold"}}>
-          <p>Consulta com a cliente {consultation.client_name}</p>
-          <p>{formattedDateTime}</p>
-          <p>Email do Cliente: {consultation.client_email}</p>
-          <p>Celular do Cliente: {consultation.client_phone}</p>
-          <p>Solicitação do cliente: {consultation.description}</p>
-          <p style={{fontFamily: "Contacto", color: tagColor}}>{getStatusLabel(consultation.status)}</p>
-          </div>
-          <div className="Accept_Decline_or_Reject_Buttons_container">
-          <button onClick={primaryButtonAction} >{primaryButtonLabel}</button>
-          {secondaryButtonLabel && (
-            <button onClick={secondaryButtonAction} style={{marginTop: "15px" }}>{secondaryButtonLabel}</button>
-            )}
-          </div>
-        </ProfessionalSideConsultationStyledDiv>
-      );
-    });
-  };
+    const renderByStatus = (status) => {
 
+      const handleCardClick = (consultation) => {
+        setSelectedConsultation((prevSelected) => (prevSelected === consultation ? null : consultation));
+      };
+      const sortedConsultations = [...consultations].sort((a, b) => {
+        if (a.status === "pending" && (b.status === "confirmed" || b.status === "cancelled")) {
+          return -1;
+        } else if (a.status === "confirmed" && b.status === "cancelled") {
+          return -1;
+        } else if (a.status === "pending" && b.status === "cancelled") {
+          return -1;
+        }
+        return 0;
+      });
+      return sortedConsultations
+        .filter((consultation) => consultation.status === status)
+        .map((consultation) => {
+          const formattedDateTime = format(
+            parse(consultation.date, "dd 'de' MMMM yyyy HH:mm", new Date(), { locale: ptBR }),
+            "dd 'de' MMMM yyyy HH:mm",
+            { locale: ptBR }
+          );
+  
+          let tagColor = "";
+          let primaryButtonLabel = "";
+          let secondaryButtonLabel = "";
+          let primaryButtonAction = () => {};
+          let secondaryButtonAction = () => {};
+  
+          if (consultation.status === "pending") {
+            tagColor = "yellow";
+            primaryButtonLabel = "Aceitar";
+            secondaryButtonLabel = "Recusar";
+            primaryButtonAction = () => openAcceptModal(consultation);
+            secondaryButtonAction = () => openDeclineModal(consultation);
+          } else if (consultation.status === "confirmed") {
+            tagColor = "green";
+            primaryButtonLabel = "Cancelar";
+            primaryButtonAction = () => openCancelModal(consultation);
+          } else if (consultation.status === "cancelled") {
+            tagColor = "red";
+            primaryButtonLabel = "Apagar";
+            primaryButtonAction = () => openDeleteModal(consultation);
+          }
+          const isCardSelected = selectedConsultation === consultation;
+          return (
+            <ProfessionalSideConsultationStyledDiv key={consultation.id} style={{
+              border: `1px double ${tagColor}`,
+              borderLeft: `15px solid ${tagColor}`,
+              overflow: "hidden",
+              transition: "height 10s ease",
+              height: isCardSelected ? "auto" : "60px", // Adjust the initial height as needed
+              width: isCardSelected ? "auto" : "320px", // Adjust the initial height as needed
+            }}>
+              <div style={{ fontFamily: "TimesBold" } } onClick={() => handleCardClick(consultation)}>
+                <p>Consulta com <i>{consultation.client_name}</i></p>
+                <p>{formattedDateTime}</p>
+                <p>Email do Cliente: <i>{consultation.client_email}</i></p>
+                <p>Celular do Cliente: <i>{consultation.client_phone}</i></p>
+                <textarea disabled readOnly rows={5}>{consultation.description}</textarea>
+                <p style={{ fontFamily: "Contacto", color: tagColor }}>{getStatusLabel(consultation.status)}</p>
+              </div>
+              <div className="Accept_Decline_or_Reject_Buttons_container">
+                <button onClick={primaryButtonAction}>{primaryButtonLabel}</button>
+                {secondaryButtonLabel && (
+                  <button onClick={secondaryButtonAction} >{secondaryButtonLabel}</button>
+                )}
+              </div>
+            </ProfessionalSideConsultationStyledDiv>
+          );
+        });
+      }
   return (
-    <div>
-      <h2 style={{color: `${GlobalStyleDefault.colors.tertiary}`, fontFamily: "DolceVita"}}>Suas Consultas:</h2>
-      {renderConsultations()}
+    <div style={{display: "flex", flexDirection: "row", width: "94vw", paddingLeft: "5%", gap: "2%", justifyContent: "space-between"}}>
+      
+      <div >
+      <p style={{color: GlobalStyleDefault.colors.textwhite, fontFamily: "DolceVita"}}>Pendentes</p>
+      {/* Render pending consultations */}
+      {renderByStatus("pending")}
+      </div>
+      <div>
+      {/* Render confirmed consultations */}
+      <p style={{color: GlobalStyleDefault.colors.textwhite, fontFamily: "DolceVita"}}>Confirmadas </p>
+      {renderByStatus("confirmed")}
+      </div>
+      <div>
+      {/* Render cancelled consultations */}
+      <p style={{color: GlobalStyleDefault.colors.textwhite, fontFamily: "DolceVita"}}>Canceladas </p>
+      {renderByStatus("cancelled")}
+      </div>
 
       {selectedConsultation && selectedConsultation.status === "pending" && (
         <ConfirmationModal

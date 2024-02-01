@@ -179,7 +179,7 @@ export const PostRenderDashboard = ({post}) => {
           {globalPosts.length !== 0 ? (
             <ul>
               {globalPosts.map((post) => (
-                <li key={post.id} className="PostDiv">
+                <li key={post.id} className="PostDiv" style={{ overflowY: !expandedPosts ? "scroll" : "hidden"}}>
                   <h2>{`${post.title}`}</h2>
                   <div className="ButtonsContainerDashboardPostRenderer">
                     <div>
