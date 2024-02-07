@@ -12,12 +12,11 @@ export const StyledBlogBody = styled.div`
   padding: 0;
   ul {
     width: 94%;
-    padding-right: 2%;
-    padding-left: 2%;
+    padding: 0;
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(auto-fill, minmax(15vw, 1fr)); // Ajuste a altura conforme necessário
+    
+    grid-template-rows: repeat(auto-fill, minmax(320px, 1fr)); // Ajuste a altura conforme necessário
     gap: 0 3%;
     padding-bottom: 30%;
    
@@ -213,6 +212,21 @@ export const StyledBlogBody = styled.div`
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(6, 1fr);
     padding: 15px;
+  }
+
+  @media (min-width: 650px) {
+    ul {
+    width: 94%;
+    padding-left: 3%;
+    list-style: none;
+    display: grid;
+    
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); // Ajuste a altura conforme necessário
+    gap: 0 3%;
+    padding-bottom: 30%;
+   
+  }
+    
   }
 `;
 

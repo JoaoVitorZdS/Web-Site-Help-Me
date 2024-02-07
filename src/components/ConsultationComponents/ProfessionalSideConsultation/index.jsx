@@ -204,9 +204,9 @@ const ProfessionalConsultations = () => {
               border: `1px double ${tagColor}`,
               borderLeft: `15px solid ${tagColor}`,
               overflow: "hidden",
-              transition: "height 10s ease",
-              height: isCardSelected ? "auto" : "60px", // Adjust the initial height as needed
-              width: isCardSelected ? "auto" : "320px", // Adjust the initial height as needed
+              transition: "height 2s ease",
+              height: isCardSelected ? "350px" : "60px", // Adjust the initial height as needed
+              width:  "320px", // Adjust the initial height as needed
             }}>
               <div style={{ fontFamily: "TimesBold" } } onClick={() => handleCardClick(consultation)}>
                 <p>Consulta com <i>{consultation.client_name}</i></p>
@@ -227,22 +227,62 @@ const ProfessionalConsultations = () => {
         });
       }
   return (
-    <div style={{display: "flex", flexDirection: "row", width: "94vw", paddingLeft: "5%", gap: "2%", justifyContent: "space-between"}}>
+    <div style={{display: "flex", flexDirection: "column", width: "95vw", paddingLeft: "5%", gap: "2%", justifyContent: "space-between" }}>
       
-      <div >
+      <div style={{display: "flex", flexDirection: "row", width: "auto", gap: "5px", overflowX: "scroll"}} >
       <p style={{color: GlobalStyleDefault.colors.textwhite, fontFamily: "DolceVita"}}>Pendentes</p>
       {/* Render pending consultations */}
+      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto",}}>
+
       {renderByStatus("pending")}
+      {renderByStatus("pending")}
+      {renderByStatus("pending")}
+      {renderByStatus("pending")}
+      {renderByStatus("pending")}
+      {renderByStatus("pending")}
+      {renderByStatus("pending")}
+      {renderByStatus("pending")}
+      {renderByStatus("pending")}
+      {renderByStatus("pending")}
+      </ul>
       </div>
       <div>
       {/* Render confirmed consultations */}
       <p style={{color: GlobalStyleDefault.colors.textwhite, fontFamily: "DolceVita"}}>Confirmadas </p>
+      <div style={{display: "flex", flexDirection: "row", width: "auto", gap: "5px", overflowX: "scroll"}} >
+
+      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto",}}>
+
       {renderByStatus("confirmed")}
+      {renderByStatus("confirmed")}
+      {renderByStatus("confirmed")}
+      {renderByStatus("confirmed")}
+      {renderByStatus("confirmed")}
+      {renderByStatus("confirmed")}
+      {renderByStatus("confirmed")}
+      {renderByStatus("confirmed")}
+      {renderByStatus("confirmed")}
+      </ul>
+      </div>
       </div>
       <div>
       {/* Render cancelled consultations */}
       <p style={{color: GlobalStyleDefault.colors.textwhite, fontFamily: "DolceVita"}}>Canceladas </p>
+      <div style={{display: "flex", flexDirection: "row", width: "auto", gap: "5px", overflowX: "scroll"}} >
+
+
+      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto",}}>
+
       {renderByStatus("cancelled")}
+      {renderByStatus("cancelled")}
+      {renderByStatus("cancelled")}
+      {renderByStatus("cancelled")}
+      {renderByStatus("cancelled")}
+      {renderByStatus("cancelled")}
+      {renderByStatus("cancelled")}
+      {renderByStatus("cancelled")}
+      </ul>
+      </div>
       </div>
 
       {selectedConsultation && selectedConsultation.status === "pending" && (
@@ -267,7 +307,6 @@ const ProfessionalConsultations = () => {
           }}
         />
       )}
-
       {selectedConsultation && selectedConsultation.status === "confirmed" && (
         <ConfirmationModal
           isOpen={isCancelModalOpen}
@@ -290,7 +329,6 @@ const ProfessionalConsultations = () => {
           }}
         />
       )}
-
       {selectedConsultation && selectedConsultation.status === "cancelled" && (
         <ConfirmationModal
           isOpen={isDeleteModalOpen}
@@ -313,28 +351,7 @@ const ProfessionalConsultations = () => {
           }}
         />
       )}
-      {selectedConsultation && selectedConsultation.status === "pending" && (
-        <ConfirmationModal
-          isOpen={isDeclineModalOpen}
-          onClose={closeModals}
-          onConfirm={() => handleCancel(selectedConsultation.id)}
-          actionLabel="Recusar"
-          consultationInfo={{
-            formattedDateTime: format(
-              parse(
-                selectedConsultation.date,
-                "dd 'de' MMMM yyyy HH:mm",
-                new Date(),
-                { locale: ptBR }
-              ),
-              "dd 'de' MMMM yyyy HH:mm",
-              { locale: ptBR }
-            ),
-            status: selectedConsultation.status,
-            // Adicione mais informações conforme necessário
-          }}
-        />
-      )}
+
     </div>
   );
 };

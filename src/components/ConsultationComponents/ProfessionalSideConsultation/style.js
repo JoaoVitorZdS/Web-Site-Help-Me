@@ -6,13 +6,13 @@ export const ProfessionalSideConsultationStyledDiv = styled.div`
  flex-direction: column;
  justify-content: space-between;
  align-content: center;
- width: 500px;
+ width: fit-content;
  height: 250px;
  padding: 1%;
  box-shadow: ${GlobalStyleDefault.shadows.large};
  background-color: ${GlobalStyleDefault.colors.secondary};
   border-radius: 15px;
-  margin-bottom: 5%;
+ 
   &:hover{
     box-shadow: ${GlobalStyleDefault.shadows.card};
 

@@ -17,8 +17,8 @@ export const StyledGalleryContainer = styled.div`
   gap: 20px;
   justify-content: center;
   align-items: center;
-  padding: 20px;
   margin: 0 auto;
+  width: 100%;
   .card {
   overflow: visible;
   width: 220px;
@@ -117,7 +117,6 @@ export const StyledGalleryContainer = styled.div`
     transform: rotateZ(360deg);
   }
 }
-
 
 
 .front {
@@ -245,6 +244,20 @@ export const StyledGalleryContainer = styled.div`
   }
 }
 }
+//-------------------------------------------------------------------@media-------------------------------------------------------------//
+@media (max-width: 770px) {
+    transform: translateY(-7%) scale(0.8);
+    
+  }
+  @media (max-width: 620px) {
+   
+    
+  }
+  @media (max-width: 510px) {
+    transform: translateY(-9%) scale(0.8);
+   
+    
+  }
 
 
 

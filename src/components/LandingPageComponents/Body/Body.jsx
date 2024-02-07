@@ -19,7 +19,7 @@ export function Body() {
             
             
         <div id="firstContainer">
-            <div >
+            <div className="petalWrapper" >
                 <div className="petalDiv" style={{ "--i": 0 }}  >
                 <img src={headImage} alt="Mulher segurando um computador lap-top" onClick={() => navigate("/consultation")}/>
 
@@ -44,8 +44,12 @@ export function Body() {
        
         </div>
         <div id="secondContainer">
+            
             <AnimatedPlantButton name="Faça um teste" destiny={"consultation"}/>
+            
+            
             <AnimatedPlantButton name="Agende uma consulta" destiny={"Dashboard"}/>
+            
         </div>
         <div id="thirdContainer">
             

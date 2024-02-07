@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import Modal from "react-modal"; // Importe o componente Modal
 import { getFirestore, collection, getDocs, doc, updateDoc, query, where } from "firebase/firestore";
 import "../../../../firebaseconfig";
 import { PostRenderDashboardBody } from "./style";
@@ -9,15 +10,16 @@ import { AccessTokenContext } from "../../../StyledButtons/ButtonLogInGoogle";
 import { handleDislike, handleLike } from "../../../BlogComponents/handlePostsFunctions";
 import { useBlogContext } from "../../../BlogComponents/BlogBody/BlogContext";
 import { FaMinus, FaPlus } from "react-icons/fa6";
+import MyQuillEditor from "../../../QuillEditor"; // Importe o componente Quill
+import { StyledForm } from "../style";
+import GlobalStyleDefault from "../../../../GlobalStyles";
 
-
-export const PostRenderDashboard = ({post}) => {
+export const PostRenderDashboard = ({ post }) => {
   const { userData, accessToken } = useContext(AccessTokenContext);
-  const [posts, setPosts] = useState([]);
+  const { globalPosts, setGlobalPosts } = useBlogContext();
   const [isEditing, setIsEditing] = useState(false);
   const [editPostDetails, setEditPostDetails] = useState(null);
-  const { globalPosts, setGlobalPosts } = useBlogContext();
-
+  const [posts, setPosts] = useState([]);
 
   const fetchPosts = async () => {
     const db = getFirestore();
@@ -43,124 +45,36 @@ export const PostRenderDashboard = ({post}) => {
   };
 
   useEffect(() => {
-  
     if (globalPosts.length === 0) {
       fetchPosts();
-      setGlobalPosts(posts)
+      setGlobalPosts(posts);
     }
   }, [globalPosts, posts]); // Chama fetchPosts uma vez, quando o componente é montado
 
-  const EditPostModal = ({ postDetails, onClose, onUpdate }) => {
-    
-  
-    // Inicialize o estado com os detalhes do post ao abrir o modal
-    const [editedPost, setEditedPost] = useState({
-      content: postDetails.content,
-      is_public: postDetails.is_public,
-      image_url: postDetails.imageURL,
-      title: postDetails.title,
-      sub_title: postDetails.sub_title,
-    });
-  
-    const handleSave = async () => {
-      const db = getFirestore();
-      const postsCollection = collection(db, "posts");
-    
-      // Crie uma consulta usando a função "query" e especifique a condição com "where"
-      const postQuery = query(postsCollection, where("id", "==", postDetails.id));
-    
-      // Execute a consulta
-      const postQuerySnapshot = await getDocs(postQuery);
-    
-      // Verifique se há algum documento correspondente à consulta
-      if (postQuerySnapshot.docs.length > 0) {
-        const postDoc = postQuerySnapshot.docs[0];
-    
-        // Atualize o documento existente com os novos dados
-        await updateDoc(postDoc.ref, {
-          content: editedPost.content,
-          is_public: editedPost.is_public,
-          image_url: editedPost.image_url,
-          title: editedPost.title,
-          sub_title: editedPost.sub_title,
-        });
-    
-        // Atualize a lista de posts após a edição
-        onUpdate();
-      }
-    
-      // Feche o modal
-      onClose();
-    };
-    
-    const handleModalClick = (e) => {
-      // Evitar que o clique no modal se propague para o contêiner principal
-      e.stopPropagation();
-    };
-    
-  
-    return (
-      <div className="edit-post-modal-overlay" onClick={onClose}>
-        <div className="edit-post-modal" onClick={handleModalClick}>
-          <div>
-          <h2>Editar Post</h2>
+  const deleteFirstToolbar = async () => {
+    const toolbarDiv = document.querySelector('.ql-toolbar');
+    if (toolbarDiv) {
+      toolbarDiv.parentNode.removeChild(toolbarDiv);
+    }
+  };
 
-          <label>
-            Título:
-            <input
-              type="text"
-              value={editedPost.title}
-              onChange={(e) => setEditedPost({ ...editedPost, title: e.target.value })}
-            />
-          </label>
-          <label>
-            Subtítulo:
-            <input
-              type="text"
-              value={editedPost.sub_title}
-              onChange={(e) => setEditedPost({ ...editedPost, sub_title: e.target.value })}
-            />
-          </label>
-          <label>
-            Imagem URL:
-            <input
-              type="text"
-              value={editedPost.image_url}
-              onChange={(e) => setEditedPost({ ...editedPost, image_url: e.target.value })}
-            />
-          </label>
-          <img src={editedPost.image_url} alt="Selected figure"/>
-          </div>
-          
-           
-          <div>
-
-            <textarea
-              rows={30}
-              cols={40}
-              value={editedPost.content}
-              onChange={(e) => setEditedPost({ ...editedPost, content: e.target.value })}
-              />
-              </div>
-           
-
-            <div>
-          <label style={{height: "7px", width: "100%", display: "flex", justifyContent: "space-around", alignItems: "center"}}>
-            Público:
-            <input
-              type="checkbox"
-              checked={editedPost.is_public}
-              onChange={() => setEditedPost({ ...editedPost, is_public: !editedPost.is_public })}
-              
-              />
-          </label>
-             
-          <button onClick={handleSave}>Salvar</button>
-          <button onClick={onClose}>Cancelar</button>
-              </div>
-        </div>
-      </div>
-    );
+  const handleSave = async () => {
+    const db = getFirestore();
+    const postsCollection = collection(db, "posts");
+    const postQuery = query(postsCollection, where("id", "==", editPostDetails.id));
+    const postQuerySnapshot = await getDocs(postQuery);
+    if (postQuerySnapshot.docs.length > 0) {
+      const postDoc = postQuerySnapshot.docs[0];
+      await updateDoc(postDoc.ref, {
+        title: editPostDetails.title,
+        sub_title: editPostDetails.sub_title,
+        image_url: editPostDetails.image_url,
+        content: editPostDetails.content, // Certifique-se de que editPostDetails.content está no formato delta
+        is_public: editPostDetails.is_public,
+      });
+      fetchPosts();
+    }
+    setIsEditing(false);
   };
 
   const [expandedPosts, setExpandedPosts] = useState({});
@@ -179,47 +93,38 @@ export const PostRenderDashboard = ({post}) => {
           {globalPosts.length !== 0 ? (
             <ul>
               {globalPosts.map((post) => (
-                <li key={post.id} className="PostDiv" style={{ overflowY: !expandedPosts ? "scroll" : "hidden"}}>
+                <li key={post.id} className="PostDiv" style={{ overflowY: !expandedPosts ? "scroll" : "hidden" }}>
                   <h2>{`${post.title}`}</h2>
                   <div className="ButtonsContainerDashboardPostRenderer">
                     <div>
-
+                      <div className="reactionContainer">
+                        <i>{`${(post.likes && post.likes.length) || 0}`}</i>
+                        <button onClick={() => handleLike(post.id, globalPosts, setGlobalPosts, userData)} id="likeButton">
+                          {post.likes && post.likes.includes(userData.email) ? <FcLike size={"1rem"} /> : <RiHeartLine size={"1rem"} />}
+                        </button>
+                      </div>
+                    </div>
                     <div>
-                    <div className="reactionContainer">
-
-                    <i>{`${(post.likes && post.likes.length) || 0}`}</i>
-                    <button onClick={() => handleLike(post.id,globalPosts, setGlobalPosts, userData)} id="likeButton">
-                      {post.likes && post.likes.includes(userData.email) ? <FcLike size={"1rem"} /> : <RiHeartLine size={"1rem"} />}
-                    </button>
+                      <div className="reactionContainer">
+                        <i>{`${(post.dislikes && post.dislikes.length) || 0}`}</i>
+                        <button onClick={() => handleDislike(post.id, globalPosts, setGlobalPosts, userData)} id="dislikeButton">
+                          {post.dislikes && post.dislikes.includes(userData.email) ? <FcDislike size={"1rem"} /> : <RiDislikeLine size={"1rem"} />}
+                        </button>
+                      </div>
                     </div>
-                    </div>
-
-                    <div>
-                    <div className="reactionContainer">
-
-                    <i>{`${(post.dislikes && post.dislikes.length) || 0}`}</i>
-                    <button onClick={() => handleDislike(post.id,globalPosts, setGlobalPosts, userData)} id="dislikeButton">
-                      {post.dislikes && post.dislikes.includes(userData.email) ? <FcDislike size={"1rem"}  /> : <RiDislikeLine size={"1rem"} />}
-                    </button>
-                    </div>
-                    </div>
-                    </div>
-                    {/* Adicione o botão de edição */}
-                    <button onClick={() => handleEdit(post)} id="editButton">
-                      <i>
-                      Editar
-                      </i>
-                      <FcEditImage size={22} />
-                    </button>
                   </div>
+                  <button onClick={() => handleEdit(post)} id="editButton">
+                    <i>
+                      Editar
+                    </i>
+                    <FcEditImage size={22} />
+                  </button>
                   <div style={{ backgroundImage: `url(${post.imageURL})` }} className="PostImageContainer"></div>
                   <i style={{ fontSize: "12px" }}>Criado por: {`${post.created_by}`}</i>
                   <button className="expandDashboardRendererPost" onClick={() => togglePostContent(post.id)}>
-                  {/* Botão para mostrar/ocultar conteúdo do post */}
                     {expandedPosts[post.id] ? <FaMinus /> : <FaPlus />}
                   </button>
                   <div className="post-render" style={{ display: expandedPosts[post.id] ? "block" : "none" }} dangerouslySetInnerHTML={{ __html: post.content }} />
-
                 </li>
               ))}
             </ul>
@@ -233,12 +138,85 @@ export const PostRenderDashboard = ({post}) => {
 
       {/* Modal de Edição */}
       {isEditing && editPostDetails && (
-        <EditPostModal
-          postDetails={editPostDetails}
-          onClose={handleCloseModal}
-          onUpdate={fetchPosts} // Atualiza a lista de posts após a edição
-          
-        />
+        <Modal
+          isOpen={true} 
+          onRequestClose={handleCloseModal} 
+          onAfterOpen={deleteFirstToolbar}
+          style={{
+            overlay: {
+              backgroundColor: "rgba(0, 0, 0, 0.5)",
+              zIndex: "5"
+            },
+            content: {
+              width: "90%",
+              margin: "auto",
+              fontFamily: "DolceVita",
+              overflowY: "auto",
+              maxHeight: "80vh", 
+              display: "flex",
+              justifyContent: "center"
+            }
+          }}
+        >
+          {/* Conteúdo do Modal */}
+          <div style={{ width: "80%", height: "max-content", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", gap: "15px" }}>
+            <h2 style={{color: GlobalStyleDefault.colors.primarystrong}}>Editar Post</h2>
+            <StyledForm>
+              <MyQuillEditor 
+                value={editPostDetails.content} 
+                onChange={(value) => setEditPostDetails({ ...editPostDetails, content: value })}
+              />
+              <label>Introdução:</label>
+              <textarea
+                rows={10}
+                style={{resize: "none"}}
+                placeholder="Introdução (Opcional)"
+                type="text"
+                name="sub_title"
+                value={editPostDetails.sub_title}
+                onChange={(e) => setEditPostDetails({ ...editPostDetails, sub_title: e.target.value })}
+              />
+              <label>Título:</label>
+              <input
+                placeholder="Título"
+                type="text"
+                name="title"
+                value={editPostDetails.title}
+                onChange={(e) => setEditPostDetails({ ...editPostDetails, title: e.target.value })}
+              />
+              <label>Tags (separadas por vírgula):</label>
+              <input
+                placeholder="Tags (separadas por vírgula):"
+                type="text"
+                name="tags"
+                value={editPostDetails.tags}
+                onChange={(e) => setEditPostDetails({ ...editPostDetails, tags: e.target.value })}
+              />
+              <label>URL da Imagem:</label>
+              <input
+                placeholder="URL da Imagem"
+                type="text"
+                name="imageURL"
+                value={editPostDetails.imageURL}
+                onChange={(e) => setEditPostDetails({ ...editPostDetails, imageURL: e.target.value })}
+              />
+              <img src={editPostDetails.imageURL} alt="choosenImageForPost" style={{width: "50%", maxWidth:"320px"}} />
+              <label>
+                Público:
+                <select name="is_public" value={editPostDetails.is_public} onChange={(e) => setEditPostDetails({ ...editPostDetails, is_public: e.target.value })}>
+                  <option value="true">Sim</option>
+                  <option value="false">Não</option>
+                </select>
+              </label>
+              <button type="button" onClick={handleSave}>
+                Salvar
+              </button>
+              <button type="button" onClick={handleCloseModal}>
+                Fechar
+              </button>
+            </StyledForm>
+          </div>
+        </Modal>
       )}
     </PostRenderDashboardBody>
   );

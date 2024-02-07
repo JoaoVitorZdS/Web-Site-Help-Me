@@ -73,8 +73,9 @@ const AvailableHoursComponent = ({ availableHours, professionalEmail, profession
   }, [professionalEmail]);
 
   const handleDateChange = (amount) => {
-    setCurrentDate((prevDate) => addMonths(prevDate, amount));
+    setCurrentDate((prevDate) => addDays(prevDate, amount * 7)); // Multiplicando por 7 para avançar ou retroceder semanas
   };
+  
 
   const handleButtonClick = (formattedDate, formattedTime) => {
     setSelectedHour(`${formattedDate} ${formattedTime}`);
@@ -146,16 +147,18 @@ const AvailableHoursComponent = ({ availableHours, professionalEmail, profession
       <h3 style={{marginBottom: "15px"}}>Horários Disponíveis:</h3>
       {renderMonthSelector()}
       {availableHours.map((day, index) => (
-        <div key={index} style={{border: "1px double grey", marginBottom: "5px"}}>
-          <h4 >
+        <div key={index} style={{padding: "1%",borderRadius: "5px",border: "1px dotted grey", marginBottom: "5px"}}>
+          <i >
             {`${day.day} ${addDays(startOfWeekDate, index).getDate()}`}
-          </h4>
+          </i>
           <ul
             style={{
-              gap: "5px",
+              
+              width: "100%",
               display: "flex",
               justifyContent: "space-between",
               paddingLeft: 0,
+              overflow: "hidden"
             }}
             >
             {day.hours.map((hour, hourIndex) => {
@@ -190,7 +193,7 @@ const AvailableHoursComponent = ({ availableHours, professionalEmail, profession
               return (
                 <button
                   key={hourIndex}
-                  style={{ margin: "2px", backgroundColor: buttonColor, borderRadius: "5px", padding: "2px", border: "transparent", color: "whitesmoke" }}
+                  style={{  backgroundColor: buttonColor, borderRadius: "5px", padding: "2px", border: "transparent", color: "whitesmoke", transform: "scale(0.9)" }}
                   onClick={() => handleButtonClick(formattedDate, formattedTime)}
                   disabled={isButtonDisabled}
                 >
