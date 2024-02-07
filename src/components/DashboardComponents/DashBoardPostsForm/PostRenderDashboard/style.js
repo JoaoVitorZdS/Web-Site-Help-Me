@@ -22,6 +22,10 @@ export const PostRenderDashboardBody = styled.div`
     padding: 5%;
   
   }
+
+  .post-render{
+    overflow-y: scroll;
+  }
   .PostDiv{
     box-sizing: border-box;
     width: 96%;
@@ -32,7 +36,7 @@ export const PostRenderDashboardBody = styled.div`
     margin-top: 15px;
     padding: 2%;
     min-height: 600px;
-    height: 300px;
+    height: auto;
     
    
 
@@ -81,57 +85,12 @@ export const PostRenderDashboardBody = styled.div`
 
 
 
-  .edit-post-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 5;
-}
+//<h2 style={{color: GlobalStyleDefault.colors.primarystrong}}>Editar Post</h2>
 
-.edit-post-modal {
-  background: white;
-  width: 90%;
-  min-width: 320px;
-  height: 95%;
-  border-radius: 8px;
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Duas colunas com largura igual */
-  grid-gap: 5px; /* Espaço entre as colunas */
-  overflow-y: auto; /* Adicionado overflow para o conteúdo vertical */
-  div{
-    width: 100%;
-    padding: 0;
-  }
-  button{
-    width: 45%;
-    margin-left: 2.5%;
-    border-radius: 5px;
-    border: 0;
-    background-color: ${GlobalStyleDefault.colors.secondary};
-    color: ${GlobalStyleDefault.colors.textwhite};
-    font-family: DolceVita;
-  }
 
-  z-index: 5;
-  img{
-    width: 100%;
-    height: auto;
-    
-    
-  }
   
-}
 @media (max-width: 430px) {
-  .edit-post-modal {
-    
-    grid-template-columns: 1fr; /* Duas colunas com largura igual */
-  }
+ 
   
 }
 

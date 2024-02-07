@@ -55,6 +55,7 @@ export const ClientSideConsultationComponent = () => {
           return {
             ...data,
             availableHours: generateAvailableHours(),
+            isExpanded: false, // Adicionando o estado inicial de expansão
           };
         });
         setPsychologists(psychologistData);
@@ -67,6 +68,7 @@ export const ClientSideConsultationComponent = () => {
           return {
             ...data,
             availableHours: generateAvailableHours(),
+            isExpanded: false, // Adicionando o estado inicial de expansão
           };
         });
         setLawyers(lawyersData);
@@ -75,6 +77,31 @@ export const ClientSideConsultationComponent = () => {
 
     fetchData();
   }, [accessToken]);
+
+  // Função para alternar o estado de expansão de um card
+  const toggleExpandCard = (index, type) => {
+    if (type === 'psychologist') {
+      setPsychologists(prevState =>
+        prevState.map((psychologist, i) => {
+          if (i === index) {
+            return { ...psychologist, isExpanded: !psychologist.isExpanded };
+          } else {
+            return psychologist;
+          }
+        })
+      );
+    } else if (type === 'lawyer') {
+      setLawyers(prevState =>
+        prevState.map((lawyer, i) => {
+          if (i === index) {
+            return { ...lawyer, isExpanded: !lawyer.isExpanded };
+          } else {
+            return lawyer;
+          }
+        })
+      );
+    }
+  };
 
   return (
     <>
@@ -86,65 +113,163 @@ export const ClientSideConsultationComponent = () => {
             <div style={{width: "100%"}}>
             <h2 style={{marginLeft: "15px"}}><GiBrain style={{marginLeft: "15px"}} />Psicólogas</h2>
             </div>
+            <ul className="professionalUL">
+
             {psychologists.map((psychologist, index) => (
               <div key={index} className="doctorCard">
-                <div id="doctorCardInfo">
+                <div class="doctorCardInfoContainer" onClick={() => toggleExpandCard(index, 'psychologist')}>
                   <img
                     src={psychologist.picture || genericProfilePhoto}
                     alt="Profile"
                   />
-                  <div>
+                  <div className="doctorCardInfo" >
                     <p>{psychologist.name}</p>
                     <br />
                     <p>{psychologist.work_area}</p>
                   </div>
                 </div>
-                <div className="avaliableHoursDiv">
-                <AvailableHoursComponent
-                    availableHours={psychologist.availableHours}
-                    professionalEmail = {psychologist.email}
-                    professionalInfo={{
-                    name: psychologist.name,
-                    picture: psychologist.picture || genericProfilePhoto,
-                    work_area: psychologist.work_area,
-                    email: psychologist.email,
-  }}
-/>                {console.log("psychologist Event Status:", psychologist.availableHours)}
-                </div>
+                {psychologist.isExpanded && (
+                  <div className="avaliableHoursDiv">
+                    <AvailableHoursComponent
+                      availableHours={psychologist.availableHours}
+                      professionalEmail={psychologist.email}
+                      professionalInfo={{
+                        name: psychologist.name,
+                        picture: psychologist.picture || genericProfilePhoto,
+                        work_area: psychologist.work_area,
+                        email: psychologist.email,
+                      }}
+                      />
+                    {console.log("psychologist Event Status:", psychologist.availableHours)}
+                  </div>
+                )}
               </div>
             ))}
+            {psychologists.map((psychologist, index) => (
+              <div key={index} className="doctorCard">
+                <div class="doctorCardInfoContainer" onClick={() => toggleExpandCard(index, 'psychologist')}>
+                  <img
+                    src={psychologist.picture || genericProfilePhoto}
+                    alt="Profile"
+                  />
+                  <div className="doctorCardInfo" >
+                    <p>{psychologist.name}</p>
+                    <br />
+                    <p>{psychologist.work_area}</p>
+                  </div>
+                </div>
+                {psychologist.isExpanded && (
+                  <div className="avaliableHoursDiv">
+                    <AvailableHoursComponent
+                      availableHours={psychologist.availableHours}
+                      professionalEmail={psychologist.email}
+                      professionalInfo={{
+                        name: psychologist.name,
+                        picture: psychologist.picture || genericProfilePhoto,
+                        work_area: psychologist.work_area,
+                        email: psychologist.email,
+                      }}
+                      />
+                    {console.log("psychologist Event Status:", psychologist.availableHours)}
+                  </div>
+                )}
+              </div>
+            ))}
+            {psychologists.map((psychologist, index) => (
+              <div key={index} className="doctorCard">
+                <div class="doctorCardInfoContainer" onClick={() => toggleExpandCard(index, 'psychologist')}>
+                  <img
+                    src={psychologist.picture || genericProfilePhoto}
+                    alt="Profile"
+                  />
+                  <div className="doctorCardInfo" >
+                    <p>{psychologist.name}</p>
+                    <br />
+                    <p>{psychologist.work_area}</p>
+                  </div>
+                </div>
+                {psychologist.isExpanded && (
+                  <div className="avaliableHoursDiv">
+                    <AvailableHoursComponent
+                      availableHours={psychologist.availableHours}
+                      professionalEmail={psychologist.email}
+                      professionalInfo={{
+                        name: psychologist.name,
+                        picture: psychologist.picture || genericProfilePhoto,
+                        work_area: psychologist.work_area,
+                        email: psychologist.email,
+                      }}
+                      />
+                    {console.log("psychologist Event Status:", psychologist.availableHours)}
+                  </div>
+                )}
+              </div>
+            ))}
+            {psychologists.map((psychologist, index) => (
+              <div key={index} className="doctorCard">
+                <div class="doctorCardInfoContainer" onClick={() => toggleExpandCard(index, 'psychologist')}>
+                  <img
+                    src={psychologist.picture || genericProfilePhoto}
+                    alt="Profile"
+                  />
+                  <div className="doctorCardInfo" >
+                    <p>{psychologist.name}</p>
+                    <br />
+                    <p>{psychologist.work_area}</p>
+                  </div>
+                </div>
+                {psychologist.isExpanded && (
+                  <div className="avaliableHoursDiv">
+                    <AvailableHoursComponent
+                      availableHours={psychologist.availableHours}
+                      professionalEmail={psychologist.email}
+                      professionalInfo={{
+                        name: psychologist.name,
+                        picture: psychologist.picture || genericProfilePhoto,
+                        work_area: psychologist.work_area,
+                        email: psychologist.email,
+                      }}
+                      />
+                    {console.log("psychologist Event Status:", psychologist.availableHours)}
+                  </div>
+                )}
+              </div>
+            ))}
+                </ul>
           </StyledConsultantContainer>
 
           <StyledConsultantContainer>
             <div style={{width: "100%"}}>
-            <h2 style={{marginLeft: "15px"}}><GoLaw style={{marginLeft: "15px"}} />Advogadas</h2>
+              <h2 style={{marginLeft: "15px"}}><GoLaw style={{marginLeft: "15px"}} />Advogadas</h2>
             </div>
             {lawyers.map((lawyer, index) => (
               <div key={index} className="doctorCard">
-                <div id="doctorCardInfo">
+                <div class="doctorCardInfoContainer" onClick={() => toggleExpandCard(index, 'lawyer')}>
                   <img
                     src={lawyer.picture || genericProfilePhoto}
                     alt="Profile"
                   />
-                  <div>
+                  <div class="doctorCardInfo">
                     <p>{lawyer.name}</p>
                     <br />
                     <p>{lawyer.work_area}</p>
                   </div>
                 </div>
-                <div className="avaliableHoursDiv">
-
-                <AvailableHoursComponent
+                {lawyer.isExpanded && (
+                  <div className="avaliableHoursDiv">
+                    <AvailableHoursComponent
                       availableHours={lawyer.availableHours}
-                      professionalEmail = {lawyer.email}
+                      professionalEmail={lawyer.email}
                       professionalInfo={{
-                      name: lawyer.name,
-                      picture: lawyer.picture || genericProfilePhoto,
-                      work_area: lawyer.work_area,
-                      email: lawyer.email,
-  }}
-/>                {console.log("Lawyer Event Status:", lawyer.availableHours)}
-                </div>
+                        name: lawyer.name,
+                        picture: lawyer.picture || genericProfilePhoto,
+                        work_area: lawyer.work_area,
+                        email: lawyer.email,
+                      }}
+                    />
+                    {console.log("Lawyer Event Status:", lawyer.availableHours)}
+                  </div>
+                )}
               </div>
             ))}
           </StyledConsultantContainer>

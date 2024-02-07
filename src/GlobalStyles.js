@@ -6,6 +6,7 @@ if (selector === 1) {
   GlobalStyleDefault = {
     colors: {
       primary: '#F692BEaa',
+      primarystrong: '#F692BE',
       secondary: '#8F7EE966',
       secondarystrong: '#8F7EE9',
       tertiary: '#F76DBE66',

@@ -6,7 +6,7 @@ export const StyledConsultantContainer = styled.div`
   height: min-content;
   background-color: transparent;
   margin: 0;
-  min-width: 100vw;
+  min-width: 95vw;
   width: fit-content;
   padding: 25px;
   display: flex;
@@ -14,40 +14,62 @@ export const StyledConsultantContainer = styled.div`
   gap: 1px;
   justify-content: start;
   align-items: start;
-  background-color: ${GlobalStyleDefault.colors.offwhite};
+ .professionalUL{
+  width: 90vw;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  overflow-x: scroll;
+  
+  
+ }
   
 
   .doctorCard{
-    width: max-content;
+    width: 320px;
     height: max-content;
     border: 2px double grey;
-    padding: 5px;
+    padding: 0;
+    border-radius: 15px;
 
     .avaliableHoursDiv{
       width: 100%;
-      gap: 5px;
+      gap: 0;
     }
   }
-  #doctorCardInfo{
+  .doctorCardInfoContainer{
+    width: 320px;
     display: flex;
     flex-wrap: wrap;
     justify-content: start;
     align-items: center;
+    background-color: ${GlobalStyleDefault.colors.secondary};
+    border-radius: 15px;
+    gap: 0;
+
+    .doctorCardInfo{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-left: 10px;
+     
+    }
 
 
     p{
-      margin-bottom: -20px;
       font-family: Contacto;
       font-size: 12px;
+      color: ${GlobalStyleDefault.colors.offwhite};
     }
     
   }
   
   img{
     width: 100px;
+    border-radius: 15px;
   }
   h2{
-    color: ${GlobalStyleDefault.colors.secondary} !important;
+    color: ${GlobalStyleDefault.colors.tertiarystrong} !important;
     font-family: "DolceVita";
   }
   `
@@ -62,7 +84,12 @@ export const StyledClientSideConsultationComponent = styled.div`
   gap: 1px;
   justify-content: start;
   align-items: center;
-  background-color: ${GlobalStyleDefault.colors.offwhite};
+ 
+
+  h1{
+    margin-left: 5%;
+  }
+ 
 
   .active{
     box-shadow: ${GlobalStyleDefault.shadows.card};
@@ -86,10 +113,6 @@ export const StyledClientSideConsultationComponent = styled.div`
  
 
   @media (max-width: 535px) {
-    div {
-      flex-direction: column;
-      align-items: flex-start;
-      padding-left: 25px;
-    }
+    
   }
 `;

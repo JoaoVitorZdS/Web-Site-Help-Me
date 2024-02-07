@@ -3,7 +3,7 @@ import "../../../App.css"
 import React, { useContext } from "react";
 import { AccessTokenContext } from "../../StyledButtons/ButtonLogInGoogle";
 import { StyledDashboardEventForm } from "./style";
-import ProfessionalConsultations from "../../ConsultationComponents/ProfessionalSideConsultation/indes";
+import ProfessionalConsultations from "../../ConsultationComponents/ProfessionalSideConsultation";
 import GlobalStyleDefault from "../../../GlobalStyles";
 
 

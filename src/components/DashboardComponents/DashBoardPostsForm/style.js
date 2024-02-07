@@ -147,3 +147,40 @@ export const StyledForm = styled.form`
   }
 
 `
+export const StyledFormMovedToHideToolBar = styled.form`
+  width: 80%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: absolute;
+  top: -17%;
+
+
+  input{
+    border-radius: 5px;
+    border-width: 0px;
+    padding: 3px;
+  }
+
+  button{
+    border: 0;
+    border-radius: 5px;
+    min-width: 90px;
+    width: fit-content;
+    background-color: ${GlobalStyleDefault.colors.secondary};
+    color: ${GlobalStyleDefault.colors.textwhite};
+    font-family: DolceVita;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    align-self: center;
+    
+    
+  }
+  img{
+    height: 30%;
+    width: 30%;
+    border-radius: 5px;
+    
+  }
+
+`

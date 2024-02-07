@@ -52,8 +52,7 @@ export const StyledDashboardEventForm = styled.div`
   }
 
   @media (max-width: 535px) {
-    width: 100vw;
-    margin-left: -25vw;
+   
   }
 
  

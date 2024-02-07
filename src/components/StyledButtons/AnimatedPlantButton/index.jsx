@@ -8,7 +8,8 @@ const ButtonPlants = (props) => {
   
 .custom-button {
   position: relative;
-  padding: 15px 45px;
+  padding: 15px 15px;
+  width: 220px;
   background-color: ${GlobalStyleDefault.colors.secondarystrong};
   box-shadow: ${GlobalStyleDefault.shadows.large};
 
