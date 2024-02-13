@@ -26,6 +26,22 @@
   -->
   <title>Help Me</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .loading-circle {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
 </head>
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -34,21 +50,28 @@
   <!-- Componente de instalação e balão de conversa -->
   <div id="installComponent" class="chat-balloon">
     <div>
-
       <img src="./logo512.png" class="InstallLogo"/>
     </div>
     <div>
-
-      <span>Instale o aplicativo para uma melhor experiência!</span>
-      <div>
-        <button id="btnInstall" class="button install-button">Instalar</button>
-        <button id="btnClose" class="button close-button">Fechar</button>
+      <div id="installInfo">
+        
+        <span>Instale o aplicativo para uma melhor experiência!</span>
+        <div style="display: flex; flex-direction: row; justify-content: space-between;">
+          <button id="btnInstall" class="button install-button">Instalar</button>
+          <button id="btnClose" class="button close-button">Fechar</button>
+        </div>
       </div>
+        <div id="installingIndicator" style="display: none; justify-content: center; align-items: center; padding: 5px; height: 100%;">
+          <div class="loading-circle"></div>
+          <span>Instalando...</span>
+        </div>
     </div>
   </div>
   
   <!-- Seu JavaScript -->
   <script>
+    let deferredPrompt;
+
     // Função para fechar o componente de instalação
     function closeInstallComponent() {
       document.getElementById('installComponent').style.display = 'none';
@@ -78,6 +101,10 @@
 
     // Código para quando o usuário clicar no botão de instalação
     document.getElementById('btnInstall').addEventListener('click', function() {
+      // Mostra o indicador de carregamento
+      document.getElementById('installingIndicator').style.display = 'flex';
+      document.getElementById('installInfo').style.display = 'none';
+
       // Mostra o prompt de instalação
       deferredPrompt.prompt();
       
@@ -101,6 +128,12 @@
     document.getElementById('btnClose').addEventListener('click', function() {
       // Fecha o componente de instalação e balão de conversa
       closeInstallComponent();
+    });
+
+    // Código para adicionar aplicativo à tela inicial e abrir após a instalação
+    window.addEventListener('appinstalled', function(event) {
+      console.log('Aplicativo instalado!', event);
+      // Aqui você pode adicionar lógica para abrir o aplicativo após a instalação
     });
   </script>
 </body>

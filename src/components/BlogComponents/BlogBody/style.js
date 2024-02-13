@@ -265,6 +265,7 @@ export const StyledBlogBody = styled.div`
     grid-template-rows: repeat(6, 1fr);
     padding: 15px;
   }
+ 
 
   @media (min-width: 650px) {
     ul {

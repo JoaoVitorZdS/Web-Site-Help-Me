@@ -214,15 +214,19 @@ export const BlogBody = () => {
           isOpen={!!selectedPost}
           onRequestClose={() => closeModal()}
           contentLabel="Post Modal"
+         
           style={{
             overlay: {
               backgroundColor: "rgba(0, 0, 0, 0.5)",
               zIndex: "5",
+              display: "flex",
+              justifyContent: "center",
+              alignContent: "center"
             },
             content: {
               backgroundColor: `${GlobalStyleDefault.colors.offwhite}`,
-              width: "80%",
-              margin: "auto",
+              width: "90%",
+              margin: "0 auto",
               overflowY: "auto",
               maxHeight: "90vh",
               padding: "3%",
@@ -230,7 +234,10 @@ export const BlogBody = () => {
               gridTemplateColumns: "7fr 1fr",
               justifyContent: "center",
               gap: "2%",
+              left: "2%",
+              zIndex: 9
             },
+            
           }}
         >
           <button
@@ -280,87 +287,7 @@ export const BlogBody = () => {
                 }}
               >
                 <SocialSharer />
-                <div style={{ width: "100%", display: "flex" }}>
-                  <div
-                    style={{ width: "50%" }}
-                    onClick={() =>
-                      handleLike(
-                        selectedPost.id,
-                        globalPosts,
-                        setGlobalPosts,
-                        userData
-                      )
-                    }
-                  >
-                    <button
-                      style={{
-                        backgroundColor: `${GlobalStyleDefault.colors.secondary}`,
-                        border: "0",
-                        display: "flex",
-                        alignContent: "center",
-                        gap: "10px",
-                        borderRadius: "15px",
-                        padding: "5px",
-                        boxShadow: `${GlobalStyleDefault.shadows.large}`,
-                      }}
-                      id="likeButton"
-                    >
-                      <i>
-                        {`${(selectedPost.likes &&
-                          selectedPost.likes.length) ||
-                          0}`}
-                      </i>
-                      {selectedPost.likes &&
-                      selectedPost.likes.includes(userData.email) ? (
-                        <FcLike size={"1rem"} />
-                      ) : (
-                        <RiHeartLine
-                          size={"1rem"}
-                          color={GlobalStyleDefault.colors.textwhite}
-                        />
-                      )}
-                    </button>
-                  </div>
-                  <div
-                    onClick={() =>
-                      handleDislike(
-                        selectedPost.id,
-                        globalPosts,
-                        setGlobalPosts,
-                        userData
-                      )
-                    }
-                  >
-                    <button
-                      style={{
-                        backgroundColor: `${GlobalStyleDefault.colors.secondary}`,
-                        border: "0",
-                        display: "flex",
-                        alignContent: "center",
-                        gap: "10px",
-                        borderRadius: "15px",
-                        padding: "5px",
-                        boxShadow: `${GlobalStyleDefault.shadows.large}`,
-                      }}
-                      id="dislikeButton"
-                    >
-                      <i>
-                        {`${(selectedPost.dislikes &&
-                          selectedPost.dislikes.length) ||
-                          0}`}
-                      </i>
-                      {selectedPost.dislikes &&
-                      selectedPost.dislikes.includes(userData.email) ? (
-                        <FcDislike size={"1rem"} />
-                      ) : (
-                        <RiDislikeLine
-                          size={"1rem"}
-                          color={GlobalStyleDefault.colors.textwhite}
-                        />
-                      )}
-                    </button>
-                  </div>
-                </div>
+                
               </div>
             </>
           )}
