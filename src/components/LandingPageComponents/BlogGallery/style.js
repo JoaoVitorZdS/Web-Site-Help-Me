@@ -143,6 +143,7 @@ export const StyledGalleryContainer = styled.div`
   position: relative;
   filter: blur(13px);
   animation: floating 5s infinite ease-in-out;
+  border: 0 !important;
 }
 #bottom {
   background: linear-gradient(${GlobalStyleDefault.colors.tertiary}, ${GlobalStyleDefault.colors.secondarystrong},white, ${GlobalStyleDefault.colors.tertiary});
