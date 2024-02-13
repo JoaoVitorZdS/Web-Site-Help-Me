@@ -14,6 +14,7 @@
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
     width: 22px;
     height: 22px;
+    z-index: 9;
     
   }
   .tooltip-wrapper{
@@ -53,7 +54,7 @@
     padding: 10px;
     border-radius: 50px;
     transition: opacity 0.3s, visibility 0.3s, top 0.3s, background 0.3s;
-    z-index: 1;
+    z-index: 9;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
   
@@ -87,7 +88,7 @@
     padding: 10px;
     border-radius: 50px;
     transition: opacity 0.3s, visibility 0.3s, top 0.3s, background 0.3s;
-    z-index: 1;
+    z-index: 9;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
   
@@ -118,11 +119,11 @@
     opacity: 0;
     visibility: hidden;
     background: #fff;
-    fill: #1db954;
+    fill: #8c9eff;
     padding: 10px;
     border-radius: 50px;
     transition: opacity 0.3s, visibility 0.3s, top 0.3s, background 0.3s;
-    z-index: 1;
+    z-index: 9;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
   
@@ -138,7 +139,7 @@
     justify-content: center;
   }
   .tooltip-wrapper:hover .tooltip3:hover {
-    background: #1db954;
+    background: #8c9eff;
     fill: #fff;
   }
   /* Fim do tooltip whatsApp */
@@ -152,11 +153,11 @@
     opacity: 0;
     visibility: hidden;
     background: #fff;
-    fill: #8c9eff;
+    fill: #1db954;
     padding: 10px;
     border-radius: 50px;
     transition: opacity 0.3s, visibility 0.3s, top 0.3s, background 0.3s;
-    z-index: 1;
+    z-index: 9;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
   
@@ -172,7 +173,7 @@
     justify-content: center;
   }
   .tooltip-wrapper:hover .tooltip4:hover {
-    background: #8c9eff;
+    background: #1db954;
     fill: #fff;
   }
   /* Fim do tooltip Discord */
@@ -190,7 +191,7 @@
     padding: 10px;
     border-radius: 50px;
     transition: opacity 0.3s, visibility 0.3s, top 0.3s, background 0.3s;
-    z-index: 1;
+    z-index: 9;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
   
@@ -224,7 +225,7 @@
     padding: 10px;
     border-radius: 50px;
     transition: opacity 0.3s, visibility 0.3s, top 0.3s, background 0.3s;
-    z-index: 1;
+    z-index: 9;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
   
@@ -258,7 +259,7 @@
     padding: 10px;
     border-radius: 50px;
     transition: opacity 0.3s, visibility 0.3s, top 0.3s, background 0.3s;
-    z-index: 1;
+    z-index: 9;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
   
@@ -292,7 +293,7 @@
     padding: 10px;
     border-radius: 50px;
     transition: opacity 0.3s, visibility 0.3s, top 0.3s, background 0.3s;
-    z-index: 1;
+    z-index: 9;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
   

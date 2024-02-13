@@ -1,27 +1,38 @@
 import React from "react";
 import { StyledCubeContainer } from "./style";
 import "./index.css"
+import logo from "../../assets/imgs/LogoVetor3.png"
 
 
 export const Cube = () => {
    return (
       <StyledCubeContainer>
          <div className="cube">
-            <div className="top"></div>
+            <div className="top">
+               <img src={logo} alt="" />
+            </div>
 
             <div>
                <span
                   style={{ "--i": 0 }}
-               ></span>
+               >
+                  <h1>ERRO 404 -  Página não encontrada</h1>
+               </span>
                <span
                   style={{ "--i": 1 }}
-               ></span>
+               >
+                  <h1>ERRO 404 -  Página não encontrada</h1>
+               </span>
                <span
                   style={{ "--i": 2 }}
-               ></span>
+               >
+                <h1>ERRO 404 -  Página não encontrada</h1>
+               </span>
                <span
                   style={{ "--i": 3 }}
-               ></span>
+               >
+                <h1>ERRO 404 -  Página não encontrada</h1>
+               </span>
             </div>
          </div>
       </StyledCubeContainer>

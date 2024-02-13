@@ -97,6 +97,28 @@ const ProfessionalConsultations = () => {
       closeModals();
     }
   };
+  const handleDecline = async (id) => {
+    try {
+      const db = getFirestore();
+      const scheduleDocRef = doc(db, "schedule", id);
+  
+      await updateDoc(scheduleDocRef, {
+        status: "cancelled",
+      });
+  
+      // Atualizar a lista de consultas após recusar
+      setConsultations((prevConsultations) =>
+        prevConsultations.map((consultation) =>
+          consultation.id === id ? { ...consultation, status: "cancelled" } : consultation
+        )
+      );
+    } catch (error) {
+      console.error("Error declining consultation:", error);
+    } finally {
+      closeModals();
+    }
+  };
+  
 
   const handleCancel = async (id, additionalInfo) => {
     try {
@@ -229,84 +251,86 @@ const ProfessionalConsultations = () => {
   return (
     <div style={{display: "flex", flexDirection: "column", width: "95vw", paddingLeft: "5%", gap: "2%", justifyContent: "space-between" }}>
       
-      <div style={{display: "flex", flexDirection: "row", width: "auto", gap: "5px", overflowX: "scroll"}} >
       <p style={{color: GlobalStyleDefault.colors.textwhite, fontFamily: "DolceVita"}}>Pendentes</p>
+      <div style={{display: "flex", flexDirection: "row", width: "auto", gap: "5px", overflowX: "auto"}} >
       {/* Render pending consultations */}
-      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto",}}>
+      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto", marginBottom: "50px", padding: "0px 50px 0px 0px"}}>
 
       {renderByStatus("pending")}
-      {renderByStatus("pending")}
-      {renderByStatus("pending")}
-      {renderByStatus("pending")}
-      {renderByStatus("pending")}
-      {renderByStatus("pending")}
-      {renderByStatus("pending")}
-      {renderByStatus("pending")}
-      {renderByStatus("pending")}
-      {renderByStatus("pending")}
+   
       </ul>
       </div>
       <div>
       {/* Render confirmed consultations */}
       <p style={{color: GlobalStyleDefault.colors.textwhite, fontFamily: "DolceVita"}}>Confirmadas </p>
-      <div style={{display: "flex", flexDirection: "row", width: "auto", gap: "5px", overflowX: "scroll"}} >
+      <div style={{display: "flex", flexDirection: "row", width: "auto", gap: "5px", overflowX: "auto"}} >
 
-      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto",}}>
+      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto", marginBottom: "50px", padding: "0px 50px 0px 0px"}}>
 
       {renderByStatus("confirmed")}
-      {renderByStatus("confirmed")}
-      {renderByStatus("confirmed")}
-      {renderByStatus("confirmed")}
-      {renderByStatus("confirmed")}
-      {renderByStatus("confirmed")}
-      {renderByStatus("confirmed")}
-      {renderByStatus("confirmed")}
-      {renderByStatus("confirmed")}
+    
       </ul>
       </div>
       </div>
       <div>
       {/* Render cancelled consultations */}
       <p style={{color: GlobalStyleDefault.colors.textwhite, fontFamily: "DolceVita"}}>Canceladas </p>
-      <div style={{display: "flex", flexDirection: "row", width: "auto", gap: "5px", overflowX: "scroll"}} >
+      <div style={{display: "flex", flexDirection: "row", width: "auto", gap: "5px", overflowX: "auto"}} >
 
 
-      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto",}}>
+      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto", marginBottom: "50px", padding: "0px 50px 0px 0px"}}>
 
       {renderByStatus("cancelled")}
-      {renderByStatus("cancelled")}
-      {renderByStatus("cancelled")}
-      {renderByStatus("cancelled")}
-      {renderByStatus("cancelled")}
-      {renderByStatus("cancelled")}
-      {renderByStatus("cancelled")}
-      {renderByStatus("cancelled")}
+      
       </ul>
       </div>
       </div>
 
       {selectedConsultation && selectedConsultation.status === "pending" && (
-        <ConfirmationModal
-          isOpen={isAcceptModalOpen}
-          onClose={closeModals}
-          onConfirm={() => handleAccept(selectedConsultation.id)}
-          actionLabel="Aceitar"
-          consultationInfo={{
-            formattedDateTime: format(
-              parse(
-                selectedConsultation.date,
-                "dd 'de' MMMM yyyy HH:mm",
-                new Date(),
-                { locale: ptBR }
-              ),
-              "dd 'de' MMMM yyyy HH:mm",
-              { locale: ptBR }
-            ),
-            status: selectedConsultation.status,
-            // Adicione mais informações conforme necessário
-          }}
-        />
-      )}
+  <>
+    <ConfirmationModal
+      isOpen={isAcceptModalOpen}
+      onClose={closeModals}
+      onConfirm={() => handleAccept(selectedConsultation.id)}
+      actionLabel="Aceitar"
+      consultationInfo={{
+        formattedDateTime: format(
+          parse(
+            selectedConsultation.date,
+            "dd 'de' MMMM yyyy HH:mm",
+            new Date(),
+            { locale: ptBR }
+          ),
+          "dd 'de' MMMM yyyy HH:mm",
+          { locale: ptBR }
+        ),
+        status: selectedConsultation.status,
+        // Adicione mais informações conforme necessário
+      }}
+    />
+    <ConfirmationModal
+      isOpen={isDeclineModalOpen}
+      onClose={closeModals}
+      onConfirm={() => handleDecline(selectedConsultation.id)}
+      actionLabel="Recusar"
+      consultationInfo={{
+        formattedDateTime: format(
+          parse(
+            selectedConsultation.date,
+            "dd 'de' MMMM yyyy HH:mm",
+            new Date(),
+            { locale: ptBR }
+          ),
+          "dd 'de' MMMM yyyy HH:mm",
+          { locale: ptBR }
+        ),
+        status: selectedConsultation.status,
+        // Adicione mais informações conforme necessário
+      }}
+    />
+  </>
+)}
+
       {selectedConsultation && selectedConsultation.status === "confirmed" && (
         <ConfirmationModal
           isOpen={isCancelModalOpen}

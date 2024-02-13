@@ -126,7 +126,7 @@ const AvailableHoursComponent = ({ availableHours, professionalEmail, profession
         }}
       >
         <button onClick={() => handleDateChange(-1)}
-        style={{border: "transparent"}}
+        style={{border: "transparent", cursor: "pointer", backgroundColor: "transparent"}}
         ><FaArrowAltCircleLeft size={20} /></button>
         <h3 style={{fontFamily: "DolceVita"}}>
           {capitalizeFirstLetter(
@@ -136,7 +136,7 @@ const AvailableHoursComponent = ({ availableHours, professionalEmail, profession
           )}
         </h3>
         <button onClick={() => handleDateChange(1)}
-        style={{border: "transparent"}}
+        style={{border: "transparent",cursor: "pointer", backgroundColor: "transparent"}}
         ><FaArrowAltCircleRight size={20} /></button>
       </div>
     );
@@ -193,7 +193,7 @@ const AvailableHoursComponent = ({ availableHours, professionalEmail, profession
               return (
                 <button
                   key={hourIndex}
-                  style={{  backgroundColor: buttonColor, borderRadius: "5px", padding: "2px", border: "transparent", color: "whitesmoke", transform: "scale(0.9)" }}
+                  style={{  backgroundColor: buttonColor, borderRadius: "5px", padding: "2px", border: "transparent", color: "whitesmoke", transform: "scale(0.9)", cursor: "pointer" }}
                   onClick={() => handleButtonClick(formattedDate, formattedTime)}
                   disabled={isButtonDisabled}
                 >

@@ -34,12 +34,19 @@ export const StyledHeaderContainer = styled.div`
     width: 7%;
     height: auto;
     position: relative;
+    gap: 10px;
     right: 0;
     margin-inline: 5%;
     border-radius: 25px;
     display: flex;
     justify-content: center;
     align-content: center;
+    
+    #mobileMenuButton{
+      border: 0;
+      background-color: transparent;
+    }
+   
   }
 
 
@@ -47,15 +54,16 @@ export const StyledHeaderContainer = styled.div`
     position: absolute;
     left: 0;
     width: 100%;
-    height: fit-content;
-    background-color: aqua;
+    height: 100px;
+   
     margin-top: 150%;
     display: flex;
     flex-direction: column;
-    justify-items: center;
+    justify-content: space-between;
     align-items: center;
     margin-left: -160%;
-    
+
+   
   }
 
   #logoContainer {
@@ -131,9 +139,17 @@ export const StyledHeaderContainer = styled.div`
     
   }
  
-  @media (max-width: 500px) {
+  @media (max-width: 375px) {
     
     
+  #mobileMenuContent{
+    height: 80px;
+    button{
+      transform: scale(0.8);
+    }
+
+   
+  }
 
     
    

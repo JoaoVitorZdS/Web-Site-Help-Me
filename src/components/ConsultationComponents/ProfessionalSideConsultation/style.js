@@ -10,7 +10,7 @@ export const ProfessionalSideConsultationStyledDiv = styled.div`
  height: 250px;
  padding: 1%;
  box-shadow: ${GlobalStyleDefault.shadows.large};
- background-color: ${GlobalStyleDefault.colors.secondary};
+ background-color: ${GlobalStyleDefault.colors.offwhite};
   border-radius: 15px;
  
   &:hover{
