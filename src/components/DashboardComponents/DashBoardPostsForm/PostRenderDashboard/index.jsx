@@ -13,6 +13,7 @@ import { FaMinus, FaPlus } from "react-icons/fa6";
 import MyQuillEditor from "../../../QuillEditor"; // Importe o componente Quill
 import { StyledForm } from "../style";
 import GlobalStyleDefault from "../../../../GlobalStyles";
+import { useNavigate } from "react-router-dom";
 
 export const PostRenderDashboard = ({ post }) => {
   const { userData, accessToken } = useContext(AccessTokenContext);
@@ -85,7 +86,7 @@ export const PostRenderDashboard = ({ post }) => {
       [postId]: !prevExpandedPosts[postId],
     }));
   };
-
+  const navigate = useNavigate()
   return (
     <PostRenderDashboardBody>
       {accessToken ? (
@@ -94,7 +95,7 @@ export const PostRenderDashboard = ({ post }) => {
             <ul>
               {globalPosts.map((post) => (
                 <li key={post.id} className="PostDiv" style={{ overflowY: !expandedPosts ? "scroll" : "hidden" }}>
-                  <h2>{`${post.title}`}</h2>
+                  <h2 onClick={() => {navigate(`/blog/${post.id}`)}}>{`${post.title}`}</h2>
                   <div className="ButtonsContainerDashboardPostRenderer">
                     <div>
                       <div className="reactionContainer">

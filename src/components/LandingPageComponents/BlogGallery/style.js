@@ -69,12 +69,14 @@ export const StyledGalleryContainer = styled.div`
   width: 160px;
   height: 160%;
   background-color: ${GlobalStyleDefault.colors.secondarystrong};
-  filter: blur(15px);
+  filter: blur(5px);
   animation: rotation_481 9000ms infinite linear;
 }
 
 .back-content {
   position: absolute;
+  box-sizing: border-box;
+  padding: 3px;
   width: 98%;
   height: 98%;
   background: radial-gradient( ${GlobalStyleDefault.colors.secondary},  ${GlobalStyleDefault.colors.secondarystrong});
@@ -85,7 +87,8 @@ export const StyledGalleryContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 30px;
+  gap: 3px;
+  overflow: hidden;
   
 
   img{
@@ -139,7 +142,7 @@ export const StyledGalleryContainer = styled.div`
   background: linear-gradient( ${GlobalStyleDefault.colors.secondarystrong}, ${GlobalStyleDefault.colors.primary});
   position: relative;
   filter: blur(13px);
-  animation: floating 2600ms infinite linear;
+  animation: floating 5s infinite ease-in-out;
 }
 #bottom {
   background: linear-gradient(${GlobalStyleDefault.colors.tertiary}, ${GlobalStyleDefault.colors.secondarystrong},white, ${GlobalStyleDefault.colors.tertiary});
@@ -236,7 +239,7 @@ export const StyledGalleryContainer = styled.div`
   }
 
   50% {
-    transform: translateY(10px);
+    transform: translateY(100px);
   }
 
   100% {
@@ -246,18 +249,10 @@ export const StyledGalleryContainer = styled.div`
 }
 //-------------------------------------------------------------------@media-------------------------------------------------------------//
 @media (max-width: 770px) {
-    transform: translateY(-7%) scale(0.8);
+    
     
   }
-  @media (max-width: 620px) {
-   
-    
-  }
-  @media (max-width: 510px) {
-    transform: translateY(-9%) scale(0.8);
-   
-    
-  }
+
 
 
 

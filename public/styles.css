@@ -1,0 +1,40 @@
+    /* Estilo para o balão de conversa */
+    .chat-balloon {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #ffffff;
+      border: 1px solid #cccccc;
+      border-radius: 5px;
+      padding: 10px;
+      max-width: 250px;
+      display: none; /* Inicialmente oculto */
+      grid-template-columns: 1fr 2fr;
+      
+    }
+    .InstallLogo{
+      width: 100%;
+      
+    }
+
+    /* Estilo para os botões */
+    .button {
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    .install-button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    .close-button {
+      background-color: #ccc;
+      color: #000;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }

@@ -4,7 +4,8 @@ import { Gallery } from "../BlogGallery/Gallery";
 import Carousel from "../Carousel/Carousel";
 import { StyledBodyContainer } from "./style";
 import "../../../App.css"
-import headImage from "../../../assets/imgs/womenPng.png"
+import consultationImage from "../../../assets/imgs/woman-talking-with-psychologist.png"
+import OnlineTesting from "../../../assets/imgs/online-testing.png"
 
 import AnimatedPlantButton from "../../StyledButtons/AnimatedPlantButton";
 import { useNavigate } from "react-router-dom";
@@ -19,36 +20,22 @@ export function Body() {
             
             
         <div id="firstContainer">
-            <div className="petalWrapper" >
-                <div className="petalDiv" style={{ "--i": 0 }}  >
-                <img src={headImage} alt="Mulher segurando um computador lap-top" onClick={() => navigate("/consultation")}/>
-
-                </div>
-                <div className="petalDiv " style={{ "--i": 2 }}></div>
-                <div className="petalDiv " style={{ "--i": 3 }}></div>
-                <div className="petalDiv " style={{ "--i": 4 }}></div>
-                <div className="petalDiv " style={{ "--i": 5 }}></div>
-                <div className="petalDiv " style={{ "--i": 6 }}></div>
-              
-              
-                
-            </div>
-            <div className="textFirstContainer">
-                <h1>Agende agora sua consulta!</h1>
-                <span>Diversas Profissionais Especializadas em Psicologia e/ou Advocacia </span>
-                <br />
-                <span>preparadas para melhor atender você!  </span>
-                <br />
-                <span></span>
-            </div>
+          <Carousel/>
        
         </div>
         <div id="secondContainer">
+            <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignContent: "center"}}>
+
+           
+             <img src={OnlineTesting} alt="" style={{width: "300px"}}/>
+            <AnimatedPlantButton name="Faça um teste" destiny={""}/>
+            </div>
+            <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignContent: "center"}}>
+
             
-            <AnimatedPlantButton name="Faça um teste" destiny={"consultation"}/>
-            
-            
-            <AnimatedPlantButton name="Agende uma consulta" destiny={"Dashboard"}/>
+             <img src={consultationImage} alt="" style={{width: "300px"}}/>
+            <AnimatedPlantButton name="Agende uma consulta" destiny={"consultation"}/>
+            </div>
             
         </div>
         <div id="thirdContainer">

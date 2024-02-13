@@ -7,8 +7,8 @@ export const StyledApp = styled.div`
   height: 100vh;
   min-height: 90vh;
   background-color: ${GlobalStyleDefault.colors.primary};
-  --gap: 5em;
-  --line: 1px;
+  --gap: 4em;
+  --line: 1.5px;
   --color: rgba(255, 255, 255, 0.2);
 
   background-image: linear-gradient(
@@ -27,6 +27,6 @@ export const StyledApp = styled.div`
   margin: 0;
   overflow-x: hidden;
   color: ${GlobalStyleDefault.colors.text};
-  backdrop-filter: blur(10px);
+  
   
 `;

@@ -25,6 +25,16 @@ export const PostRenderDashboardBody = styled.div`
 
   .post-render{
     overflow-y: scroll;
+    width: 98%;
+
+    img{
+      width: 90%;
+      height: auto;
+    }
+    iframe{
+      width: 90%;
+      height: 400px;
+    }
   }
   .PostDiv{
     box-sizing: border-box;

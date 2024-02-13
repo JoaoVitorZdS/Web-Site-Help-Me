@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import GlobalStyleDefault from "../../../GlobalStyles";
+import "../../../App.css"
 
 export const StyledDashboardBody = styled.div`
-
+  height: fit-content;
   min-height: 150vh;
   background-color: transparent;
   margin: 0;
@@ -14,45 +15,66 @@ export const StyledDashboardBody = styled.div`
   justify-content: start;
   align-items: center;
 
+  .nonactive{
+    color: #ffffffdd;
+    border-radius: 20px;
+    box-shadow: ${GlobalStyleDefault.shadows.small};
+    padding: 0.5rem;
+    padding-left: 1rem;
+    
+    font-family: DolceVita;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .active{
-    box-shadow: ${GlobalStyleDefault.shadows.card};
+    border-radius: 20px;
+    box-shadow: ${GlobalStyleDefault.shadows.activeCategorie};
+    padding: 0.5rem;
+    padding-left: 1rem;
+    color: ${GlobalStyleDefault.colors.secondary};
+    font-family: DolceVita;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
   }
   .component-container{
-    width: 50%;
+    width: 100%;
+    padding: 1%;
     height: 100%;
+    display: flex;
+    justify-content: center;
   }
   .userSectionsContainer{
     display: flex;
     align-items: center;
     justify-content: space-around;
+    min-height: 50px;
     height: 50px;
-    width: 33%;
+    width: 90vw;
     border-top: 1px solid grey;
     border-bottom: 1px solid grey;
-    color: #ffffff;
+    color: ${GlobalStyleDefault.colors.text};
+  
   }
  
-  h4 {
-    color: rgb(173, 20, 20);
-    font-size: 32px;
-    font-weight: 800;
-  }
-  h4::before {
-    display: inline;
-    content: "⚠ ";
-  }
-  h2,
-  h3 {
-    color: #ffffff;
-    margin-top: 50px;
-    padding-left: 25px;
-  }
+
 
   @media (max-width: 535px) {
-    div {
-      flex-direction: column;
-      align-items: flex-start;
-      padding-left: 25px;
-    }
+
+    padding: 0;
+    
   }
+
+  @media (max-width: 330px) {
+
+   
+    .userSectionsContainer{
+      font-size: small;
+ 
+  }
+  }
+ 
 `;

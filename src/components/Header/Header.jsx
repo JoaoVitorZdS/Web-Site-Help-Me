@@ -67,7 +67,7 @@ export function Header() {
                   id="logoHeader"
                   onClick={() => { navigate("/"); } }></img>
               </div> <div id="mobileMenu">
-                  <button onClick={toggleMobileMenu}>&#9776;</button>
+                  <button id="mobileMenuButton" onClick={toggleMobileMenu}>&#9776;</button>
                   {isMobileMenuOpen && (
                     <div id="mobileMenuContent">
                       <StyledButtonLogIn label={"Perfil"} destiny={"/Dashboard"} icon={<CgProfile/>} />

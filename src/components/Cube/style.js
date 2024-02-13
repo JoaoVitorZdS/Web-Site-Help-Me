@@ -27,7 +27,7 @@ export const StyledCubeContainer = styled.div`
    margin: 0;
    padding: 0;
    box-sizing: border-box;
-   margin-bottom: 100px;
+   
    margin-left: 50px;
   
 
@@ -37,7 +37,7 @@ export const StyledCubeContainer = styled.div`
       height: 301px;
       transform-style: preserve-3d;
       transform: rotateX(-30deg);
-      animation: ${rotateAnimation} 5s linear infinite;
+      animation: ${rotateAnimation} 8s linear infinite;
    }
 
    .cube div {
@@ -47,6 +47,10 @@ export const StyledCubeContainer = styled.div`
       width: 100%;
       height: 100%;
       transform-style: preserve-3d;
+      text-align: center;
+      justify-content: center;
+      
+     
 
    
    }
@@ -61,6 +65,10 @@ export const StyledCubeContainer = styled.div`
       transform: rotateY(calc(90deg * var(--i))) translateZ(150px);
       cursor: pointer;
       animation: ${({ animate }) => (animate ? burstAnimation : "none")} 5s backwards infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+     
    }
 
    .top {
@@ -73,8 +81,13 @@ export const StyledCubeContainer = styled.div`
       object-fit: cover;
       background-position: center;
       background-repeat: no-repeat;
-      background-color: ${GlobalStyleDefault.colors.tertiary};
+      background-color: #ffffffee;
       transform: rotateX(90deg) translateZ(150px);
+
+      img{
+         width: 100%;
+         height: auto;
+      }
    }
 
    .top::before {

@@ -5,10 +5,12 @@ export const StyledBodyContainer = styled.div`
   display: grid;
   grid-template-rows: auto 1fr auto; /* Header, Sections, Footer */
   min-height: 100vh;
-  width: 90vw;
-  padding: 20px;
+  width: 96vw;
+ 
+ 
+  box-sizing: border-box;
 
-  #firstContainer {
+  /*#firstContainer {
     display: flex;
     width: 90vw;
     min-height: 400px;
@@ -103,8 +105,20 @@ export const StyledBodyContainer = styled.div`
         color: ${GlobalStyleDefault.colors.textwhite};
       }
     }    
+  }*/
+ 
+  #firstContainer {
+    display: flex;
+    width: 96vw;
+    min-height: 350px;
+    height: 410px;
+    
+    justify-content: center;
+    align-items: center;
+    margin-top: 1%;
+    border-radius: 25px;
+    
   }
-
   #secondContainer {
     display: grid; /* Alteração */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsivo: 300px min, 1fr max */
@@ -117,11 +131,7 @@ export const StyledBodyContainer = styled.div`
     
     font-size: large;
    
-      
-      button{
-
-      width: 45%;
-    }
+    
     
   }
 
@@ -134,7 +144,7 @@ export const StyledBodyContainer = styled.div`
     #TitleSecondContainer{
       border-top: 1px  solid grey;
       border-bottom: 1px  solid grey;
-      width: 100%;
+      width: 96%;
       justify-content: center;
       display: flex;
       padding: 5px;
@@ -147,7 +157,8 @@ export const StyledBodyContainer = styled.div`
 //-------------------------------------------------------------------@media-------------------------------------------------------------//
   @media (max-width: 770px) {
     #firstContainer {
-
+      min-height: 200px;
+      height: 260px;
     div{
       
 
@@ -189,6 +200,8 @@ export const StyledBodyContainer = styled.div`
       flex-direction: column-reverse;
       align-items: center;
       justify-content: center;
+      min-height: 100px;
+      height: 200px;
 
     .textFirstContainer{
       font-size: medium;

@@ -2,10 +2,47 @@ import React from "react";
 import "./style.css"; // Certifique-se de corrigir o caminho correto
 
 const SocialSharer = () => {
+  const handleFacebookShare = () => {
+    const postUrl = encodeURIComponent(window.location.href);
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${postUrl}`, "_blank");
+  };
+  
+  const handleDribbbleShare = () => {
+    const postUrl = encodeURIComponent(window.location.href);
+    window.open(`https://dribbble.com/share?url=${postUrl}`, "_blank");
+  };
+  
   const handleWhatsAppShare = () => {
     const postUrl = encodeURIComponent(window.location.href);
     window.open(`https://api.whatsapp.com/send?text=${postUrl}`, "_blank");
   };
+  
+  const handleGitHubShare = () => {
+    const postUrl = encodeURIComponent(window.location.href);
+    window.open(`https://github.com/share?url=${postUrl}`, "_blank");
+  };
+  
+  const handleTwitterShare = () => {
+    const postUrl = encodeURIComponent(window.location.href);
+    window.open(`https://twitter.com/intent/tweet?url=${postUrl}`, "_blank");
+  };
+  
+  const handleRedditShare = () => {
+    const postUrl = encodeURIComponent(window.location.href);
+    window.open(`https://reddit.com/submit?url=${postUrl}`, "_blank");
+  };
+  
+  const handleDiscordShare = () => {
+    const postUrl = encodeURIComponent(window.location.href);
+    window.open(`https://discord.com/api/oauth2/authorize?client_id=813847887657123594&permissions=8&scope=bot`, "_blank");
+  };
+  
+  const handlePinterestShare = () => {
+    const postUrl = encodeURIComponent(window.location.href);
+    window.open(`https://pinterest.com/pin/create/button/?url=${postUrl}`, "_blank");
+  };
+  
+  
   
   // No seu componente render:
   
@@ -26,7 +63,7 @@ const SocialSharer = () => {
       ></path>
         </svg>
       </span>
-      <span className="tooltip1">
+      <span className="tooltip1" onClick={() => {handleTwitterShare()}}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -39,7 +76,7 @@ const SocialSharer = () => {
       ></path>
         </svg>
       </span>
-      <span className="tooltip2">
+      <span className="tooltip2" onClick={() => {handleFacebookShare()}}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -52,7 +89,7 @@ const SocialSharer = () => {
       ></path>
         </svg>
       </span>
-      <span className="tooltip3" onClick={() => {handleWhatsAppShare()}}>
+      <span className="tooltip4" onClick={() => {handleWhatsAppShare()}}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -65,20 +102,8 @@ const SocialSharer = () => {
       ></path>
         </svg>
       </span>
-      <span className="tooltip4">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          className="bi bi-discord"
-          viewBox="0 0 16 16"
-        >
-           <path
-        d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8 8 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019m-8.198 7.307c-.789 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612m5.316 0c-.788 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612"
-      ></path>
-        </svg>
-      </span>
-      <span className="tooltip5">
+      
+      <span className="tooltip5" onClick={() => {handlePinterestShare()}}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -91,33 +116,8 @@ const SocialSharer = () => {
       ></path>
         </svg>
       </span>
-      <span className="tooltip6">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          viewBox="0 0 16 16"
-        >
-          <path
-        fill-rule="evenodd"
-        d="M8 0C3.584 0 0 3.584 0 8s3.584 8 8 8c4.408 0 8-3.584 8-8s-3.592-8-8-8m5.284 3.688a6.8 6.8 0 0 1 1.545 4.251c-.226-.043-2.482-.503-4.755-.217-.052-.112-.096-.234-.148-.355-.139-.33-.295-.668-.451-.99 2.516-1.023 3.662-2.498 3.81-2.69zM8 1.18c1.735 0 3.323.65 4.53 1.718-.122.174-1.155 1.553-3.584 2.464-1.12-2.056-2.36-3.74-2.551-4A7 7 0 0 1 8 1.18m-2.907.642A43 43 0 0 1 7.627 5.77c-3.193.85-6.013.833-6.317.833a6.87 6.87 0 0 1 3.783-4.78zM1.163 8.01V7.8c.295.01 3.61.053 7.02-.971.199.381.381.772.555 1.162l-.27.078c-3.522 1.137-5.396 4.243-5.553 4.504a6.82 6.82 0 0 1-1.752-4.564zM8 14.837a6.8 6.8 0 0 1-4.19-1.44c.12-.252 1.509-2.924 5.361-4.269.018-.009.026-.009.044-.017a28.3 28.3 0 0 1 1.457 5.18A6.7 6.7 0 0 1 8 14.837m3.81-1.171c-.07-.417-.435-2.412-1.328-4.868 2.143-.338 4.017.217 4.251.295a6.77 6.77 0 0 1-2.924 4.573z"
-      ></path>
-        </svg>
-      </span>
-      <span className="tooltip7">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          className="bi bi-github"
-          viewBox="0 0 16 16"
-        >
-           <path
-        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"
-      ></path>
-        </svg>
-      </span>
-      <span className="tooltip8">
+     
+      <span className="tooltip8" onClick={() => {handleRedditShare()}}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"

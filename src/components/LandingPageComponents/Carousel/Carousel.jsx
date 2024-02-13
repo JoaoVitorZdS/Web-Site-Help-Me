@@ -12,7 +12,7 @@ const CarouselContainer = styled.div`
   height: 100%;
   position: relative;
   top: 0;
-  z-index: 2;
+  z-index: 0;
   border-radius: 25px;
 
 `;
@@ -29,13 +29,13 @@ const Slide = styled.div`
 
 const SlideItem = styled.div`
   flex: 1 0 100%; /* Each slide takes full width */
-  height: 100%;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
   background-repeat: no-repeat;
   background-position: center; /* Center the background image */
-  background-size: contain; /* Cover the entire area */
+  background-size: cover; /* Cover the entire area */
  
   z-index: 3;
   border-width: 4px;
