@@ -77,6 +77,11 @@
       document.getElementById('installComponent').style.display = 'none';
     }
 
+    // Função para verificar se o dispositivo é um iPhone
+    function isiPhone() {
+      return /iPhone/.test(navigator.userAgent);
+    }
+
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
         navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
@@ -105,23 +110,28 @@
       document.getElementById('installingIndicator').style.display = 'flex';
       document.getElementById('installInfo').style.display = 'none';
 
-      // Mostra o prompt de instalação
-      deferredPrompt.prompt();
-      
-      // Aguarde o usuário interagir com o prompt de instalação
-      deferredPrompt.userChoice.then(function(choiceResult) {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('O usuário aceitou a instalação');
-        } else {
-          console.log('O usuário recusou a instalação');
-        }
+      // Se for um iPhone, redirecione para a rota /IOSPWA
+      if (isiPhone()) {
+        window.location.href = '/IOSPWA';
+      } else {
+        // Mostra o prompt de instalação
+        deferredPrompt.prompt();
         
-        // Limpa o evento armazenado, pois já foi usado
-        deferredPrompt = null;
+        // Aguarde o usuário interagir com o prompt de instalação
+        deferredPrompt.userChoice.then(function(choiceResult) {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('O usuário aceitou a instalação');
+          } else {
+            console.log('O usuário recusou a instalação');
+          }
+          
+          // Limpa o evento armazenado, pois já foi usado
+          deferredPrompt = null;
 
-        // Fecha o componente de instalação e balão de conversa após a instalação
-        closeInstallComponent();
-      });
+          // Fecha o componente de instalação e balão de conversa após a instalação
+          closeInstallComponent();
+        });
+      }
     });
 
     // Código para quando o usuário clicar no botão de fechar

@@ -12,6 +12,7 @@ import TermsPage from "../pages/Terms";
 import CubePage from "../pages/Cube";
 import BlogPostDetail from "../components/BlogComponents/BlogpostDetailPage";
 import { BlogBodyByTag } from "../components/BlogComponents/BlogQuerryByTag";
+import IosPwaInstructionsPage from "../pages/IOS_PWA_Instructions";
 
 const AppRoutes = () => {
   return (
@@ -25,6 +26,7 @@ const AppRoutes = () => {
       <Route path="/Blog/:postId" element={<BlogPostDetail />} /> {/* Detalhes do post */}
       <Route path="/Blog/query/:tag" element={<BlogBodyByTag />} /> {/* Detalhes do post */}
       <Route path="/FAQ" element={<FAQPage />} />
+      <Route path="/IOSPWA" element={<IosPwaInstructionsPage />} />
       <Route path="/Consultation" element={<ConsultationPage />} />
       <Route path="/Terms" element={<TermsPage />} />
      
