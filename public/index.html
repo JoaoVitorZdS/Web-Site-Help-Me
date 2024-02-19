@@ -90,59 +90,49 @@
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 
     if (isIOS) {
-      // No iOS, redireciona o botão de instalação para a página IOSPWA
+      // No iOS, vamos usar os gatilhos específicos do iOS para lidar com a instalação do aplicativo
+      window.addEventListener('DOMContentLoaded', function() {
+        const isInStandaloneMode = window.navigator.standalone;
+        if (!isInStandaloneMode) {
+          // Se o aplicativo não estiver em modo standalone, exibimos o balão de instalação
+          document.getElementById('installComponent').style.display = 'grid';
+        }
+      });
+
+      // Redireciona o botão de instalação para a página IOSPWA
       document.getElementById('btnInstall').addEventListener('click', function() {
         window.location.href = 'IOSPWA';
       });
     } else {
-      // Exibe o componente de instalação e balão de conversa quando o evento 'beforeinstallprompt' é acionado
+      // Para dispositivos não iOS, continuamos com a lógica original
       window.addEventListener('beforeinstallprompt', function(event) {
-        // Cancela o evento padrão para evitar que o navegador exiba o prompt de instalação
         event.preventDefault();
-
-        // Armazena o evento para que você possa exibi-lo posteriormente
         deferredPrompt = event;
-
-        // Mostra o componente de instalação e balão de conversa
         document.getElementById('installComponent').style.display = 'grid';
       });
 
-      // Código para quando o usuário clicar no botão de instalação
       document.getElementById('btnInstall').addEventListener('click', function() {
-        // Mostra o indicador de carregamento
         document.getElementById('installingIndicator').style.display = 'flex';
         document.getElementById('installInfo').style.display = 'none';
-
-        // Mostra o prompt de instalação
         deferredPrompt.prompt();
-        
-        // Aguarde o usuário interagir com o prompt de instalação
         deferredPrompt.userChoice.then(function(choiceResult) {
           if (choiceResult.outcome === 'accepted') {
             console.log('O usuário aceitou a instalação');
           } else {
             console.log('O usuário recusou a instalação');
           }
-          
-          // Limpa o evento armazenado, pois já foi usado
           deferredPrompt = null;
-
-          // Fecha o componente de instalação e balão de conversa após a instalação
           closeInstallComponent();
         });
       });
     }
 
-    // Código para quando o usuário clicar no botão de fechar
     document.getElementById('btnClose').addEventListener('click', function() {
-      // Fecha o componente de instalação e balão de conversa
       closeInstallComponent();
     });
 
-    // Código para adicionar aplicativo à tela inicial e abrir após a instalação
     window.addEventListener('appinstalled', function(event) {
       console.log('Aplicativo instalado!', event);
-      // Aqui você pode adicionar lógica para abrir o aplicativo após a instalação
     });
   </script>
 </body>
