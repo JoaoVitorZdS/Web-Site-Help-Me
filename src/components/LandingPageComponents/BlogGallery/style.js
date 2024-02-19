@@ -22,7 +22,7 @@ export const StyledGalleryContainer = styled.div`
   .card {
   overflow: visible;
   width: 220px;
-  height: 270px;
+  height: 300px;
   
   
 }

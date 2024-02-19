@@ -41,17 +41,6 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-
-    /* Estilo para posicionar o balão de instalação no topo para iPhone */
-    @media (max-width: 767px) {
-      #installComponent {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 1000;
-      }
-    }
   </style>
 </head>
 <body>
@@ -64,18 +53,17 @@
       <img src="./logo512.png" class="InstallLogo"/>
     </div>
     <div>
-      <div style="margin-left: 5px;" id="installInfo">
-        
+      <div id="installInfo">
         <span>Instale o aplicativo para uma melhor experiência!</span>
         <div style="display: flex; flex-direction: row; justify-content: space-between;">
           <button id="btnInstall" class="button install-button">Instalar</button>
           <button id="btnClose" class="button close-button">Fechar</button>
         </div>
       </div>
-        <div id="installingIndicator" style="display: none; justify-content: center; align-items: center; padding: 5px; height: 100%;">
-          <div class="loading-circle"></div>
-          <span>Instalando...</span>
-        </div>
+      <div id="installingIndicator" style="display: none; justify-content: center; align-items: center; padding: 5px; height: 100%;">
+        <div class="loading-circle"></div>
+        <span>Instalando...</span>
+      </div>
     </div>
   </div>
   
@@ -116,28 +104,23 @@
       document.getElementById('installingIndicator').style.display = 'flex';
       document.getElementById('installInfo').style.display = 'none';
 
-      // Se for um iPhone, redireciona para a rota /IOSPWA
-      if (/iPhone/.test(navigator.userAgent)) {
-        window.location.href = '/IOSPWA';
-      } else {
-        // Mostra o prompt de instalação
-        deferredPrompt.prompt();
+      // Mostra o prompt de instalação
+      deferredPrompt.prompt();
+      
+      // Aguarde o usuário interagir com o prompt de instalação
+      deferredPrompt.userChoice.then(function(choiceResult) {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('O usuário aceitou a instalação');
+        } else {
+          console.log('O usuário recusou a instalação');
+        }
         
-        // Aguarde o usuário interagir com o prompt de instalação
-        deferredPrompt.userChoice.then(function(choiceResult) {
-          if (choiceResult.outcome === 'accepted') {
-            console.log('O usuário aceitou a instalação');
-          } else {
-            console.log('O usuário recusou a instalação');
-          }
-          
-          // Limpa o evento armazenado, pois já foi usado
-          deferredPrompt = null;
+        // Limpa o evento armazenado, pois já foi usado
+        deferredPrompt = null;
 
-          // Fecha o componente de instalação e balão de conversa após a instalação
-          closeInstallComponent();
-        });
-      }
+        // Fecha o componente de instalação e balão de conversa após a instalação
+        closeInstallComponent();
+      });
     });
 
     // Código para quando o usuário clicar no botão de fechar
@@ -151,6 +134,14 @@
       console.log('Aplicativo instalado!', event);
       // Aqui você pode adicionar lógica para abrir o aplicativo após a instalação
     });
+
+    // Verifica se é um dispositivo iOS e atualiza o link do botão de instalação
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    if (isIOS) {
+      document.getElementById('btnInstall').addEventListener('click', function() {
+        window.location.href = 'IOSPWA';
+      });
+    }
   </script>
 </body>
 </html>

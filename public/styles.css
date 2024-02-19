@@ -10,6 +10,7 @@
       max-width: 250px;
       display: none; /* Inicialmente oculto */
       grid-template-columns: 1fr 2fr;
+      gap: 5px;
       
     }
     .InstallLogo{
