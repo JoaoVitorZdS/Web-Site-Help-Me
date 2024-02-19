@@ -86,42 +86,52 @@
       });
     }
 
-    // Exibe o componente de instalação e balão de conversa quando o evento 'beforeinstallprompt' é acionado
-    window.addEventListener('beforeinstallprompt', function(event) {
-      // Cancela o evento padrão para evitar que o navegador exiba o prompt de instalação
-      event.preventDefault();
+    // Verifica se é um dispositivo iOS
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-      // Armazena o evento para que você possa exibi-lo posteriormente
-      deferredPrompt = event;
-
-      // Mostra o componente de instalação e balão de conversa
-      document.getElementById('installComponent').style.display = 'grid';
-    });
-
-    // Código para quando o usuário clicar no botão de instalação
-    document.getElementById('btnInstall').addEventListener('click', function() {
-      // Mostra o indicador de carregamento
-      document.getElementById('installingIndicator').style.display = 'flex';
-      document.getElementById('installInfo').style.display = 'none';
-
-      // Mostra o prompt de instalação
-      deferredPrompt.prompt();
-      
-      // Aguarde o usuário interagir com o prompt de instalação
-      deferredPrompt.userChoice.then(function(choiceResult) {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('O usuário aceitou a instalação');
-        } else {
-          console.log('O usuário recusou a instalação');
-        }
-        
-        // Limpa o evento armazenado, pois já foi usado
-        deferredPrompt = null;
-
-        // Fecha o componente de instalação e balão de conversa após a instalação
-        closeInstallComponent();
+    if (isIOS) {
+      // No iOS, redireciona o botão de instalação para a página IOSPWA
+      document.getElementById('btnInstall').addEventListener('click', function() {
+        window.location.href = 'IOSPWA';
       });
-    });
+    } else {
+      // Exibe o componente de instalação e balão de conversa quando o evento 'beforeinstallprompt' é acionado
+      window.addEventListener('beforeinstallprompt', function(event) {
+        // Cancela o evento padrão para evitar que o navegador exiba o prompt de instalação
+        event.preventDefault();
+
+        // Armazena o evento para que você possa exibi-lo posteriormente
+        deferredPrompt = event;
+
+        // Mostra o componente de instalação e balão de conversa
+        document.getElementById('installComponent').style.display = 'grid';
+      });
+
+      // Código para quando o usuário clicar no botão de instalação
+      document.getElementById('btnInstall').addEventListener('click', function() {
+        // Mostra o indicador de carregamento
+        document.getElementById('installingIndicator').style.display = 'flex';
+        document.getElementById('installInfo').style.display = 'none';
+
+        // Mostra o prompt de instalação
+        deferredPrompt.prompt();
+        
+        // Aguarde o usuário interagir com o prompt de instalação
+        deferredPrompt.userChoice.then(function(choiceResult) {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('O usuário aceitou a instalação');
+          } else {
+            console.log('O usuário recusou a instalação');
+          }
+          
+          // Limpa o evento armazenado, pois já foi usado
+          deferredPrompt = null;
+
+          // Fecha o componente de instalação e balão de conversa após a instalação
+          closeInstallComponent();
+        });
+      });
+    }
 
     // Código para quando o usuário clicar no botão de fechar
     document.getElementById('btnClose').addEventListener('click', function() {
@@ -134,14 +144,6 @@
       console.log('Aplicativo instalado!', event);
       // Aqui você pode adicionar lógica para abrir o aplicativo após a instalação
     });
-
-    // Verifica se é um dispositivo iOS e atualiza o link do botão de instalação
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    if (isIOS) {
-      document.getElementById('btnInstall').addEventListener('click', function() {
-        window.location.href = 'IOSPWA';
-      });
-    }
   </script>
 </body>
 </html>
