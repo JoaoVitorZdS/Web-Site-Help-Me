@@ -41,6 +41,17 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
+
+    /* Estilo para posicionar o balão de instalação no topo para iPhone */
+    @media (max-width: 767px) {
+      #installComponent {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+      }
+    }
   </style>
 </head>
 <body>
@@ -53,7 +64,7 @@
       <img src="./logo512.png" class="InstallLogo"/>
     </div>
     <div>
-      <div id="installInfo">
+      <div style="margin-left: 5px;" id="installInfo">
         
         <span>Instale o aplicativo para uma melhor experiência!</span>
         <div style="display: flex; flex-direction: row; justify-content: space-between;">
@@ -75,11 +86,6 @@
     // Função para fechar o componente de instalação
     function closeInstallComponent() {
       document.getElementById('installComponent').style.display = 'none';
-    }
-
-    // Função para verificar se o dispositivo é um iPhone
-    function isiPhone() {
-      return /iPhone/.test(navigator.userAgent);
     }
 
     if ('serviceWorker' in navigator) {
@@ -110,8 +116,8 @@
       document.getElementById('installingIndicator').style.display = 'flex';
       document.getElementById('installInfo').style.display = 'none';
 
-      // Se for um iPhone, redirecione para a rota /IOSPWA
-      if (isiPhone()) {
+      // Se for um iPhone, redireciona para a rota /IOSPWA
+      if (/iPhone/.test(navigator.userAgent)) {
         window.location.href = '/IOSPWA';
       } else {
         // Mostra o prompt de instalação
