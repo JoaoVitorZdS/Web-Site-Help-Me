@@ -281,7 +281,7 @@ const ProfessionalConsultations = () => {
       </div>
       <div>
       {/* Render cancelled consultations */}
-      <p style={{color: GlobalStyleDefault.colors.secondarystrong, fontFamily: "DolceVita"}}>Canceladas  Pendentes {consultations.filter(consultation => consultation.status === 'cancelled').length} </p>
+      <p style={{color: GlobalStyleDefault.colors.secondarystrong, fontFamily: "DolceVita"}}>Canceladas {consultations.filter(consultation => consultation.status === 'cancelled').length} </p>
       <div style={{display: "flex", flexDirection: "row", width: "auto", minWidth: "110vw", gap: "5px", overflowX: "auto"}} >
 
 

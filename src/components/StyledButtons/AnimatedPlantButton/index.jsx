@@ -165,7 +165,7 @@ button .icon-3 {
     <>
     <style>{buttonstyle}</style>
     <button onClick={() => Navigate(`/${props.destiny}`)} className="custom-button">
-      <i style={{fontFamily: "DolceVita"}}>
+      <i style={{fontFamily: "DolceVita", color: `${GlobalStyleDefault.colors.textwhite}`}}>
       {props.name}
       </i>
 
