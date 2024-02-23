@@ -168,6 +168,14 @@ export const StyledClientSideConsultationComponent = styled.div`
           transform: scale(1.1);
         }
       } 
+      @keyframes zoomPetaldiminished {
+        0%, 100% {
+          transform: scale(0.5);
+        }
+        50% {
+          transform: scale(0.7);
+        }
+      } 
       @keyframes zoom {
         0%, 100% {
           transform: scale(1);
@@ -242,6 +250,18 @@ export const StyledClientSideConsultationComponent = styled.div`
     .petalWrapper{
       flex-direction: column;
       justify-content: space-between;
+      height: min-content;
+      
+
+      img{
+        transform: scale(0.6);
+        margin-top: -20%;
+      margin-bottom: -20%;
+        &:hover {
+          
+          animation: zoomPetaldiminished 2s  infinite;
+        }
+      }
 
       .textFirstContainer{
         z-index: 9;
@@ -249,6 +269,7 @@ export const StyledClientSideConsultationComponent = styled.div`
      
       .petalDiv{
         top: 35%;
+      
       }
     }
 
