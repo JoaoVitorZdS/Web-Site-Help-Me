@@ -89,6 +89,8 @@ export const StyledGoogleSignInButton = (props) => {
         <p id="labelStyledGoogleButton">Continuar pelo Google</p>
         <FcGoogle size={22} />
       </StyledGoogleButtonContainer>
+      
+      {/* Add similar code blocks for other authentication providers
       <StyledGoogleButtonContainer onClick={googleLogin}>
         <FaApple  size={22}/>
         <p id="labelStyledGoogleButton">Continuar pelo Apple Id</p>
@@ -104,7 +106,7 @@ export const StyledGoogleSignInButton = (props) => {
         <p id="labelStyledGoogleButton">Continuar com credenciais</p>
         <IoIosMail    size={22}/>
         </StyledGoogleButtonContainer>
-      {/* Add similar code blocks for other authentication providers */}
+      */}
     </>
   );
 };
