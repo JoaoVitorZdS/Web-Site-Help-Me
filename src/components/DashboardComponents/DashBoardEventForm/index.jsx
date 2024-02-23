@@ -14,7 +14,7 @@ export const DashboardEventForm = () => {
       {accessToken ? (
         
           <StyledDashboardEventForm>
-            <h1 style={{color: `${GlobalStyleDefault.colors.secondary}`, fontFamily: "DolceVita"}}>Consultas</h1>
+            <h1 style={{color: `${GlobalStyleDefault.colors.secondarystrong}`, fontFamily: "DolceVita"}}>Consultas</h1>
             <ProfessionalConsultations/>
           </StyledDashboardEventForm>
        

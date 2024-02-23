@@ -205,7 +205,7 @@ const createNewPost = async () => {
       {accessToken ? (
         <>
       <StyledDashboardEventForm>
-      <h1 style={{color: `${GlobalStyleDefault.colors.secondary}`, fontFamily: "DolceVita"}}>Posts Blog</h1>
+      <h1 style={{color: `${GlobalStyleDefault.colors.secondarystrong}`, fontFamily: "DolceVita"}}>Posts Blog</h1>
     
       <button onClick={openModal}   className="ButtonCreateNewPostADMDashboard">
       <FcEditImage size={22} />
@@ -245,7 +245,7 @@ const createNewPost = async () => {
   }}
 >
   <div style={{ width: "80%", height: "max-content", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", gap: "15px" }}>
-    <h2 style={{color: GlobalStyleDefault.colors.secondary}}>Criar Novo Post</h2>
+    <h2 style={{color: GlobalStyleDefault.colors.secondarystrong}}>Criar Novo Post</h2>
     <StyledForm >
       <input
       placeholder="Título"

@@ -141,8 +141,8 @@ const ClientConsultations = () => {
               borderLeft: `15px solid ${tagColor}`,
               overflow: "hidden",
               transition: "height 2s ease",
-              height: selectedConsultation === consultation ? "350px" : "70px", // Altura condicional com base na seleção
-              width: "320px", // Adjust the initial height as needed
+              height: selectedConsultation === consultation ? "350px" : "50px", // Altura condicional com base na seleção
+              width: "280px", 
             }}
           >
             <div style={{ fontFamily: "TimesBold" } }>
@@ -167,9 +167,9 @@ const ClientConsultations = () => {
     <div style={{display: "flex", flexDirection: "column", width: "95vw", paddingLeft: "5%", gap: "2%", justifyContent: "space-between" }}>
       
       <p style={{color: GlobalStyleDefault.colors.textwhite, fontFamily: "DolceVita"}}>Pendentes/Confirmadas</p>
-      <div style={{display: "flex", flexDirection: "row", width: "auto", gap: "5px", overflowX: "scroll"}} >
+      <div style={{display: "flex", flexDirection: "row", width: "auto", gap: "5px", overflowX: "scroll", height: "auto", paddingBottom: "50px"}} >
       {/* Render pending and confirmed consultations */}
-      <ul style={{display: "flex", flexDirection: "row", gap: "15px", height: "auto"}}>
+      <ul style={{display: "flex", flexDirection: "row", gap: "15px", height: "auto", padding: 0}}>
         {renderByStatus("pending")}
         {renderByStatus("confirmed")}
       </ul>
@@ -177,8 +177,8 @@ const ClientConsultations = () => {
       <div>
       {/* Render cancelled consultations */}
       <p style={{color: GlobalStyleDefault.colors.textwhite, fontFamily: "DolceVita"}}>Canceladas</p>
-      <div style={{display: "flex", flexDirection: "row", width: "auto", gap: "5px", overflowX: "scroll"}} >
-      <ul style={{display: "flex", flexDirection: "row", gap: "15px", height: "auto"}}>
+      <div style={{display: "flex", flexDirection: "row", width: "auto", gap: "5px", overflowX: "scroll", height: "auto", paddingBottom: "50px"}} >
+      <ul style={{display: "flex", flexDirection: "row", gap: "15px", height: "auto", padding: 0}}>
         {renderByStatus("cancelled")}
         {renderByStatus("cancelled")}
         {renderByStatus("cancelled")}

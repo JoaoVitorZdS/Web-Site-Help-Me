@@ -13,6 +13,9 @@ import CubePage from "../pages/Cube";
 import BlogPostDetail from "../components/BlogComponents/BlogpostDetailPage";
 import { BlogBodyByTag } from "../components/BlogComponents/BlogQuerryByTag";
 import IosPwaInstructionsPage from "../pages/IOS_PWA_Instructions";
+import DoctorConsultationPage from "../components/ConsultationComponents/DoctorConsultationPage";
+import QuizPage from "../pages/Quiz";
+import EmergencyPage from "../pages/Emergency";
 
 const AppRoutes = () => {
   return (
@@ -24,10 +27,14 @@ const AppRoutes = () => {
       <Route path="/Blog/*" element={<BlogPage />} /> {/* BlogPage é a rota pai */}
       <Route path="/Blog" element={<BlogPage />} /> {/* Rota raiz do Blog */}
       <Route path="/Blog/:postId" element={<BlogPostDetail />} /> {/* Detalhes do post */}
-      <Route path="/Blog/query/:tag" element={<BlogBodyByTag />} /> {/* Detalhes do post */}
+      <Route path="/Blog/query/:tag" element={<BlogBodyByTag />} /> {/* Posts filtados por tag */}
       <Route path="/FAQ" element={<FAQPage />} />
+      <Route path="/Quiz" element={<QuizPage />} />
+      <Route path="/Emergency" element={<EmergencyPage />} />
       <Route path="/IOSPWA" element={<IosPwaInstructionsPage />} />
+      <Route path="/Consultation/*" element={<ConsultationPage />} />
       <Route path="/Consultation" element={<ConsultationPage />} />
+      <Route path="/Consultation/:doctorname" element={<DoctorConsultationPage />} />
       <Route path="/Terms" element={<TermsPage />} />
      
       <Route path="*" element={<CubePage />} />

@@ -62,38 +62,40 @@ export const StyledGalleryContainer = styled.div`
 
 }
 
-.back::before {
-  position: absolute;
-  content: ' ';
-  display: block;
-  width: 160px;
-  height: 160%;
-  background-color: ${GlobalStyleDefault.colors.secondarystrong};
-  filter: blur(5px);
-  animation: rotation_481 9000ms infinite linear;
-}
+
 
 .back-content {
   position: absolute;
   box-sizing: border-box;
-  padding: 3px;
-  width: 98%;
-  height: 98%;
-  background: radial-gradient( ${GlobalStyleDefault.colors.secondary},  ${GlobalStyleDefault.colors.secondarystrong});
+  padding: 6px;
+  width: 100%;
+  height: 100%;
+  background: ${GlobalStyleDefault.colors.secondarystrong};
   backdrop-filter: blur(100px); /* Valor do desfoque */
   border-radius: 5px;
   color: white;
-  display: flex;
+  display: grid;
+  grid-template-rows: 2fr 3fr 3fr;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   gap: 3px;
   overflow: hidden;
+
+  p {
+      align-self: center;
+      
+      text-indent: 10px; /* Define o espaçamento de recuo de 10 pixels */
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
   
 
   img{
     width: 100%;
-    height: 50%;
+    height: auto;
     border-radius: 5px;
   }
   h4{
@@ -258,4 +260,3 @@ export const StyledGalleryContainer = styled.div`
 
 
 `;
-

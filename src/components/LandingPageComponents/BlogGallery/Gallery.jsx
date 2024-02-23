@@ -30,7 +30,7 @@ export function Gallery() {
               
               <h4 style={{margin: "9px 0 0 0" }}>{post.title}</h4>
               <img style={{margin: 0}} src={post.imageURL} alt="" />
-              <p style={{margin: 0,color: "white", fontSize: "0.7rem"}}>{post.sub_title}</p>
+              <p style={{margin: 0,color: "white", fontSize: "0.8rem"}}>{post.sub_title}</p>
 
             </div>
               

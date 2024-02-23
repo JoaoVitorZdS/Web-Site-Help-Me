@@ -31,7 +31,7 @@ const BlogPostDetail = () => {
       <div className="SideBar">
       <div className="postOwnerDiv">
             <h5>Escrito por:</h5>
-            <br />
+          
             <h3> {selectedPost.created_by}</h3>
             <ul className="tagsList">
         {selectedPost.tags.map((tag) => (

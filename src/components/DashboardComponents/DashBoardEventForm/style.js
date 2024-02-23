@@ -7,7 +7,7 @@ export const StyledDashboardEventForm = styled.div`
   margin: 0;
   width: 90vw;
   
-  padding: 25px;
+  padding: 4% ;
   display: flex;
   flex-direction: column;
   gap: 1px;

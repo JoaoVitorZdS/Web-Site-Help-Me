@@ -206,17 +206,17 @@ const ProfessionalConsultations = () => {
           let secondaryButtonAction = () => {};
   
           if (consultation.status === "pending") {
-            tagColor = "yellow";
+            tagColor = "#ffd906";
             primaryButtonLabel = "Aceitar";
             secondaryButtonLabel = "Recusar";
             primaryButtonAction = () => openAcceptModal(consultation);
             secondaryButtonAction = () => openDeclineModal(consultation);
           } else if (consultation.status === "confirmed") {
-            tagColor = "green";
+            tagColor = "#3ee13e";
             primaryButtonLabel = "Cancelar";
             primaryButtonAction = () => openCancelModal(consultation);
           } else if (consultation.status === "cancelled") {
-            tagColor = "red";
+            tagColor = "#b30000";
             primaryButtonLabel = "Apagar";
             primaryButtonAction = () => openDeleteModal(consultation);
           }
@@ -226,13 +226,15 @@ const ProfessionalConsultations = () => {
               border: `1px double ${tagColor}`,
               borderLeft: `15px solid ${tagColor}`,
               overflow: "hidden",
-              transition: "height 2s ease",
-              height: isCardSelected ? "350px" : "60px", // Adjust the initial height as needed
-              width:  "320px", // Adjust the initial height as needed
+              transition: "all 2s ease",
+              paddingLeft: "12px",
+              height: isCardSelected ? "350px" : "70px", // Adjust the initial height as needed
+              width:  isCardSelected ? "280px" : "70px", // Adjust the initial height as needed
             }}>
+              
               <div style={{ fontFamily: "TimesBold" } } onClick={() => handleCardClick(consultation)}>
-                <p>Consulta com <i>{consultation.client_name}</i></p>
                 <p>{formattedDateTime}</p>
+                <p>Consulta com <i>{consultation.client_name}</i></p>
                 <p>Email do Cliente: <i>{consultation.client_email}</i></p>
                 <p>Celular do Cliente: <i>{consultation.client_phone}</i></p>
                 <textarea disabled readOnly rows={5}>{consultation.description}</textarea>
@@ -249,23 +251,28 @@ const ProfessionalConsultations = () => {
         });
       }
   return (
-    <div style={{display: "flex", flexDirection: "column", width: "95vw", paddingLeft: "5%", gap: "2%", justifyContent: "space-between" }}>
+    <div style={{display: "flex", flexDirection: "column", width: "95vw", gap: "2%", justifyContent: "space-between" }}>
       
-      <p style={{color: GlobalStyleDefault.colors.textwhite, fontFamily: "DolceVita"}}>Pendentes</p>
-      <div style={{display: "flex", flexDirection: "row", width: "auto", gap: "5px", overflowX: "auto"}} >
+      <p style={{color: GlobalStyleDefault.colors.secondarystrong, fontFamily: "DolceVita", paddingLeft: "10%"}}> Pendentes {consultations.filter(consultation => consultation.status === 'pending').length}</p>
+      <div style={{display: "flex", flexDirection: "row", width: "auto", minWidth: "100vw", gap: "5px", overflowX: "auto", padding: 0, paddingRight: "50px"}} >
       {/* Render pending consultations */}
-      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto", marginBottom: "50px", padding: "0px 50px 0px 0px"}}>
+      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto", minHeight: "100px", marginBottom: "50px", padding: "0px",paddingRight: "50px"}}>
 
+      {renderByStatus("pending")}
+      {renderByStatus("pending")}
+      {renderByStatus("pending")}
+      {renderByStatus("pending")}
+      {renderByStatus("pending")}
       {renderByStatus("pending")}
    
       </ul>
       </div>
       <div>
       {/* Render confirmed consultations */}
-      <p style={{color: GlobalStyleDefault.colors.textwhite, fontFamily: "DolceVita"}}>Confirmadas </p>
-      <div style={{display: "flex", flexDirection: "row", width: "auto", gap: "5px", overflowX: "auto"}} >
+      <p style={{color: GlobalStyleDefault.colors.secondarystrong, fontFamily: "DolceVita", paddingLeft: "10%"}}>Confirmadas {consultations.filter(consultation => consultation.status === 'confirmed').length} </p>
+      <div style={{display: "flex", flexDirection: "row", width: "auto", minWidth: "100vw", gap: "5px", overflowX: "auto",paddingRight: "50px"}} >
 
-      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto", marginBottom: "50px", padding: "0px 50px 0px 0px"}}>
+      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto", minHeight: "100px", marginBottom: "50px", padding: "0px", paddingRight: "50px"}}>
 
       {renderByStatus("confirmed")}
     
@@ -274,11 +281,11 @@ const ProfessionalConsultations = () => {
       </div>
       <div>
       {/* Render cancelled consultations */}
-      <p style={{color: GlobalStyleDefault.colors.textwhite, fontFamily: "DolceVita"}}>Canceladas </p>
-      <div style={{display: "flex", flexDirection: "row", width: "auto", gap: "5px", overflowX: "auto"}} >
+      <p style={{color: GlobalStyleDefault.colors.secondarystrong, fontFamily: "DolceVita"}}>Canceladas  Pendentes {consultations.filter(consultation => consultation.status === 'cancelled').length} </p>
+      <div style={{display: "flex", flexDirection: "row", width: "auto", minWidth: "110vw", gap: "5px", overflowX: "auto"}} >
 
 
-      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto", marginBottom: "50px", padding: "0px 50px 0px 0px"}}>
+      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto", minHeight: "100px", marginBottom: "50px", padding: "0px 50px 0px 0px"}}>
 
       {renderByStatus("cancelled")}
       

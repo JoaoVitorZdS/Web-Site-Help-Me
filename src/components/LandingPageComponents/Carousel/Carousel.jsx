@@ -28,21 +28,20 @@ const Slide = styled.div`
 `;
 
 const SlideItem = styled.div`
-  flex: 1 0 100%; /* Each slide takes full width */
-  height: auto;
+  flex: 1 0 100%;
+  
   display: flex;
   justify-content: center;
   align-items: center;
   background-repeat: no-repeat;
-  background-position: center; /* Center the background image */
-  background-size: cover; /* Cover the entire area */
+  background-position: center;
+  background-size: 100% 100%; /* Alteração: Utilizando 100% para largura e altura */
  
   z-index: 3;
   border-width: 4px;
   border-radius: 25px;
-  
-  
 `;
+
 
 
 const Button = styled.button`

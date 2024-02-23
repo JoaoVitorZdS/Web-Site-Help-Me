@@ -3,7 +3,7 @@ import GlobalStyleDefault from "../../../GlobalStyles";
 import "../../../App.css"
 export const StyledConsultantContainer = styled.div`
   
-  height: max-content;
+  height: fit-content;
   background-color: transparent;
   margin: 0;
   min-width: 95vw;
@@ -15,6 +15,7 @@ export const StyledConsultantContainer = styled.div`
   justify-content: start;
   align-items: start;
   
+  
 
 
 
@@ -24,7 +25,9 @@ export const StyledConsultantContainer = styled.div`
   flex-direction: row;
   gap: 15px;
   overflow-x: scroll;
-  padding-top: 5%;
+  padding-top: 1%;
+  height: 90%;
+ 
   
   
  }
@@ -38,6 +41,9 @@ export const StyledConsultantContainer = styled.div`
     border-radius: 15px;
     margin-bottom: 5%;
     box-shadow: ${GlobalStyleDefault.shadows.card};
+    p{
+      margin: 0;
+    }
    
     .avaliableHoursDiv{
       width: 100%;
@@ -56,16 +62,18 @@ export const StyledConsultantContainer = styled.div`
     gap: 0;
 
     .doctorCardInfo{
+      margin-top: 15px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       margin-left: 10px;
+      height: 120px;
      
     }
 
 
     p{
-      font-family: Contacto;
+      font-family: DolceVita;
       font-size: 12px;
       color: ${GlobalStyleDefault.colors.offwhite};
     }
@@ -92,14 +100,19 @@ export const StyledClientSideConsultationComponent = styled.div`
   gap: 1px;
   justify-content: start;
   align-items: center;
- 
+
+ .AvaliableHoursWrapper{
+  width: 94%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+ }
  
 
   h1{
     margin-left: 5%;
   }
  
-
   .active{
     box-shadow: ${GlobalStyleDefault.shadows.card};
   }
@@ -118,14 +131,12 @@ export const StyledClientSideConsultationComponent = styled.div`
     color: #ffffff;
   }
   
-
- 
   .petalWrapper{
     width: 90%;
-    height: 500px;
+    height: 300px;
     display: flex;
     flex-direction: row;
-    justify-content: end;
+    justify-content: space-around;
     align-items: center;
     position: relative;
     background-color: ${GlobalStyleDefault.colors.secondary};
@@ -158,10 +169,10 @@ export const StyledClientSideConsultationComponent = styled.div`
         }
       } 
       @keyframes zoom {
-        0% {
+        0%, 100% {
           transform: scale(1);
         }
-        100% {
+        50% {
           transform: scale(1.1);
         }
       } 
@@ -204,7 +215,7 @@ export const StyledClientSideConsultationComponent = styled.div`
         width: 300px;
         max-width: 90%;
         position: absolute;
-        top: 15%;
+        top: 2%;
         left: 5%;
         box-shadow: ${GlobalStyleDefault.shadows.large};
         z-index: calc(-1*var(--i));
@@ -222,16 +233,18 @@ export const StyledClientSideConsultationComponent = styled.div`
       }
   }
 
+  
+
  
  
 
   @media (max-width: 845px) {
     .petalWrapper{
       flex-direction: column;
-      justify-content: start;
+      justify-content: space-between;
 
       .textFirstContainer{
-        z-index: 90;
+        z-index: 9;
       }
      
       .petalDiv{
@@ -241,4 +254,5 @@ export const StyledClientSideConsultationComponent = styled.div`
 
     
   }
+
 `;
