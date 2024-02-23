@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledDashboardHead = styled.div`
-  height: 20vh;
+  height: auto;
   margin: 0 auto;
   width: 85vw;
   display: flex;
@@ -33,6 +33,7 @@ export const StyledDashboardHead = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    justify-self: center;
     
   }
 
@@ -43,11 +44,7 @@ export const StyledDashboardHead = styled.div`
    margin-bottom: 5%;
   }
 
-  img {
-  
-   height: 100%;
-    border-radius: 25px;
-  }
+ 
   button {
     background-color: #343b41;
     border: transparent;
@@ -71,6 +68,12 @@ export const StyledDashboardHead = styled.div`
     width: 80%;
    
   }
+}
+  @media (max-width: 450px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
 }
 
 `;

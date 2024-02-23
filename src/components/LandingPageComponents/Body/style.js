@@ -111,7 +111,7 @@ export const StyledBodyContainer = styled.div`
     display: flex;
     width: 96vw;
     min-height: 350px;
-    height: 410px;
+    height: 400px;
     
     justify-content: center;
     align-items: center;
@@ -131,9 +131,42 @@ export const StyledBodyContainer = styled.div`
     
     font-size: large;
    
-    
+ 
     
   }
+  @keyframes fadeInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+  @keyframes fadeInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.animate-on-scroll {
+  opacity: 1;
+    animation: fadeInFromRight 1s ease forwards;
+  }
+.animate-on-scroll-left {
+  opacity: 1;
+    animation: fadeInFromLeft 1s ease forwards;
+  }
+  .none{
+    opacity: 0;
+  }
+
+
 
   #thirdContainer {
     display: grid; /* Alteração */
@@ -201,7 +234,7 @@ export const StyledBodyContainer = styled.div`
       align-items: center;
       justify-content: center;
       min-height: 100px;
-      height: 200px;
+      height: 175px;
 
     .textFirstContainer{
       font-size: medium;

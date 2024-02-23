@@ -6,9 +6,10 @@ import { useNavigate } from "react-router-dom";
 import { StyledButtonLogIn } from "../StyledButtons/ButtonsLogIn";
 import { useContext, useEffect, useState } from "react";
 import { AccessTokenContext } from "../StyledButtons/ButtonLogInGoogle";
-import { IoMenu } from "react-icons/io5";
+import { IoMenu, IoClose  } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
-import { FaBook } from "react-icons/fa6";
+import { FaBook, FaTriangleExclamation } from "react-icons/fa6";
+import { FaExclamationTriangle } from "react-icons/fa";
 export function Header() {
     const navigate = useNavigate()
     const { accessToken } = useContext(AccessTokenContext);
@@ -30,11 +31,12 @@ export function Header() {
     const toggleMobileMenu = () => {
       setIsMobileMenuOpen(!isMobileMenuOpen);
     };
+    
     return(
         <>
     {accessToken ? (
     <StyledHeaderContainer>
-        {windowWidth >= 520 && (<><div id="logoContainer">
+        {windowWidth >= 770 && (<><div id="logoContainer">
                         <img src={Logo}
                             alt='Help Me Logo'
                             className='logo'
@@ -51,10 +53,11 @@ export function Header() {
 
                             <StyledButtonLogIn label={"Perfil"} destiny={"/Dashboard"} icon={<CgProfile/>} />
                             <StyledButtonLogIn label={"Blog"} destiny={"/Blog"} icon={<FaBook/>} />
+                            <StyledButtonLogIn label={"EMERGÊNCIA!"} destiny={"/emergency"} icon={<FaExclamationTriangle/>} />
 
                         </div></>)}
         
-        {windowWidth < 520 && (
+        {windowWidth < 770 && (
           <><div id="logoContainer">
                 <img src={Logo}
                   alt='Help Me Logo'
@@ -66,12 +69,16 @@ export function Header() {
                   className='name'
                   id="logoHeader"
                   onClick={() => { navigate("/"); } }></img>
-              </div> <div id="mobileMenu">
-                  <button id="mobileMenuButton" onClick={toggleMobileMenu}>&#9776;</button>
+              </div> 
+              <div id="mobileMenu">
+              <IoMenu size={22} color="#9384D7" onClick={toggleMobileMenu} />
                   {isMobileMenuOpen && (
-                    <div id="mobileMenuContent">
+                    
+                    <div id="mobileMenuContent" className={isMobileMenuOpen ? "animate-on-scroll" : "none"}>
+                       <IoClose  style={{position: "absolute", left: "0", height: "100%"}} size={22} color="#9384D7" onClick={toggleMobileMenu} />
                       <StyledButtonLogIn label={"Perfil"} destiny={"/Dashboard"} icon={<CgProfile/>} />
                       <StyledButtonLogIn label={"Blog"} destiny={"/Blog"} icon={<FaBook/>} />
+                      <StyledButtonLogIn label={"EMERGÊNCIA!"} destiny={"/emergency"} icon={<FaTriangleExclamation/>} />
                     </div>
                   )}
                 </div></>
@@ -79,7 +86,7 @@ export function Header() {
     </StyledHeaderContainer>   ) : (
         
         <StyledHeaderContainer>
-        {windowWidth >= 520 && (<><div id="logoContainer">
+        {windowWidth >= 770 && (<><div id="logoContainer">
                         <img src={Logo}
                             alt='Help Me Logo'
                             className='logo'
@@ -91,7 +98,7 @@ export function Header() {
                             id="logoHeader"
                             onClick={() => { navigate("/"); } }></img>
                     </div>
-                    {windowWidth >= 520 && (
+                    {windowWidth >= 770 && (
                     <div id="sloganContainer">
                             
                         </div>)}
@@ -100,10 +107,11 @@ export function Header() {
 
                             <StyledButtonLogIn label={"Login"} destiny={"/Login"} icon={<CgProfile/>} />
                             <StyledButtonLogIn label={"Blog"} destiny={"/Blog"} icon={<FaBook/>} />
+                            <StyledButtonLogIn label={"EMERGÊNCIA!"} destiny={"/emergency"} icon={<FaExclamationTriangle/>} />
 
                         </div></>)}
         
-        {windowWidth < 520 && (
+        {windowWidth < 770 && (
             <>
             <div id="logoContainer">
                         <img src={Logo}
@@ -117,7 +125,7 @@ export function Header() {
                             id="logoHeader"
                             onClick={() => { navigate("/"); } }></img>
                     </div>
-                    {windowWidth >= 520 && (
+                    {windowWidth >= 770 && (
                     <div id="sloganContainer">
                             <img src={Slogan2}
                                 alt='Help Me Slogan'
@@ -130,9 +138,12 @@ export function Header() {
             <IoMenu size={22} color="#9384D7" onClick={toggleMobileMenu} />
             
             {isMobileMenuOpen && (
-                <div id="mobileMenuContent">
-                  <StyledButtonLogIn label={"Login"} destiny={"/Login"} icon={<CgProfile/>} />
+              <div id="mobileMenuContent" className={isMobileMenuOpen ? "animate-on-scroll" : !isMobileMenuOpen  ? "animate-on-scroll-out" : "none"}>
+                  <IoClose  style={{position: "absolute", left: "-3px", height: "100%",border: "1px double #9384D7 "}} size={22} color="#9384D7" onClick={toggleMobileMenu} />
+                <StyledButtonLogIn label={"Login"} destiny={"/Login"} icon={<CgProfile/>} />
                 <StyledButtonLogIn label={"Blog"} destiny={"/Blog"} icon={<FaBook/>} />
+                <StyledButtonLogIn label={"EMERGÊNCIA!"} destiny={"/emergency"} icon={<FaExclamationTriangle/>} />
+
               </div>
             )}
           </div>

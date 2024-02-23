@@ -7,14 +7,16 @@ export const ProfessionalSideConsultationStyledDiv = styled.div`
  justify-content: space-between;
  align-content: center;
  width: fit-content;
- height: 250px;
- padding: 1%;
- box-shadow: ${GlobalStyleDefault.shadows.large};
- background-color: ${GlobalStyleDefault.colors.offwhite};
+ height: 240px;
+ padding: 2%;
+ box-shadow: ${GlobalStyleDefault.shadows.large}, inset 0 0 10px rgba(62, 62, 62, 0.8);
+ 
+ background-color: ${GlobalStyleDefault.colors.secondary};
   border-radius: 15px;
+  backdrop-filter: blur(100px);
  
   &:hover{
-    box-shadow: ${GlobalStyleDefault.shadows.card};
+    box-shadow: ${GlobalStyleDefault.shadows.card}, inset 0 0 10px rgba(62, 62, 62, 0.8);
 
   }
  
@@ -61,7 +63,7 @@ export const ProfessionalSideConsultationStyledDiv = styled.div`
     border: 0;
     width: 70px;
     height: 25px;
-    background-color: ${GlobalStyleDefault.colors.secondary};
+    background-color: ${GlobalStyleDefault.colors.secondarystrong};
     box-shadow: ${GlobalStyleDefault.shadows.large};
     color: white;
   }

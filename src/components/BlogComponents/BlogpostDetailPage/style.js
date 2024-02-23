@@ -17,6 +17,10 @@ export const StyledBlogPostDetailBody = styled.div`
   gap: 20px;
   justify-content: space-between;
   align-items: center;
+
+  p{
+    text-indent: 10px; /* Define o espaçamento de recuo de 10 pixels */
+  }
   .MainDiv{
     display: grid;
     grid-template-columns: 3fr 1fr;
@@ -47,8 +51,9 @@ export const StyledBlogPostDetailBody = styled.div`
     background-color: #00000066;
     padding: 1%;
     color: ${GlobalStyleDefault.colors.textwhite};
+    gap: 3%;
     h5{
-      margin-bottom: -10%;
+      margin-bottom: 1%;
     }
     
 

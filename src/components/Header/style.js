@@ -8,7 +8,7 @@ export const StyledHeaderContainer = styled.div`
   align-items: center;
   //background-color: ${GlobalStyleDefault.colors.secondary};
   padding-top: 1%;
-  z-index: 1;
+  z-index: 99;
   box-shadow: ${GlobalStyleDefault.shadows.medium};
   background: ${GlobalStyleDefault.colors.gradientheader};
   border-radius: 0px 0px 15px 15px;
@@ -20,7 +20,7 @@ export const StyledHeaderContainer = styled.div`
 
     }
     #buttonsContainer{
-      width: 40%;
+      width: 60%;
 
     }
   }
@@ -41,30 +41,17 @@ export const StyledHeaderContainer = styled.div`
     display: flex;
     justify-content: center;
     align-content: center;
-    
+    z-index: 99;
     #mobileMenuButton{
       border: 0;
       background-color: transparent;
+      z-index: 30;
     }
    
   }
 
 
-  #mobileMenuContent{
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 100px;
-   
-    margin-top: 150%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    margin-left: -160%;
-
-   
-  }
+  
 
   #logoContainer {
     display: flex;
@@ -92,7 +79,7 @@ export const StyledHeaderContainer = styled.div`
    
 
   }
-  @media (max-width: 620px) {
+  @media (max-width: 770px) {
     transform:  scale(0.8);
   
 }
@@ -101,7 +88,7 @@ export const StyledHeaderContainer = styled.div`
     
     padding: 1%;
     display: flex;
-    max-width: 30%;
+    width: 20%;
     width: fit-content;
     height: 100%;
     justify-content: center;
@@ -122,7 +109,8 @@ export const StyledHeaderContainer = styled.div`
   }
   #buttonsContainer {
     display: flex;
-    width: 320px;
+    width: 80%;
+    max-width: 660px;
     height: 100%;
     padding-inline: 2%;
     gap: 15px;
@@ -132,28 +120,76 @@ export const StyledHeaderContainer = styled.div`
    
    
     background-blend-mode: soft-light;
-    @media (max-width: 620px) {
+    @media (max-width: 770px) {
     transform:  scale(0.8);
   
 }
     
   }
  
-  @media (max-width: 375px) {
+  @media (max-width: 775px) {
     
     
   #mobileMenuContent{
-    height: 80px;
+    display: flex;
+    height: fit-content;
+   
+    position: absolute;
+    top: -200%;
+    right: -100%;
+    width: 250px;
+    z-index: 80;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: antiquewhite;
+    border-radius: 15px;
+    overflow: hidden;
+    height: 100vh;
+   
+ 
+
+   
     button{
+      width: 100%;
       transform: scale(0.8);
     }
 
+    
    
   }
-
     
    
   
+}
+.animate-on-scroll-out {
+  opacity: 0;
+  animation: fadeOutToRight 1s ease-in-out forwards; /* Ajuste a duração conforme necessário */
+}
+
+@keyframes fadeOutToRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+.animate-on-scroll {
+  opacity: 1;
+    animation: fadeInFromRight 1s ease-in-out forwards;
+  }
+@keyframes fadeInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
   
   

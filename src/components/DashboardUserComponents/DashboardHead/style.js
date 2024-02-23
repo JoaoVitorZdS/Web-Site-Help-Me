@@ -1,44 +1,50 @@
 import styled from "styled-components";
-import GlobalStyleDefault from "../../../GlobalStyles";
 
 export const StyledDashboardHead = styled.div`
-  height: 100px;
-  
+  height: auto;
   margin: 0 auto;
-  width: 70vw;
-  min-width: 320px;
+  width: 85vw;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: left;
   align-items: center;
+  margin-top: 3%;
+  gap: 3%;
 
  
   #userInfoContainer{
-    width: 30%;
+    width: fit-content;
     height: 90%;
     display: flex;
-    flex-direction: column-reverse;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+
+  i{
+    margin-right: 5%;
+
+  }
 
    
   }
   
   #userPicContainer{
-    width: 13%;
-    height: 90%;
+    width: fit-content;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
     
   }
 
   #buttonsContainer{
    display: flex;
+   
    flex-direction: row;
    margin-bottom: 5%;
   }
 
-  img {
-   width: 100%;
-    border-radius: 25px;
-  }
+ 
   button {
     background-color: #343b41;
     border: transparent;
@@ -47,7 +53,7 @@ export const StyledDashboardHead = styled.div`
     width: 100px;
     border-radius: 15px;
     padding: 5px;
-    margin-left: 3% ;
+    margin: 3% ;
     
     div {
       font-size: smaller;
@@ -56,37 +62,18 @@ export const StyledDashboardHead = styled.div`
     }
   }
 
-  @media screen and (max-width: 320px) {
+  @media (max-width: 320px) {
     font-size: small;
   img {
     width: 80%;
    
   }
 }
-  @media screen and (min-width: 320px) {
-    font-size: small;
-  img {
-    width: 80%;
-   
-  }
+  @media (max-width: 450px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
 }
-  @media screen and (min-width: 768px) {
-    font-size: medium;
-  img {
-    width: 90%;
-   
-  }
-}
-  @media screen and (min-width: 1024px) {
-    
-  img {
-    width: 100%;
-  }
-}
-  @media screen and (min-width: 1440px) {
-   
-  img {
-   
-  }
-}
+
 `;

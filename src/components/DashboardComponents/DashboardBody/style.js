@@ -33,7 +33,7 @@ export const StyledDashboardBody = styled.div`
     box-shadow: ${GlobalStyleDefault.shadows.activeCategorie};
     padding: 0.5rem;
     padding-left: 1rem;
-    color: ${GlobalStyleDefault.colors.secondary};
+    color: ${GlobalStyleDefault.colors.secondarystrong};
     font-family: DolceVita;
     display: flex;
     justify-content: center;

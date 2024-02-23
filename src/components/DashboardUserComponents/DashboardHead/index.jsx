@@ -1,10 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext} from "react";
 import { StyledDashboardHead } from "./style";
 import { AccessTokenContext } from "../../StyledButtons/ButtonLogInGoogle";
 import genericProfile from "../../../assets/imgs/GenericProfile.jpg"
-import DashboardPage from "../../../pages/Dashboard";
-import LandingPage from "../../../pages/Landing";
-import LoginPage from "../../../pages/Login";
+import { GiCharm } from "react-icons/gi";
+import { GiFountainPen } from "react-icons/gi";
+import GlobalStyleDefault from "../../../GlobalStyles";
+import "../../../App.css"
+import plantProfile from "../../../assets/imgs/PlantProfile.png"
 
 export const DashboardHead = () => {
 
@@ -17,26 +19,13 @@ export const DashboardHead = () => {
         
        <StyledDashboardHead>
        <div id="userPicContainer">
-       <img alt="googleProfilePic" src={userData.picture} style={{}}></img>
+        <img src={plantProfile} alt="" style={{display: "flex", position: "relative", zIndex: "1", width: "250px", height: "auto"}} />
+       <img alt="googleProfilePic" src={userData.picture || genericProfile} style={{ zIndex: 2, position: "relative",width: "100px", height: "auto", borderRadius: "50%", bottom: "-7px", left: "-180px"}}></img>
        </div>
        
     <div id="userInfoContainer">
-      <div>{`${userData.name}`}</div>
-        <div id="buttonsContainer">
-          
-          <button>
-            <div>
-              Editar Perfil
-            </div>
-          </button>
-
-          <button>
-            <div>
-              Curtidas
-            </div>
-           </button>
-
-        </div>
+      <h3>{`${userData.name}`}</h3>
+        
     </div>
       
        
@@ -49,7 +38,7 @@ export const DashboardHead = () => {
         <img alt="googleProfilePic" src={genericProfile} style={{}}></img>
         </div>
         <div>
-        <h3>{`Faça Login Para Continuar`}</h3>
+        <h3 style={{color: `${GlobalStyleDefault.colors.secondary}`, fontFamily: "DolceVita"}}>Faça <a href="/login">Login</a> Para Continuar</h3>
         </div>
       </StyledDashboardHead>
       )}

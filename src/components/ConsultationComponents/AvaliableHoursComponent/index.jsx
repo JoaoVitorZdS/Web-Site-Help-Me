@@ -13,6 +13,9 @@ import Modal from "react-modal";
 import { toast } from "react-toastify";
 import { FaArrowAltCircleRight,FaArrowAltCircleLeft } from "react-icons/fa";
 import "../../../App.css"
+import GlobalStyleDefault from "../../../GlobalStyles";
+import genericProfilePhoto from "../../../assets/imgs/GenericProfile.jpeg";
+import { AvaliableHoursStyledDiv, ConfirmationDoctorConsultationStyledModal } from "./style";
 const capitalizeFirstLetter = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
@@ -20,12 +23,12 @@ const DoctorInfoCard = ({ doctorInfo }) => {
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "20px" }}>
       <img
-        src={doctorInfo.picture}
+        src={doctorInfo.picture || genericProfilePhoto }
         alt="Profile"
         style={{ borderRadius: "50%", width: "100px", height: "100px", objectFit: "cover" }}
       />
-      <p>{doctorInfo.name}</p>
-      <p>{doctorInfo.work_area}</p>
+      <i>{doctorInfo.name}</i>
+      <i>{doctorInfo.work_area}</i>
     </div>
   );
 };
@@ -41,6 +44,7 @@ const AvailableHoursComponent = ({ availableHours, professionalEmail, profession
     phone: "",
     description: ""
   });
+  const [errorMessage, setErrorMessage] = useState("");
   let isButtonDisabled
   useEffect(() => {
     const fetchScheduleData = async () => {
@@ -73,8 +77,17 @@ const AvailableHoursComponent = ({ availableHours, professionalEmail, profession
   }, [professionalEmail]);
 
   const handleDateChange = (amount) => {
-    setCurrentDate((prevDate) => addDays(prevDate, amount * 7)); // Multiplicando por 7 para avançar ou retroceder semanas
+    // Calcula a data uma semana antes da data atual
+    const oneWeekBefore = addDays(new Date(), -7);
+    
+    // Se a nova data for anterior à data limite, define a data atual como a nova data
+    if (addDays(currentDate, amount * 7) < oneWeekBefore) {
+      setCurrentDate(new Date());
+    } else {
+      setCurrentDate((prevDate) => addDays(prevDate, amount * 7));
+    }
   };
+  
   
 
   const handleButtonClick = (formattedDate, formattedTime) => {
@@ -83,6 +96,18 @@ const AvailableHoursComponent = ({ availableHours, professionalEmail, profession
   };
 
   const handleModalSubmit = async () => {
+    // Verificar se os campos estão preenchidos
+    if (!modalData.phone || !modalData.description) {
+      setErrorMessage("Por favor, preencha todos os campos.");
+      return;
+    } else if (modalData.phone.length < 10) {
+      setErrorMessage("Por favor, preencha com um telefone válido com DDD.");
+      return;
+    } else if (modalData.description.length < 20) {
+      setErrorMessage("Por favor, descreva o motivo da sua consulta com pelo menos 20 carácteres.");
+      return;
+    }
+    
     try {
       const db = getFirestore();
       const scheduleCollection = collection(db, "schedule");
@@ -107,7 +132,7 @@ const AvailableHoursComponent = ({ availableHours, professionalEmail, profession
       });
 
       setScheduleData(updatedScheduleData);
-      toast("Consulta Solcitada! A convirmação será enviada por email em até 24h", {type: "success"})
+      toast("Consulta Solcitada! A confirmação será enviada por email em até 24h", {type: "success"})
       setModalIsOpen(false);
     } catch (error) {
       toast("Falha ao solicitar Consulta! Tente Novamente em alguns minutos", {type: "error"})
@@ -143,12 +168,19 @@ const AvailableHoursComponent = ({ availableHours, professionalEmail, profession
   };
 
   return (
-    <div  >
-      <h3 style={{marginBottom: "15px"}}>Horários Disponíveis:</h3>
+    <AvaliableHoursStyledDiv >
+      
+      <h3 style={{marginBottom: "15px", marginLeft: "15px"}}>
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
+        <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"/>
+         <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+      </svg>
+        Horários Disponíveis:</h3>
       {renderMonthSelector()}
+      
       {availableHours.map((day, index) => (
-        <div key={index} style={{padding: "1%",borderRadius: "5px",border: "1px dotted grey", marginBottom: "5px"}}>
-          <i >
+        <div key={index} style={{padding: "1%",borderRadius: "5px",border: "1px double grey", marginBottom: "5px"}}>
+          <i style={{fontFamily: "DolceVita"}}>
             {`${day.day} ${addDays(startOfWeekDate, index).getDate()}`}
           </i>
           <ul
@@ -167,7 +199,7 @@ const AvailableHoursComponent = ({ availableHours, professionalEmail, profession
               const formattedTime = hour.split(" ")[1];
               
               const formattedButtonDateTime = `${formattedDate} ${formattedTime}`;
-              let buttonColor = "green";
+              let buttonColor = "#21ad21";
               let isButtonDisabled = false;
   
               scheduleData.forEach((event) => {
@@ -178,13 +210,13 @@ const AvailableHoursComponent = ({ availableHours, professionalEmail, profession
   
                 if (formattedButtonDateTimeObj.getTime() === eventDateTime.getTime()) {
                   if (event.status === "pending" ) {
-                    buttonColor = "yellow";
+                    buttonColor = "#ffd906";
                     isButtonDisabled = true;
                   } else if (event.status === "confirmed"){
-                    buttonColor = "red";
+                    buttonColor = "#b30000";
                     isButtonDisabled = true;
                   } else if (event.status === "cancelled") {
-                    buttonColor = "green";
+                    buttonColor = "#21ad21";
                     isButtonDisabled = false;
                   }
                 }
@@ -193,11 +225,14 @@ const AvailableHoursComponent = ({ availableHours, professionalEmail, profession
               return (
                 <button
                   key={hourIndex}
-                  style={{  backgroundColor: buttonColor, borderRadius: "5px", padding: "2px", border: "transparent", color: "whitesmoke", transform: "scale(0.9)", cursor: "pointer" }}
+                  style={{  backgroundColor: buttonColor, borderRadius: "5px", padding: "2px", border: "transparent", color: "whitesmoke", cursor: "pointer", width: "50px", height: "50px" }}
                   onClick={() => handleButtonClick(formattedDate, formattedTime)}
                   disabled={isButtonDisabled}
                 >
-                  {formattedTime}
+                  <i style={{fontSize: "0.7rem", fontWeight: "700"}}>
+
+                  {formattedTime}h
+                  </i>
                 </button>
               );
             })}
@@ -210,62 +245,93 @@ const AvailableHoursComponent = ({ availableHours, professionalEmail, profession
         onRequestClose={() => setModalIsOpen(false)}
         style={{
           overlay: {
-            zIndex: 1000, // Valor que você pode ajustar conforme necessário
-            // Outras propriedades de overlay, se necessário
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            zIndex: "13",
+            display: "flex",
+            justifyContent: "center",
+            alignContent: "center",
           },
           content: {
-            position: "absolute",
-            top: "5%",
-            left: "5%",
-           
-            background: "white",
+            position: "relative",
+            inset: 0,
+            background: `${GlobalStyleDefault.colors.textwhite}`,
             overflow: "auto",
             WebkitOverflowScrolling: "touch",
-            outline: "none",
-            padding: "20px",
-            display: "flex",
-            flexDirection: "column",
-            width: "90vw",
+            
+            width: "90%",
             height: "90vh",
-            border: "1px double grey",
+          
+            
             
             
           }
         }}
       >
         {selectedHour && (
-          <div style={{display: "flex", flexDirection: "column", justifyContent: "space-around", alignItems: "center", height: "100%", width: "100%", gap: "15px"}}>
-            <div style={{display: "flex", flexDirection: "column", justifyContent: "space-around", alignItems: "center", gap: "15px"}}>
-            <h4>Agendar Consulta Virtual com:</h4>
+         <ConfirmationDoctorConsultationStyledModal>
+          <svg style={{position: "absolute", top: "5%"}} onClick={() => setModalIsOpen(false)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+          </svg>
+            <div className="doctorInfo" >
+            <h3>Agendar Consulta Virtual com:</h3>
             <DoctorInfoCard doctorInfo={professionalInfo}/>
-            <p>Data e Hora: {selectedHour}</p>
-            <p>Valor: R$100</p>
-            <p>Pagamento por: PIX || Transferência Bancária no início da consulta</p>
+            <p>
+            <i>Data e Hora:</i>
+             {selectedHour}
+
+            </p>
+            <p><i>
+              Pagamento por:
+              </i>
+               PIX ou Transferência Bancária no início da consulta</p>
+               <p>
+
+            <i>Valor: 
+              </i>
+              R$100
+               </p>
             </div>
+            <div style={{display: "flex", justifyContent: "space-around", flexDirection: "column"}}>
+
+            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+            <label>
+            Telefone com DDD:
             <input
               type="text"
-              placeholder="Telefone"
+              placeholder="Insira seu telefone com DDD"
               value={modalData.phone}
               onChange={(e) => setModalData({ ...modalData, phone: e.target.value })}
-              style={{width: "70%"}}
-            />
+              style={{width: "100%"}}
+              required={true}
+              />
+              </label>
+              <label>
+                Descreva o motivo que trouxe você até a Help Me
+
             <textarea
               
               placeholder="Descreva o motivo da sua consulta"
               value={modalData.description}
               onChange={(e) => setModalData({ ...modalData, description: e.target.value })}
-              style={{width: "70%"}}
-              rows={4} // Você pode ajustar o número de linhas conforme necessário
+              style={{width: "100%", height: "fit-content", resize: "none", textIndent: "10px"}}
+              rows={20} // Você pode ajustar o número de linhas conforme necessário
               cols={50} // Você pode ajustar o número de colunas conforme necessário
-            />
-            <button onClick={handleModalSubmit} disabled={isButtonDisabled}>
+              />
+              </label>
+            <button className="zoom" onClick={handleModalSubmit} disabled={isButtonDisabled}>
               Confirmar Agendamento
             </button>
+            <button className="cancel" onClick={() => setModalIsOpen(false)} disabled={isButtonDisabled}>
+              Cancelar
+            </button>
+              </div>
             
-          </div>
+         </ConfirmationDoctorConsultationStyledModal>
+        
         )}
       </Modal>
-    </div>
+    </AvaliableHoursStyledDiv>
   );
 };
 

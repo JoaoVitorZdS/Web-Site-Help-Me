@@ -73,7 +73,7 @@ const ButtonPlants = (props) => {
   height: 55px;
 }
 
-button:hover .icon-1 {
+button .icon-1 {
   animation: slay-1 4s ease-in-out infinite alternate;
  
 }
@@ -108,7 +108,7 @@ button:hover .icon-1 {
   height: 65px;
 }
 
-button:hover .icon-2 {
+button .icon-2 {
   animation: slay-2 3s cubic-bezier(0.52, 0, 0.58, 1) 1s infinite;
   transform: rotate(0);
 }
@@ -141,7 +141,7 @@ button:hover .icon-2 {
   width: 35px;
   height: 35px;
 }
-button:hover .icon-3 {
+button .icon-3 {
   animation: slay-3 2s cubic-bezier(0.52, 0, 0.58, 1) 1s infinite;
   transform: rotate(0);
 }

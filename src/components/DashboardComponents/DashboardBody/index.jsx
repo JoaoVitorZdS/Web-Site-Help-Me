@@ -23,8 +23,8 @@ export const DashboardBody = () => {
     switch (activeCategory) {
       case "Consultas":
         return <DashboardEventForm/>;
-      case "Postagens":
-        return <DashboardPostForm/>;
+      //case "Postagens":
+       // return <DashboardPostForm/>;
       case "Extrato":
         return <DashboardOverallForm/>;
       default:
@@ -33,7 +33,15 @@ export const DashboardBody = () => {
   };
 
   
- 
+ /* <div
+              onClick={() => handleCategoryClick("Postagens")}
+              className={activeCategory === "Postagens" ? "active" : "nonactive"}
+              >
+               
+               <GiNotebook />
+              Postagens
+             
+            </div> */
   
   return (
     <>
@@ -50,15 +58,7 @@ export const DashboardBody = () => {
               Consultas
              
             </div>
-            <div
-              onClick={() => handleCategoryClick("Postagens")}
-              className={activeCategory === "Postagens" ? "active" : "nonactive"}
-              >
-               
-               <GiNotebook />
-              Postagens
-             
-            </div>
+            
             <div
               onClick={() => handleCategoryClick("Extrato")}
               className={activeCategory === "Extrato" ? "active" : "nonactive"}
