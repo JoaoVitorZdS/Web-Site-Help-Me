@@ -57,6 +57,9 @@ export const StyledGoogleButtonContainer = styled.button`
   background-color: #fff;
   box-shadow: ${GlobalStyleDefault.shadows.medium};
 
+  p{
+    color: ${GlobalStyleDefault.colors.text}
+  }
   #labelStyledGoogleButton {
     font-weight: 500;
     font-size: 12px;
