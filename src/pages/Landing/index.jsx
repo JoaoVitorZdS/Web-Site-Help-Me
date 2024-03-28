@@ -13,10 +13,7 @@ const LandingPage = () => {
     <StyledLandingPageContainer>
       <Header/>
       <Body/>
-      <div style={{width: "95%", position: "sticky", bottom: "20px"}}>
-                <FixedButtons/>
-
-        </div>
+     
       <Footer/>
     </StyledLandingPageContainer>
   );

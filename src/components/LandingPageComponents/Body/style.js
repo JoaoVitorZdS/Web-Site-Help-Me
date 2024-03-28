@@ -1,15 +1,15 @@
 import styled, { keyframes } from "styled-components";
 import GlobalStyleDefault from "../../../GlobalStyles";
-
+import headerImagebackgroud from "../../../assets/imgs/NuvensAzuis.jpeg"
 export const StyledBodyContainer = styled.div`
   display: grid;
   grid-template-rows: auto 1fr auto; /* Header, Sections, Footer */
   min-height: 100vh;
-  width: 96vw;
+  width: 100vw;
  
- 
-  box-sizing: border-box;
 
+
+ 
   /*#firstContainer {
     display: flex;
     width: 90vw;
@@ -127,9 +127,14 @@ export const StyledBodyContainer = styled.div`
     justify-items: center;
     align-items: center;
     margin-top: 10%;
-    margin-bottom: 10%;
+    
+   
     
     font-size: large;
+    
+
+    background-image: url()  ;
+    background-size: auto;
    
  
     
@@ -158,7 +163,7 @@ export const StyledBodyContainer = styled.div`
   opacity: 1;
     animation: fadeInFromRight 1s ease forwards;
   }
-.animate-on-scroll-left {
+.animate-on-scroll-left  {
   opacity: 1;
     animation: fadeInFromLeft 1s ease forwards;
   }
@@ -170,9 +175,11 @@ export const StyledBodyContainer = styled.div`
 
   #thirdContainer {
     display: grid; /* Alteração */
-    grid-template-rows: 50px auto; 
+    grid-template-rows: 150px auto; 
     justify-content: center;
     align-items: center;
+    margin-bottom: 100px;
+    
     
     #TitleSecondContainer{
       border-top: 1px  solid grey;
@@ -202,6 +209,7 @@ export const StyledBodyContainer = styled.div`
 
     }    
   }
+ 
     
   }
   @media (max-width: 620px) {
@@ -226,6 +234,12 @@ export const StyledBodyContainer = styled.div`
 
     }    
   }
+  #secondContainer {
+  
+  button {
+    transform: scale(0.8);
+  }
+}
     
   }
   @media (max-width: 500px) {

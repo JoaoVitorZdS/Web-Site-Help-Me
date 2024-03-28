@@ -21,6 +21,9 @@ const navigate = useNavigate()
         <div id="termsContainer">
             <a href="/terms"> Termos de uso e Privacidade</a>
         </div>
+        <div id="termsContainer">
+            <a href="/FAQ"> Perguntas Frequentes</a>
+        </div>
         <div id="propertyContainer">
             <p style={{fontSize: "smaller"}}>©2024 Help Me</p>
         </div>

@@ -47,8 +47,12 @@ const ConfirmationModal = ({ isOpen, onClose, onConfirm, actionLabel, consultati
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          borderRadius: "15px",
-          boxShadow: `${GlobalStyleDefault.shadows.card}`
+          background: "rgba(255, 255, 255, 0.19)",
+          borderRadius: "16px",
+          boxShadow: "0 4px 30px rgba(201, 175, 175, 0.1)",
+          backdropFilter: "blur(20px)",
+          border: "1px solid rgba(255, 255, 255, 0.25)",
+          WebkitBackdropFilter: "blur(20px)",
         }
         
         

@@ -3,15 +3,16 @@ import GlobalStyleDefault from "../../../GlobalStyles";
 
 
 export const StyledDashboardEventForm = styled.div`
-  height: 100%;
+  height: 80vh;
   background-color: transparent;
   margin: 0;
-  width: 100vw;
+  width: 80vw;
   padding: 25px;
+  padding-bottom: 5%;
   display: flex;
   flex-direction: column;
   gap: 1px;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
   background-color: ${GlobalStyleDefault.colors.offwhite};
 
@@ -19,10 +20,7 @@ export const StyledDashboardEventForm = styled.div`
   .active{
     box-shadow: ${GlobalStyleDefault.shadows.card};
   }
-  .component-container{
-    width: 100vw;
-    height: 50%;
-  }
+  
   .userSectionsContainer{
     display: flex;
     align-items: center;

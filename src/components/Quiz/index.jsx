@@ -299,16 +299,7 @@ const Quiz = () => {
         setSelectedProfessional(professional);
         navigate(`/consultation/${professional.name}`);
     };
-
-    return (
-        <>
-       
-        <div style={{display: "grid", gridTemplateColumns: "1fr 1fr", gridTemplateRows: "1fr 1fr", backgroundColor: `${GlobalStyleDefault.colors.secondary}`, width: "100%", height: "100%", position: "relative", alignItems: "center", justifyItems: "center", boxShadow: `${GlobalStyleDefault.shadows.large}, inset 0 0 10px rgba(62, 62, 62, 0.8)`}}>
-
-        <FlowerContainer>
-            <img src={cornerFlower} alt="" className='leftCornerFlower' style={{position: "absolute", height: "auto", width: "43%", top: 0, left: 0,zIndex: -1}} />
-            <img src={cornerFlowerBtmLft} alt="" className='leftCornerFlower' style={{position: "absolute", height: "auto", width: "43%", bottom: 0, right: 0,zIndex: -1}} />
-            <QuizContainer>
+    /* <QuizContainer>
             <h1>Quiz de Saúde Feminina</h1>
             {currentQuestion < questions.length && (
 
@@ -349,34 +340,32 @@ const Quiz = () => {
                     )}
                 </>
             )}
-        </QuizContainer>
+        </QuizContainer>*/
+
+    return (
+        <>
+       
+        <div style={{display: "grid", gridTemplateColumns: "1fr 1fr", gridTemplateRows: "1fr 1fr", backgroundColor: `${GlobalStyleDefault.colors.secondary}`, width: "100%", height: "100%", position: "relative", alignItems: "center", justifyItems: "center", boxShadow: `${GlobalStyleDefault.shadows.large}, inset 0 0 10px rgba(62, 62, 62, 0.8)`}}>
+
+        <FlowerContainer>
+            <img src={cornerFlower} alt="" className='leftCornerFlower' style={{position: "absolute", height: "auto", width: "43%", top: 0, left: 0,zIndex: -1}} />
+            <img src={cornerFlowerBtmLft} alt="" className='leftCornerFlower' style={{position: "absolute", height: "auto", width: "43%", bottom: 0, right: 0,zIndex: -1}} />
+           
         </FlowerContainer>
         <FlowerContainer2>
             <img src={cornerFlowerBtmRgt} alt="" className='leftCornerFlower' style={{position: "absolute", height: "auto", width: "43%", bottom: 0, left: 0,zIndex: -1}} />
             <img src={cornerFlowerTopRgt} alt="" className='leftCornerFlower' style={{position: "absolute", height: "auto", width: "43%", top: 0, right: 0,zIndex: -1}} />
-            <TesteNameContainer2>
-                <h3>Teste de personalidade</h3>
-                <p>Um teste rápido para</p>
-                    <p> se entender melhor!</p>
-            </TesteNameContainer2>
+            
         </FlowerContainer2>
         <FlowerContainer3>
             <img src={cornerFlowerBtmRgt} alt="" className='leftCornerFlower' style={{position: "absolute", height: "auto", width: "43%", bottom: 0, left: 0,zIndex: -1}} />
             <img src={cornerFlowerTopRgt} alt="" className='leftCornerFlower' style={{position: "absolute", height: "auto", width: "43%", top: 0, right: 0,zIndex: -1}} />
-            <TesteNameContainer3>
-                <h3>Teste de personalidade</h3>
-                <p>Um teste rápido para</p>
-                    <p> se entender melhor!</p>
-            </TesteNameContainer3>
+           
         </FlowerContainer3>
         <FlowerContainer4>
             <img src={cornerFlower} alt="" className='leftCornerFlower' style={{position: "absolute", height: "auto", width: "43%", top: 0, left: 0,zIndex: -1}} />
             <img src={cornerFlowerBtmLft} alt="" className='leftCornerFlower' style={{position: "absolute", height: "auto", width: "43%", bottom: 0, right: 0,zIndex: -1}} />
-            <TesteNameContainer4>
-                <h3>Teste de personalidade</h3>
-                <p>Um teste rápido para</p>
-                    <p> se entender melhor!</p>
-            </TesteNameContainer4>
+          
         </FlowerContainer4>
         </div>
             </>

@@ -46,12 +46,20 @@ export const StyledBlogPostDetailBody = styled.div`
     z-index: 1;
     position: sticky;
     top: 3%;
-    right: 5%;
+    right: 15%;
     
     background-color: #00000066;
     padding: 1%;
-    color: ${GlobalStyleDefault.colors.textwhite};
+    color: ${GlobalStyleDefault.colors.text};
     gap: 3%;
+
+    /* From https://css.glass */
+background: rgba(255, 255, 255, 0.19);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(7.7px);
+-webkit-backdrop-filter: blur(7.7);
+border: 1px solid rgba(255, 255, 255, 0.25);
     h5{
       margin-bottom: 1%;
     }
@@ -78,8 +86,8 @@ export const StyledBlogPostDetailBody = styled.div`
 /* button styling */
 .button {
   --border-right: 6px;
-  --text-stroke-color: rgba(255,255,255,0.6);
-  --animation-color: #37FF8B;
+  --text-stroke-color: ${GlobalStyleDefault.colors.text};
+  --animation-color: ${GlobalStyleDefault.colors.primarystrong};
   --fs-size: 1em;
   letter-spacing: 3px;
   text-decoration: none;

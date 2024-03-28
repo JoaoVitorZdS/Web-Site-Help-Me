@@ -5,10 +5,12 @@ import candle from '../../../assets/imgs/banners/2.png';
 import mandalah from '../../../assets/imgs/banners/3.png';
 import fem from '../../../assets/imgs/banners/4.png';
 import dev from '../../../assets/imgs/banners/5.png';
+import ProfessionalConsultationInteractionButton from '../../StyledButtons/SeeMoreAnimatedButton';
+import { FaBook } from 'react-icons/fa6';
 
 const CarouselContainer = styled.div`
   overflow: hidden;
-  width: 100%;
+  width: 90%;
   height: 100%;
   position: relative;
   top: 0;
@@ -32,11 +34,11 @@ const SlideItem = styled.div`
   
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%; /* Alteração: Utilizando 100% para largura e altura */
- 
+  padding-bottom: 5%;
   z-index: 3;
   border-width: 4px;
   border-radius: 25px;
@@ -117,44 +119,43 @@ const Carousel = () => {
         style={{ backgroundImage: `url(${blue})` }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        >
-        
+      >
+        <ProfessionalConsultationInteractionButton destiny={"/blog"} text={"Botão Teste"} icon={<FaBook/>} />
         </SlideItem>
         <SlideItem 
         style={{ backgroundImage: `url(${mandalah})` }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         >
-           
+        <ProfessionalConsultationInteractionButton destiny={"/blog"} text={"Botão Teste"} icon={<FaBook/>} />
         </SlideItem>
         <SlideItem 
         style={{ backgroundImage: `url(${candle})` }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         >
-       
-
+       <ProfessionalConsultationInteractionButton destiny={"/blog"} text={"Botão Teste"} icon={<FaBook/>} />
         </SlideItem>
         <SlideItem 
         style={{ backgroundImage: `url(${fem})` }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         >
-          {/* Conteúdo do slide (opcional) */}
+        <ProfessionalConsultationInteractionButton destiny={"/blog"} text={"Botão Teste"} icon={<FaBook/>} />
         </SlideItem>
         <SlideItem 
         style={{ backgroundImage: `url(${mandalah})` }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         >
-        
+        <ProfessionalConsultationInteractionButton destiny={"/blog"} text={"Botão Teste"} icon={<FaBook/>} />
         </SlideItem>
         <SlideItem 
         style={{ backgroundImage: `url(${dev})` }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         >
-          {/* Conteúdo do slide (opcional) */}
+        <ProfessionalConsultationInteractionButton destiny={"/blog"} text={"Botão Teste"} icon={<FaBook/>} />
         </SlideItem>
       </Slide>
       <Button direction="prev" onClick={prevSlide}>

@@ -94,7 +94,7 @@ export const PostRenderDashboard = ({ post }) => {
           {globalPosts.length !== 0 ? (
             <ul>
               {globalPosts.map((post) => (
-                <li key={post.id} className="PostDiv" style={{ overflowY: !expandedPosts ? "scroll" : "hidden" }}>
+                <li key={post.id} className="PostDiv" style={{ overflowY: expandedPosts[post.id] ? "scroll" : "hidden" }}>
                   <h2 onClick={() => {navigate(`/blog/${post.id}`)}}>{`${post.title}`}</h2>
                   <div className="ButtonsContainerDashboardPostRenderer">
                     <div>
@@ -120,7 +120,8 @@ export const PostRenderDashboard = ({ post }) => {
                     </i>
                     <FcEditImage size={22} />
                   </button>
-                  <div style={{ backgroundImage: `url(${post.imageURL})` }} className="PostImageContainer"></div>
+                  
+                  <div style={{ backgroundImage: `url(${post.imageURL})`}} className="PostImageContainer"></div>
                   <i style={{ fontSize: "12px" }}>Criado por: {`${post.created_by}`}</i>
                   <button className="expandDashboardRendererPost" onClick={() => togglePostContent(post.id)}>
                     {expandedPosts[post.id] ? <FaMinus /> : <FaPlus />}
@@ -142,7 +143,7 @@ export const PostRenderDashboard = ({ post }) => {
         <Modal
           isOpen={true} 
           onRequestClose={handleCloseModal} 
-          onAfterOpen={deleteFirstToolbar}
+        
           style={{
             overlay: {
               backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -163,10 +164,10 @@ export const PostRenderDashboard = ({ post }) => {
           <div style={{ width: "80%", height: "max-content", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", gap: "15px" }}>
             <h2 style={{color: GlobalStyleDefault.colors.primarystrong}}>Editar Post</h2>
             <StyledForm>
-              <MyQuillEditor 
-                value={editPostDetails.content} 
-                onChange={(value) => setEditPostDetails({ ...editPostDetails, content: value })}
-              />
+            <MyQuillEditor
+  value={editPostDetails.content} // Fornecer o conteúdo HTML diretamente
+  onChange={(value) => setEditPostDetails((prevDetails) => ({ ...prevDetails, content: value }))}
+/>
               <label>Introdução:</label>
               <textarea
                 rows={10}
@@ -201,7 +202,7 @@ export const PostRenderDashboard = ({ post }) => {
                 value={editPostDetails.imageURL}
                 onChange={(e) => setEditPostDetails({ ...editPostDetails, imageURL: e.target.value })}
               />
-              <img src={editPostDetails.imageURL} alt="choosenImageForPost" style={{width: "50%", maxWidth:"320px"}} />
+              <img src={editPostDetails.image_url} alt="choosenImageForPost" style={{ width: "50%", maxWidth: "320px" }} />
               <label>
                 Público:
                 <select name="is_public" value={editPostDetails.is_public} onChange={(e) => setEditPostDetails({ ...editPostDetails, is_public: e.target.value })}>

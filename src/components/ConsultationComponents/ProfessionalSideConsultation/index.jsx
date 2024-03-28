@@ -253,26 +253,22 @@ const ProfessionalConsultations = () => {
   return (
     <div style={{display: "flex", flexDirection: "column", width: "95vw", gap: "2%", justifyContent: "space-between" }}>
       
-      <p style={{color: GlobalStyleDefault.colors.secondarystrong, fontFamily: "DolceVita", paddingLeft: "10%"}}> Pendentes {consultations.filter(consultation => consultation.status === 'pending').length}</p>
+      <p style={{color: GlobalStyleDefault.colors.secondarystrong, margin: 0, padding: 0, fontFamily: "DolceVita"}}> Pendentes {consultations.filter(consultation => consultation.status === 'pending').length}</p>
       <div style={{display: "flex", flexDirection: "row", width: "auto", minWidth: "100vw", gap: "5px", overflowX: "auto", padding: 0, paddingRight: "50px"}} >
       {/* Render pending consultations */}
-      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto", minHeight: "100px", marginBottom: "50px", padding: "0px",paddingRight: "50px"}}>
+      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto", minHeight: "100px",  minWidth: "90vw", marginBottom: "50px", padding: "20px",paddingRight: "50px", background: "rgba(255, 255, 255, 0.19)",borderRadius: "16px", boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",border: "1px solid rgba(255, 255, 255, 0.25)"}}>
 
       {renderByStatus("pending")}
-      {renderByStatus("pending")}
-      {renderByStatus("pending")}
-      {renderByStatus("pending")}
-      {renderByStatus("pending")}
-      {renderByStatus("pending")}
+     
    
       </ul>
       </div>
       <div>
       {/* Render confirmed consultations */}
-      <p style={{color: GlobalStyleDefault.colors.secondarystrong, fontFamily: "DolceVita", paddingLeft: "10%"}}>Confirmadas {consultations.filter(consultation => consultation.status === 'confirmed').length} </p>
+      <p style={{color: GlobalStyleDefault.colors.secondarystrong, margin: 0, padding: 0, fontFamily: "DolceVita"}}>Confirmadas {consultations.filter(consultation => consultation.status === 'confirmed').length} </p>
       <div style={{display: "flex", flexDirection: "row", width: "auto", minWidth: "100vw", gap: "5px", overflowX: "auto",paddingRight: "50px"}} >
 
-      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto", minHeight: "100px", marginBottom: "50px", padding: "0px", paddingRight: "50px"}}>
+      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto", minHeight: "100px", minWidth: "90vw", marginBottom: "50px", padding: "20px", paddingRight: "50px", background: "rgba(255, 255, 255, 0.19)",borderRadius: "16px", boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",border: "1px solid rgba(255, 255, 255, 0.25)"}}>
 
       {renderByStatus("confirmed")}
     
@@ -281,12 +277,26 @@ const ProfessionalConsultations = () => {
       </div>
       <div>
       {/* Render cancelled consultations */}
-      <p style={{color: GlobalStyleDefault.colors.secondarystrong, fontFamily: "DolceVita"}}>Canceladas {consultations.filter(consultation => consultation.status === 'cancelled').length} </p>
+      <p style={{color: GlobalStyleDefault.colors.secondarystrong, margin: 0, padding: 0, fontFamily: "DolceVita"}}>Canceladas {consultations.filter(consultation => consultation.status === 'cancelled').length} </p>
       <div style={{display: "flex", flexDirection: "row", width: "auto", minWidth: "110vw", gap: "5px", overflowX: "auto"}} >
 
 
-      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto", minHeight: "100px", marginBottom: "50px", padding: "0px 50px 0px 0px"}}>
+      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto", minHeight: "100px", minWidth: "fit-content", marginBottom: "50px", padding: "20px", background: "rgba(255, 255, 255, 0.19)",borderRadius: "16px", boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",border: "1px solid rgba(255, 255, 255, 0.25)"}}>
 
+      
+      {renderByStatus("cancelled")}
+      {renderByStatus("cancelled")}
+      {renderByStatus("cancelled")}
+      {renderByStatus("cancelled")}
+      {renderByStatus("cancelled")}
+      {renderByStatus("cancelled")}
+      {renderByStatus("cancelled")}
+      {renderByStatus("cancelled")}
+      {renderByStatus("cancelled")}
+      {renderByStatus("cancelled")}
+      {renderByStatus("cancelled")}
+      {renderByStatus("cancelled")}
+      {renderByStatus("cancelled")}
       {renderByStatus("cancelled")}
       
       </ul>

@@ -117,7 +117,10 @@ export const BlogBody = () => {
               </div>
         <ul>
           {currentPosts.map((post) => (
-            <li key={post.id} className="PostDiv">
+            <li key={post.id} className="PostDiv" style={{ backgroundImage: `url(${post.imageURL})` }}>
+              <div className="glassOverlay">
+
+             
               <div className="TitleContainer">
                 <Link
                   to={`/Blog/${post.id}`}
@@ -140,11 +143,7 @@ export const BlogBody = () => {
                 </Link>
               </div>
               <i style={{ fontSize: "12px" }}>Criado por: {`${post.created_by}`}</i>
-              <div
-                onClick={() => openModal(post.id)}
-                style={{ backgroundImage: `url(${post.imageURL})` }}
-                className="PostImageContainer"
-              ></div>
+              
               <p>{post.sub_title}</p>
               <div className="reactionContainerWrapper">
                 <div
@@ -191,6 +190,7 @@ export const BlogBody = () => {
                   <SocialSharer />
                 </div>
               </div>
+              </div>
             </li>
           ))}
         </ul>
@@ -221,7 +221,8 @@ export const BlogBody = () => {
               zIndex: "5",
               display: "flex",
               justifyContent: "center",
-              alignContent: "center"
+              alignContent: "center",
+              zIndex: "95"
             },
             content: {
               backgroundColor: `${GlobalStyleDefault.colors.offwhite}`,

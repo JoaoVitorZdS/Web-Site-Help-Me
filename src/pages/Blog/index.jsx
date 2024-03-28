@@ -18,10 +18,7 @@ const BlogPage = () => {
         
           <Header/>
           <BlogBody />
-          <div style={{width: "95%", position: "sticky", bottom: "20px"}}>
-                <FixedButtons/>
-
-        </div>
+          
           <Footer/>
         </StyledBlogContainer>
      

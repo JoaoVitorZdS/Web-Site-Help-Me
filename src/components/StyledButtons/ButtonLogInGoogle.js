@@ -9,6 +9,7 @@ import React, { createContext, useState } from "react";
 import axios from "axios";
 import { getFirestore, collection, addDoc, getDocs, query, where } from "firebase/firestore";
 import { toast } from "react-toastify";
+import Cookies from "js-cookie";
 const AccessTokenContext = createContext();
 
 const AccessTokenProvider = ({ children }) => {
@@ -59,7 +60,7 @@ export const StyledGoogleSignInButton = (props) => {
 
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
-      console.log(tokenResponse);
+    
       const userInfo = await axios.get(
         "https://www.googleapis.com/oauth2/v3/userinfo",
         {
@@ -73,7 +74,7 @@ export const StyledGoogleSignInButton = (props) => {
 
       // Save user data to Firebase before redirection
       await saveUserDataToFirebase(userInfo);
-
+      Cookies.set('token', `${tokenResponse.access_token}`);
       toast("Login bem sucedido!", {type: "success"})
       navigate("/");
     },

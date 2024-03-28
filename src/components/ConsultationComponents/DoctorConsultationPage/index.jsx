@@ -30,28 +30,39 @@ const DoctorConsultationPage = () => {
 
       <Header/>
     <StyledDoctorConsultationContainer>
+      <div className="ContainerStyledDoctorConsultationContainer">
+
+      
       <div className="doctorInfo">
       <div className="Imagewrapper">
 
       <img src={professional.picture|| genericProfilePhoto} alt="" />
-      </div>
-      <div className="infowrapper">
+      <div>
 
       <h2>{professional.name}</h2>
       <h3>{professional.work_area}</h3>
       <h4>R${professional.value}</h4>
+      </div>
+      </div>
+      <div className="infowrapper">
+
       <button onClick={toggleDescription}>{isDescriptionOpen ? 'Fechar Descrição' : 'Abrir Descrição'}</button>
       <br />
       {(isDescriptionOpen) ? (
-        <div className="description">
+        <div className="description" >
                     <p dangerouslySetInnerHTML={{ __html: professional.description}}></p>
                     
                   </div>
                 ): (<p>{professional.shortIntro}</p>)}
       </div>
       </div>
-      <div style={{display: "grid", width:"98%"}}>
+      
 
+
+        </div>
+      <div className="ContainerStyledDoctorConsultationContainer">
+
+      
       <AvailableHoursComponent
         availableHours={generateAvailableHours()}
         professionalEmail={professional.email}
@@ -64,6 +75,7 @@ const DoctorConsultationPage = () => {
         />
         </div>
     </StyledDoctorConsultationContainer>
+    
       <Footer/>
         </div>
   );

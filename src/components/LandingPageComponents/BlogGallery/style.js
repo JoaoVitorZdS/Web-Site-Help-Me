@@ -1,24 +1,20 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import GlobalStyleDefault from "../../../GlobalStyles";
-
-const rotationAnimation = keyframes`
-  0% {
-    transform: rotateZ(0deg);
-  }
-
-  100% {
-    transform: rotateZ(360deg);
-  }
-`;
 
 export const StyledGalleryContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
   gap: 20px;
-  justify-content: center;
+  
+  justify-content: flex-start;
   align-items: center;
   margin: 0 auto;
   width: 100%;
+  h3{
+    color: ${GlobalStyleDefault.colors.secondarystrong};
+    font-family: DolceVita;
+  }
   .card {
   overflow: visible;
   width: 220px;
@@ -260,3 +256,166 @@ export const StyledGalleryContainer = styled.div`
 
 
 `;
+
+export const StyledContainer = styled.div`
+width: 100%;
+display: grid;
+grid-template-rows: 1fr 1fr;
+gap: 5%;
+
+@media (max-width: 555px) {
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(1fr, auto);
+  
+}
+`
+export const StyledSlider = styled.div`
+
+
+  #produtosSection{
+
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-content: center;
+    width: 100vw;
+    
+    
+    .container-produtos {
+    width: 98%;
+    margin: 0 auto;
+}
+.nossosProdutos{
+  text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 3.8em;
+    color: #989898;
+    margin-top: 5%;
+    letter-spacing: -3px;
+}
+
+.imagem-produto {
+    background-size: cover;
+    background-position: center;
+    height: 350px;
+    transition: all 0.3s ease-in-out;
+    border-radius: 5px;
+    z-index: 1;
+}
+
+.imagem-produto:hover {
+    height: 500px;
+    width: 320px;
+    z-index: 90;
+  
+
+    
+      
+    
+   
+}
+
+.slick-slide{
+  transition: all 0.3s ease-in-out;
+  &:hover{
+    margin-right: 111px;
+  }
+}
+
+.overlay {
+    width: 94%;
+    height: 100%;
+    margin-left: 3%;
+   
+    background-color: rgba(0, 0, 0, 0.2);
+    
+   
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.19);
+  border-radius: 2px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(2px);
+-webkit-backdrop-filter: blur(2px);
+border: 1px solid rgba(255, 255, 255, 0.25);
+
+}
+
+.slick-list{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.informacoes {
+    display: none;
+    transition: all 0.3s ease-in-out;
+
+
+}
+
+.overlay:hover .informacoes {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+
+    
+    
+}
+.overlay:hover {
+   
+  background: rgba(255, 255, 255, 0.19);
+  border-radius: 2px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+border: 1px solid rgba(255, 255, 255, 0.25);
+
+}
+
+.overlay h3 {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 10px;
+   
+}
+
+.overlay p {
+    color: #fff;
+    line-height: 1.5em;
+    margin-bottom: 20px;
+    
+}
+
+
+  }
+  .btn-queensberry {
+    background-color: #99d02c;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.btn-queensberry:hover {
+    background-color: #79a21b;
+}
+a:-webkit-any-link {
+    color: ${GlobalStyleDefault.colors.textwhite};
+    cursor: pointer;
+    text-decoration: none;
+}
+
+
+`

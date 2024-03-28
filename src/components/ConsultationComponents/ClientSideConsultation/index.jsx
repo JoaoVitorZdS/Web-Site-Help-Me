@@ -134,6 +134,7 @@ export function ClientSideConsultationComponent() {
             </div>
             <ul className="professionalUL">
               {psychologists.map((psychologist, index) => (
+                
                 <div key={index} className="doctorCard" onClick={() => handleRedirectToConsultationPage(psychologist)}>
                   <div class="doctorCardInfoContainer">
                     <img src={psychologist.picture || genericProfilePhoto} alt="Profile" />

@@ -171,7 +171,7 @@ const AvailableHoursComponent = ({ availableHours, professionalEmail, profession
     <AvaliableHoursStyledDiv >
       
       <h3 style={{marginBottom: "15px", marginLeft: "15px"}}>
-      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" class="bi bi-calendar3" viewBox="0 0 16 16">
         <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"/>
          <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
       </svg>
@@ -190,7 +190,8 @@ const AvailableHoursComponent = ({ availableHours, professionalEmail, profession
               display: "flex",
               justifyContent: "space-between",
               paddingLeft: 0,
-              overflow: "hidden"
+              overflow: "hidden",
+              gap: "2px"
             }}
             >
             {day.hours.map((hour, hourIndex) => {
@@ -225,9 +226,10 @@ const AvailableHoursComponent = ({ availableHours, professionalEmail, profession
               return (
                 <button
                   key={hourIndex}
-                  style={{  backgroundColor: buttonColor, borderRadius: "5px", padding: "2px", border: "transparent", color: "whitesmoke", cursor: "pointer", width: "50px", height: "50px" }}
+                  style={{  backgroundColor: buttonColor, borderRadius: "2px", padding: "1px", border: "transparent", color: "whitesmoke", cursor: "pointer", width: "50px", height: "40px" }}
                   onClick={() => handleButtonClick(formattedDate, formattedTime)}
                   disabled={isButtonDisabled}
+                  className="AvaliableHoursOptions"
                 >
                   <i style={{fontSize: "0.7rem", fontWeight: "700"}}>
 
@@ -250,16 +252,17 @@ const AvailableHoursComponent = ({ availableHours, professionalEmail, profession
             display: "flex",
             justifyContent: "center",
             alignContent: "center",
+            
           },
           content: {
             position: "relative",
             inset: 0,
-            background: `${GlobalStyleDefault.colors.textwhite}`,
-            overflow: "auto",
+            background: `transparent`,
+            overflow: "hidden",
             WebkitOverflowScrolling: "touch",
             
-            width: "90%",
-            height: "90vh",
+            width: "96vw",
+            height: "96vh",
           
             
             
@@ -269,7 +272,7 @@ const AvailableHoursComponent = ({ availableHours, professionalEmail, profession
       >
         {selectedHour && (
          <ConfirmationDoctorConsultationStyledModal>
-          <svg style={{position: "absolute", top: "5%"}} onClick={() => setModalIsOpen(false)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+          <svg style={{position: "absolute", top: "5%", right: "5%"}} onClick={() => setModalIsOpen(false)} xmlns="http://www.w3.org/2000/svg" cursor={"pointer"} width="24" height="24" fill="white" class="bi bi-x-circle" viewBox="0 0 16 16">
             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
             <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
           </svg>
@@ -281,22 +284,26 @@ const AvailableHoursComponent = ({ availableHours, professionalEmail, profession
              {selectedHour}
 
             </p>
-            <p><i>
+            <p>
+              <i>
               Pagamento por:
               </i>
-               PIX ou Transferência Bancária no início da consulta</p>
+                PIX ou Transferência Bancária no início da consulta</p>
                <p>
-
+            
             <i>Valor: 
               </i>
               R$100
                </p>
             </div>
-            <div style={{display: "flex", justifyContent: "space-around", flexDirection: "column"}}>
+            <div style={{display: "flex", justifyContent: "space-around", flexDirection: "column", width: "90%"}}>
 
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
             <label>
+              <p>
+
             Telefone com DDD:
+              </p>
             <input
               type="text"
               placeholder="Insira seu telefone com DDD"
@@ -307,7 +314,10 @@ const AvailableHoursComponent = ({ availableHours, professionalEmail, profession
               />
               </label>
               <label>
+                <p>
+
                 Descreva o motivo que trouxe você até a Help Me
+                </p>
 
             <textarea
               

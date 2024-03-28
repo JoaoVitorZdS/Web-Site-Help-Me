@@ -20,11 +20,12 @@ export const PostRenderDashboardBody = styled.div`
     gap: 10px; /* Espaçamento entre os posts */
     list-style: none;
     padding: 5%;
+    align-items: center;
   
   }
 
   .post-render{
-    overflow-y: scroll;
+    overflow-y: auto;
     width: 98%;
 
     img{
@@ -45,8 +46,8 @@ export const PostRenderDashboardBody = styled.div`
     border-radius: 15px;
     margin-top: 15px;
     padding: 2%;
-    min-height: 600px;
-    height: auto;
+    height: max-content;
+    
     
    
 
@@ -122,7 +123,7 @@ export const PostRenderDashboardBody = styled.div`
 
   .PostDiv{
     
-    height: 400px;
+    height: max-content;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -175,11 +176,13 @@ export const PostRenderDashboardBody = styled.div`
     
    
     .PostImageContainer{
-      width: 100%;
-      height: 50%;
+      width: 320px;
+      height: auto;
+      min-height: 320px;
       background-position: center;
       background-repeat: no-repeat;
       background-size: contain;
+      z-index: 1;
     
       border-radius: 15px;
 

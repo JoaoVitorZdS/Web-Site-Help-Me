@@ -14,10 +14,12 @@ const BlogPostModal = ({ selectedPost, closeModal }) => {
   const modalAnimation = useSpring({
     opacity: isOpen ? 1 : 0,
     transform: isOpen ? "translateY(0%)" : "translateY(-100%)",
+    zIndex: 99
   });
 
   return (
-    <animated.div style={modalAnimation}>
+    <animated.div style={modalAnimation} >
+
       {isOpen && selectedPost && ( // Verifica se selectedPost não é nulo
         <div className="BlogPostModal">
          

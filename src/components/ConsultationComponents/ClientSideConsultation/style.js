@@ -24,7 +24,7 @@ export const StyledConsultantContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 15px;
-  overflow-x: scroll;
+  overflow-x: auto;
   padding-top: 1%;
   height: 90%;
  
@@ -35,6 +35,9 @@ export const StyledConsultantContainer = styled.div`
 
   .doctorCard{
     width: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     height: max-content;
     border: 2px double grey;
     padding: 0;
@@ -57,9 +60,16 @@ export const StyledConsultantContainer = styled.div`
     flex-wrap: wrap;
     justify-content: start;
     align-items: center;
-    background-color: ${GlobalStyleDefault.colors.secondary};
-    border-radius: 15px;
+    
+    /* From https://css.glass */
+background: rgba(255, 255, 255, 0.19);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(10.3px);
+-webkit-backdrop-filter: blur(10.3px);
+border: 1px solid rgba(255, 255, 255, 0.25);
     gap: 0;
+
 
     .doctorCardInfo{
       margin-top: 15px;
@@ -68,6 +78,7 @@ export const StyledConsultantContainer = styled.div`
       justify-content: space-between;
       margin-left: 10px;
       height: 120px;
+      color: ${GlobalStyleDefault.colors.text};
      
     }
 
@@ -75,7 +86,7 @@ export const StyledConsultantContainer = styled.div`
     p{
       font-family: DolceVita;
       font-size: 12px;
-      color: ${GlobalStyleDefault.colors.offwhite};
+      color: ${GlobalStyleDefault.colors.text};
     }
     
   }
@@ -139,7 +150,14 @@ export const StyledClientSideConsultationComponent = styled.div`
     justify-content: space-around;
     align-items: center;
     position: relative;
-    background-color: ${GlobalStyleDefault.colors.secondary};
+   
+    /* From https://css.glass */
+background: rgba(255, 255, 255, 0.19);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(10.3px);
+-webkit-backdrop-filter: blur(10.3px);
+border: 1px solid rgba(255, 255, 255, 0.25);
     padding: 2%;
     border-radius: 15px;
     margin-bottom: 50px;

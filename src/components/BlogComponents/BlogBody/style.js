@@ -44,6 +44,8 @@ export const StyledBlogBody = styled.div`
       justify-content: center;
       align-items: center;
       gap: 10px;
+      margin-bottom: 2%;
+
     button{
       border: 0;
       background-color: ${GlobalStyleDefault.colors.tertiarystrong};
@@ -58,7 +60,7 @@ export const StyledBlogBody = styled.div`
       cursor: pointer;
 
       &:hover{
-        transform: scale(1.1);
+        transform: scale(1.2);
       }
     }
   }
@@ -75,21 +77,43 @@ export const StyledBlogBody = styled.div`
   }
 
   li {
+    width: 290px;
     border-top: 2px double ${GlobalStyleDefault.colors.secondary};
     border-bottom: 2px double grey;
-    background-color: ${GlobalStyleDefault.colors.secondary};
+    background: ${GlobalStyleDefault.colors.secondary};
+   
     box-shadow: ${GlobalStyleDefault.shadows.large};
     border-radius: 12px;
     margin-top: 15px;
     color: ${GlobalStyleDefault.colors.textwhite};
+    transition: all ease-in-out 1s;
     cursor: pointer;
     height: 95%;
-   justify-content: space-around;
+   justify-content: center;
+   align-items: center;
     display: flex;
     flex-direction: column;
     padding: 5px;
     position: relative;
-
+    background-position: center;
+    background-size: cover;
+.glassOverlay{
+/* From https://css.glass */
+background: rgba(255, 255, 255, 0.2);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+width: 94%;
+height: 100%;
+padding: 1%;
+justify-content: space-between;
+   align-items: center;
+    display: flex;
+    flex-direction: column;
+    transition: all ease-in-out 1s;
+}
     a{
       width: 100%;
       display: flex;
@@ -105,21 +129,20 @@ export const StyledBlogBody = styled.div`
   display: flex;
   flex-direction: row;
   position: absolute;
-  width: 20px;
-  height: 100%;
-  right: 0;
+  width: auto;
+  height: 20px;
+  right: 3%;
   top: 0;
  
 }
 
 .tagToFullPage {
-  width: 150px;  /* Ajuste a largura conforme necessário */
+  width: auto;  /* Ajuste a largura conforme necessário */
   height: 50px;
   font-size: 0.8rem;
   font-family: DolceVita;
-  position: absolute;
-  left: -650%;
-  bottom: -90%;
+  position: relative;
+ 
   
   text-align: center;
   color: ${GlobalStyleDefault.colors.textwhite};
@@ -242,6 +265,11 @@ export const StyledBlogBody = styled.div`
   }
   li:hover{
     box-shadow: ${GlobalStyleDefault.shadows.card};
+    transform: scale(1.2);
+    
+    .glassOverlay{
+      background: rgba(255, 255, 255, 0.4);
+    }
     
   }
 

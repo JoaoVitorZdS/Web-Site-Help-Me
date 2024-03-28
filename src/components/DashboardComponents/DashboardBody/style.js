@@ -39,11 +39,15 @@ export const StyledDashboardBody = styled.div`
     justify-content: center;
     align-items: center;
     
+    
   }
   .component-container{
     width: 100%;
     padding: 1%;
     height: 100%;
+    display: flex;
+    justify-content: center;
+
   }
   .userSectionsContainer{
     display: flex;
@@ -55,6 +59,15 @@ export const StyledDashboardBody = styled.div`
     border-top: 1px solid grey;
     border-bottom: 1px solid grey;
     color: ${GlobalStyleDefault.colors.text};
+    background: rgba(255, 255, 255, 0.19);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    
+
+    
   
   }
  
