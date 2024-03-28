@@ -7,8 +7,8 @@ import { StyledButtonLogIn } from "../StyledButtons/ButtonsLogIn";
 import { useContext, useEffect, useState } from "react";
 import { AccessTokenContext } from "../StyledButtons/ButtonLogInGoogle";
 import { IoMenu, IoClose  } from "react-icons/io5";
-import { CgProfile } from "react-icons/cg";
-import { FaBook, FaTriangleExclamation } from "react-icons/fa6";
+import { CgPhone, CgProfile } from "react-icons/cg";
+import { FaBook, FaQuestion, FaTriangleExclamation, FaUserDoctor } from "react-icons/fa6";
 import { FaExclamationTriangle } from "react-icons/fa";
 export function Header() {
     const navigate = useNavigate()
@@ -42,12 +42,17 @@ export function Header() {
                             className='logo'
                             id="logoHeader"
                             onClick={() => { navigate("/"); } }></img>
+                       
+                       
+                        </div>
+                        <div id="sloganContainer">
                         <img src={Slogan}
                             alt='Help Me Slogan'
                             className='name'
                             id="logoHeader"
                             onClick={() => { navigate("/"); } }></img>
-                    </div>
+                        </div>
+                 
                         <div id="buttonsContainer">
 
 
@@ -64,12 +69,15 @@ export function Header() {
                   className='logo'
                   id="logoHeader"
                   onClick={() => { navigate("/"); } }></img>
-                <img src={Slogan}
-                  alt='Help Me Slogan'
-                  className='name'
-                  id="logoHeader"
-                  onClick={() => { navigate("/"); } }></img>
-              </div> 
+                
+              </div>
+              <div id="sloganContainer">
+                        <img src={Slogan}
+                            alt='Help Me Slogan'
+                            className='name'
+                            id="logoHeader"
+                            onClick={() => { navigate("/"); } }></img>
+                        </div> 
               <div id="mobileMenu">
               <IoMenu size={22} color="#9384D7" onClick={toggleMobileMenu} />
                   {isMobileMenuOpen && (
@@ -78,6 +86,9 @@ export function Header() {
                        <IoClose  style={{position: "absolute", left: "0", height: "100%"}} size={22} color="#9384D7" onClick={toggleMobileMenu} />
                       <StyledButtonLogIn label={"Perfil"} destiny={"/Dashboard"} icon={<CgProfile/>} />
                       <StyledButtonLogIn label={"Blog"} destiny={"/Blog"} icon={<FaBook/>} />
+                      <StyledButtonLogIn label={"FAQ"} destiny={"/FAQ"} icon={<FaQuestion/>} />
+                      <StyledButtonLogIn label={"Fale Conosco"} destiny={"/FAQ"} icon={<CgPhone/>} />
+                      <StyledButtonLogIn label={"Agendar Consulta"} destiny={"/consultation"} icon={<FaUserDoctor/>} />
                       <StyledButtonLogIn label={"EMERGÊNCIA!"} destiny={"/emergency"} icon={<FaTriangleExclamation/>} />
                     </div>
                   )}
@@ -92,16 +103,16 @@ export function Header() {
                             className='logo'
                             id="logoHeader"
                             onClick={() => { navigate("/"); } }></img>
+                    </div>
+                    <div id="sloganContainer">
                         <img src={Slogan}
                             alt='Help Me Slogan'
                             className='name'
                             id="logoHeader"
                             onClick={() => { navigate("/"); } }></img>
-                    </div>
-                    {windowWidth >= 770 && (
-                    <div id="sloganContainer">
-                            
-                        </div>)}
+                        </div>
+                        
+                  
                         <div id="buttonsContainer">
 
 
@@ -119,12 +130,15 @@ export function Header() {
                             className='logo'
                             id="logoHeader"
                             onClick={() => { navigate("/"); } }></img>
+                        
+                    </div>
+                    <div id="sloganContainer">
                         <img src={Slogan}
                             alt='Help Me Slogan'
                             className='name'
                             id="logoHeader"
                             onClick={() => { navigate("/"); } }></img>
-                    </div>
+                        </div>
                     {windowWidth >= 770 && (
                     <div id="sloganContainer">
                             <img src={Slogan2}

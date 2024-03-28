@@ -1,21 +1,53 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import GlobalStyleDefault from "../../../GlobalStyles";
-
+import backgroundImage from "../../../assets/imgs/HourModalBackground.jpg"
+const slideIn = keyframes`
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+`;
 export const ConfirmationDoctorConsultationStyledModal = styled.div`
 
 
 display: grid;
 grid-template-columns: 1fr 1fr;
 align-items: center;
-height: 100vh;
+height: 94vh;
+gap: 2%;
 justify-content: space-between;
+background-image: url(${backgroundImage});
+background-position: center;
+background-size: cover;
+overflow: hidden;
+animation: ${slideIn} 0.5s ease-in-out; /* Apply slide-in animation */
 
+input::placeholder{
+  color: ${GlobalStyleDefault.colors.textwhite};
+}
+textarea::placeholder{
+  color: ${GlobalStyleDefault.colors.textwhite};
+}
 input, textarea{
   border-radius: 15px;
   border: 0;
   background-color: #0c0c0c1c;
   color: ${GlobalStyleDefault.colors.text};
   padding: 5px;
+  background: rgba(255, 255, 255, 0.19);
+border-radius: 2px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border: 1px solid rgba(255, 255, 255, 0.25);
+margin-bottom: 10px;
+width: 80%;
+
+
   
 }
 label{
@@ -69,10 +101,27 @@ label{
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background: rgba(255, 255, 255, 0.19);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border: 1px solid rgba(255, 255, 255, 0.25);
+
+width: 100%;
+margin-left: 15px;
 }
 
 p i {
   font-weight: 800;
+  color: ${GlobalStyleDefault.colors.textwhite};
+  padding-right: 5px;
+  animation: all ease-in-out 2s;
+}
+
+label p {
+  margin: 0;
+  color: ${GlobalStyleDefault.colors.textwhite};
 }
 @media (max-width: 510px) {
  grid-template-columns: 1fr;
@@ -86,8 +135,39 @@ padding: 7px;
 border-radius: 15px;
  display: flex;
  flex-direction: column;
- width: 90%;
+margin-bottom: 4%;
+ max-width: 420px;
  justify-self: center;
+
+ ul{
+  
+  background: rgba(255, 255, 255, 0.19);
+border-radius: 2px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border: 1px solid rgba(255, 255, 255, 0.25);
+ }
+ .AvaliableHoursOptions{
+  background: rgba(255, 255, 255, 0.19);
+border-radius: 2px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border: 1px solid rgba(255, 255, 255, 0.25);
+  &:hover{
+   
+    opacity: 0.8;
+    
+  }
+ }
+
+ h3{
+  display: flex;
+  margin: 0 auto;
+  margin-top: 10px;
+  gap: 15px;
+}
 
 
  @media (max-width: 660px) {

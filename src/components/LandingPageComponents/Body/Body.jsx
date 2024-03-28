@@ -27,6 +27,7 @@ export function Body() {
 
   return (
     <StyledBodyContainer>
+      
       <div id="firstContainer">
         <Carousel />
       </div>
@@ -50,6 +51,7 @@ export function Body() {
             src={OnlineTesting}
             alt=""
             style={{ width: "300px" }}
+            id="test_image"
           />
           <h4
           className={isHovered ? "animate-on-scroll-left" : "none"}
@@ -87,6 +89,7 @@ export function Body() {
             src={consultationImage}
             alt=""
             style={{ width: "300px" }}
+            id="consultation_image"
           />
           <h4
            className={isHovered ? "animate-on-scroll" : "none"}

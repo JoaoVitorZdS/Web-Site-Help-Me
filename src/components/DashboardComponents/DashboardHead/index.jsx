@@ -20,7 +20,7 @@ export const DashboardHead = () => {
        <StyledDashboardHead>
        <div id="userPicContainer">
         <img src={plantProfile} alt="" style={{display: "flex", position: "relative", zIndex: "1", width: "250px", height: "auto"}} />
-       <img alt="googleProfilePic" src={userData.picture || genericProfile} style={{ zIndex: 2, position: "relative",width: "100px", height: "auto", borderRadius: "50%", bottom: "-7px", left: "-180px"}}></img>
+       <img alt="googleProfilePic" src={userData.picture || genericProfile} style={{ zIndex: 2, position: "relative",width: "100px", height: "auto", borderRadius: "50%", bottom: "-7px", left: "-180px",  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.5)"}}></img>
        </div>
        
     <div id="userInfoContainer">

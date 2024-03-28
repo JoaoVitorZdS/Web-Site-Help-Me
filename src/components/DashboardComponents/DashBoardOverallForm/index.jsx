@@ -4,6 +4,8 @@ import "../../../firebaseconfig";
 import { StyledDashboardEventForm } from "./style";
 import GlobalStyleDefault from "../../../GlobalStyles";
 import "../../../App.css"
+import ChartComponent from "./Chart";
+
 export const DashboardOverallForm = () => {
   const { accessToken } = useContext(AccessTokenContext)
   return (
@@ -12,6 +14,9 @@ export const DashboardOverallForm = () => {
         <>
       <StyledDashboardEventForm>
       <h1 style={{color: `${GlobalStyleDefault.colors.secondary}`, fontFamily: "DolceVita"}}>Histórico</h1>
+
+      <ChartComponent/>
+      
       </StyledDashboardEventForm>
         </>
       ) : (

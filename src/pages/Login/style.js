@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import imgbck from "../../assets/imgs/cloudsModern.jpeg"
 export const StyledLoginPageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -8,6 +8,10 @@ export const StyledLoginPageContainer = styled.div`
   height: 100vh;
   width: 100%;
   position: fixed;
+  background-image: url(${imgbck});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
   #fullHexagon{
     width: 100vh;

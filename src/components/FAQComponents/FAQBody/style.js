@@ -16,6 +16,7 @@ export const StyledFAQBody = styled.div`
 
   ul {
     list-style: none;
+    width: 100%;
     padding: 0;
     
   }
@@ -30,7 +31,7 @@ export const StyledFAQBody = styled.div`
   .faq-question {
     min-height: 40px;
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
     border-bottom: 1px grey solid;
     cursor: pointer;
@@ -57,7 +58,7 @@ export const StyledFAQBody = styled.div`
     background-color: white;
 
     &.open {
-      height: 100px; /* Defina a altura desejada */
+      height: auto; /* Defina a altura desejada */
       transition: height 3s ease-in-out;
     }
   }

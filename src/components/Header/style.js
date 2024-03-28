@@ -1,18 +1,25 @@
 import styled from "styled-components";
 import GlobalStyleDefault from "../../GlobalStyles";
+
 export const StyledHeaderContainer = styled.div`
   display: flex;
-  width: 98vw;
-  height: 100px;
+  width: 100vw;
+  height: 77px;
   justify-content: space-between;
   align-items: center;
   //background-color: ${GlobalStyleDefault.colors.secondary};
   padding-top: 1%;
-  z-index: 99;
+  z-index: 90;
   box-shadow: ${GlobalStyleDefault.shadows.medium};
-  background: ${GlobalStyleDefault.colors.gradientheader};
+  background: rgb(255,255,255);
   border-radius: 0px 0px 15px 15px;
-
+  background: ${GlobalStyleDefault.colors.gradientheader};
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.7px);
+  -webkit-backdrop-filter: blur(7.7px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  
+  
 
   @media (max-width: 630px) {
     #logoContainer{
@@ -55,7 +62,7 @@ export const StyledHeaderContainer = styled.div`
 
   #logoContainer {
     display: flex;
-    width: 320px;
+    width: 10%;
     height: 100%;
     justify-content: center;
     align-items: center;
@@ -70,8 +77,8 @@ export const StyledHeaderContainer = styled.div`
     width: 70%;
   }
     .logo{
-    height: 99%;
-    width: 34%;
+    height: 100%;
+    width: auto;
     border-radius: 500px;
    
     
@@ -88,7 +95,7 @@ export const StyledHeaderContainer = styled.div`
     
     padding: 1%;
     display: flex;
-    width: 20%;
+    width: 70%;
     width: fit-content;
     height: 100%;
     justify-content: center;
@@ -98,7 +105,8 @@ export const StyledHeaderContainer = styled.div`
    
   
     img{
-      min-width: 80px;
+      height: 100%;
+
       
     }
     .slogan{
@@ -109,11 +117,11 @@ export const StyledHeaderContainer = styled.div`
   }
   #buttonsContainer {
     display: flex;
-    width: 80%;
+    width: 40%;
     max-width: 660px;
     height: 100%;
-    padding-inline: 2%;
-    gap: 15px;
+    padding-inline: 1%;
+  
     justify-content: center;
     align-items: center;
     z-index: 7;

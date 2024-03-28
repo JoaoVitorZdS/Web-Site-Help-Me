@@ -10,10 +10,12 @@ export const ProfessionalSideConsultationStyledDiv = styled.div`
  height: 240px;
  padding: 2%;
  box-shadow: ${GlobalStyleDefault.shadows.large}, inset 0 0 10px rgba(62, 62, 62, 0.8);
- 
- background-color: ${GlobalStyleDefault.colors.secondary};
-  border-radius: 15px;
-  backdrop-filter: blur(100px);
+ background: rgba(255, 255, 255, 0.19);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
  
   &:hover{
     box-shadow: ${GlobalStyleDefault.shadows.card}, inset 0 0 10px rgba(62, 62, 62, 0.8);
@@ -21,6 +23,7 @@ export const ProfessionalSideConsultationStyledDiv = styled.div`
   }
  
  p{
+    padding: 0;
     margin-top: 2px;
     font-weight: 700 ;
     font-family: Arial, Helvetica, sans-serif;

@@ -1,8 +1,8 @@
 import React from "react";
 import { StyledTermsContainer } from "./style";
 import { Footer } from "../../components/Footer/Footer";
-import { FAQPageBody } from "../../components/FAQComponents/FAQBody";
 import { Header } from "../../components/Header/Header";
+import { TermsPageBody } from "../../components/Terms/TermsBody";
 
 
 
@@ -13,7 +13,7 @@ const TermsPage = () => {
         <StyledTermsContainer>
           <Header/>
           
-          <FAQPageBody />
+          <TermsPageBody />
           <Footer/>
         </StyledTermsContainer>
     </div>

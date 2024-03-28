@@ -2,10 +2,11 @@ import React from 'react';
 import styled from 'styled-components';  // Importe a biblioteca styled-components
 import { useNavigate } from 'react-router-dom';
 import "../../../App.css";
+import GlobalStyleDefault from '../../../GlobalStyles';
 
 // Crie um componente estilizado para o botão
 const StyledButton = styled.button`
-  background: #a370f0;
+  background: ${GlobalStyleDefault.colors.secondarystrong};
   color: white;
   font-family: inherit;
   padding: 0.35em;
@@ -17,12 +18,13 @@ const StyledButton = styled.button`
   letter-spacing: 0.05em;
   display: flex;
   align-items: center;
-  box-shadow: inset 0 0 1.6em -0.6em #714da6;
+  box-shadow: ${GlobalStyleDefault.shadows.medium};
   overflow: hidden;
   position: relative;
   height: 2.8em;
   padding-right: 3.3em;
   z-index: 99;
+  transform: scale(0.8);
   cursor: pointer;
  
 
@@ -77,7 +79,8 @@ const StyledEmergencyButton = styled.button`
   letter-spacing: 0.05em;
   display: flex;
   align-items: center;
-  box-shadow: inset 0 0 1.6em -0.6em #714da6;
+  box-shadow: ${GlobalStyleDefault.shadows.medium};
+  transform: scale(0.8);
   overflow: hidden;
   position: relative;
   height: 2.8em;
