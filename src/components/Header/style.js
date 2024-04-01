@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import GlobalStyleDefault from "../../GlobalStyles";
 
+
 export const StyledHeaderContainer = styled.div`
   display: flex;
   width: 100vw;
@@ -120,7 +121,7 @@ export const StyledHeaderContainer = styled.div`
     width: 40%;
     max-width: 660px;
     height: 100%;
-    padding-inline: 1%;
+    
   
     justify-content: center;
     align-items: center;
@@ -135,13 +136,12 @@ export const StyledHeaderContainer = styled.div`
     
   }
  
-  @media (max-width: 775px) {
+  @media (max-width: 1012px) {
     
     
   #mobileMenuContent{
     display: flex;
     height: fit-content;
-   
     position: absolute;
     top: -200%;
     right: -100%;
@@ -150,10 +150,14 @@ export const StyledHeaderContainer = styled.div`
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    background-color: antiquewhite;
     border-radius: 15px;
     overflow: hidden;
     height: 100vh;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
    
  
 

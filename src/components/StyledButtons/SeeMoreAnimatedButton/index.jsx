@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import "../../../App.css";
 import GlobalStyleDefault from '../../../GlobalStyles';
 
+
 // Crie um componente estilizado para o botão
 const StyledButton = styled.button`
   background: ${GlobalStyleDefault.colors.secondarystrong};
@@ -25,6 +26,7 @@ const StyledButton = styled.button`
   padding-right: 3.3em;
   z-index: 99;
   transform: scale(0.8);
+  min-width: 120px;
   cursor: pointer;
  
 

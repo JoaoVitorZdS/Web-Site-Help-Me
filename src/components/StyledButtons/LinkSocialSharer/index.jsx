@@ -135,6 +135,7 @@ const SocialSharer = () => {
       </span>
       <span className="tooltip9"> </span>
     </div>
+    <h4 style={{margin: "0 15px"}}>Compartilhe este artigo!</h4>
     </div>
   );
 };

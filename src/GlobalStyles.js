@@ -1,4 +1,4 @@
-var selector = 2
+var selector = 1
 var GlobalStyleDefault = {}
 
 if (selector === 1) {
@@ -106,4 +106,4 @@ if (selector === 1) {
     }
 
   
-  export default GlobalStyleDefault
+  export default GlobalStyleDefault;

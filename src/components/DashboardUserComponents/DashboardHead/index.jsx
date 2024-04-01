@@ -4,7 +4,7 @@ import { AccessTokenContext } from "../../StyledButtons/ButtonLogInGoogle";
 import genericProfile from "../../../assets/imgs/GenericProfile.jpg"
 import { GiCharm } from "react-icons/gi";
 import { GiFountainPen } from "react-icons/gi";
-import GlobalStyleDefault from "../../../GlobalStyles";
+import GlobalStyleDefault from "../../StyledButtons/GlobalStyles";
 import "../../../App.css"
 import plantProfile from "../../../assets/imgs/PlantProfile.png"
 

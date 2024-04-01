@@ -5,7 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { useBlogContext } from "../../BlogComponents/BlogBody/BlogContext";
 import ButtonSeeMore from "../../StyledButtons/SeeMoreAnimatedButton";
 import { FaArrowRight } from "react-icons/fa6";
-
+import curvedTube from "../../../assets/imgs/3D Metalic/curvedTube.png"
+import ring from "../../../assets/imgs/3D Metalic/ThickDonnut.png"
+import metatron from "../../../assets/imgs/3D Metalic/Metatron.png"
+import sakura from "../../../assets/imgs/3D Metalic/sakura.png"
+import sakura2 from "../../../assets/imgs/3D Metalic/sakura2.png"
+import sakura3 from "../../../assets/imgs/3D Metalic/sakura3.png"
 export function Gallery() {
   // eslint-disable-next-line
   const { globalPosts, setGlobalPosts } = useBlogContext();
@@ -31,11 +36,13 @@ export function Gallery() {
         <section id="produtosSection">
                 
                 <div className="container-produtos">
+                
+
                     <div className="categoriasSlide slick-initialized slick-slider">
                         <div className="slick-list draggable">
-                            <div className="slick-track" style={{ opacity: 1, width: "94%", transform: "translate3d(0px, 0px, 0px)", display: "flex", gap: "5px", justifyContent: "center" }}>
+                            <div className="slick-track" style={{ opacity: 1, width: "94%", transform: "translate3d(0px, 0px, 0px)", display: "flex", gap: "15px", justifyContent: "center" }}>
       {psychologyPosts.slice(0, 6).map(post => (
-                                <div className="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style={{ width: "230px" }}>
+                                <div className="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" >
                                     <div>
                                         <div style={{ width: "100%", display: "inline-block" }}>
                                             <div className="imagem-produto" data-bgimage={post.imageURL} data-flushed="1" style={{ backgroundImage: `url(${post.imageURL})` }}>
@@ -80,11 +87,12 @@ export function Gallery() {
         <section id="produtosSection">
              
                 <div className="container-produtos">
-                    <div className="categoriasSlide slick-initialized slick-slider">
+                    
+                <div className="categoriasSlide slick-initialized slick-slider">
                         <div className="slick-list draggable">
                             <div className="slick-track" style={{ opacity: 1, width: "94%", transform: "translate3d(0px, 0px, 0px)", display: "flex", gap: "5px", justifyContent: "center" }}>
       {lawPosts.slice(0, 6).map(post => (
-                                <div className="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style={{ width: "230px" }}>
+                                <div className="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" >
                                     <div>
                                         <div style={{ width: "100%", display: "inline-block" }}>
                                             <div className="imagem-produto" data-bgimage={post.imageURL} data-flushed="1" style={{ backgroundImage: `url(${post.imageURL})` }}>

@@ -14,248 +14,10 @@ export const StyledGalleryContainer = styled.div`
   h3{
     color: ${GlobalStyleDefault.colors.secondarystrong};
     font-family: DolceVita;
+    font-size: 3em;
+    margin-bottom: 0;
   }
-  .card {
-  overflow: visible;
-  width: 220px;
-  height: 300px;
-  
-  
-}
-
-.content {
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 300ms;
-  box-shadow: 0px 0px 10px 1px #000000ee;
-  border-radius: 5px;
-}
-
-.front, .back {
-  background-color: #151515;
-  position: absolute;
-  min-height: 100%;
-  max-height: 100%;
-  width: 100%;
-  min-width: 100%;
-  max-width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  border-radius: 5px;
-  box-shadow: ${GlobalStyleDefault.shadows.card};
-  overflow: hidden;
-  
-}
-
-.back {
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-
-}
-
-
-
-.back-content {
-  position: absolute;
-  box-sizing: border-box;
-  padding: 6px;
-  width: 100%;
-  height: 100%;
-  background: ${GlobalStyleDefault.colors.secondarystrong};
-  backdrop-filter: blur(100px); /* Valor do desfoque */
-  border-radius: 5px;
-  color: white;
-  display: grid;
-  grid-template-rows: 2fr 3fr 3fr;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  gap: 3px;
-  overflow: hidden;
-
-  p {
-      align-self: center;
-      
-      text-indent: 10px; /* Define o espaçamento de recuo de 10 pixels */
-      display: -webkit-box;
-      -webkit-line-clamp: 5;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-  
-
-  img{
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-  }
-  h4{
-    font-family: DolceVita;
-    text-align: center;
-  }
-  
-  
-
-  
-}
-
-
-.card:hover .content {
-  transform: rotateY(180deg);
-}
-
-@keyframes rotation_481 {
-  0% {
-    transform: rotateZ(0deg);
-  }
-
-  0% {
-    transform: rotateZ(360deg);
-  }
-}
-
-
-.front {
-  transform: rotateY(180deg);
-  color: white;
-  
-
-  .img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.circle {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  background: linear-gradient( ${GlobalStyleDefault.colors.secondarystrong}, ${GlobalStyleDefault.colors.primary});
-  position: relative;
-  filter: blur(13px);
-  animation: floating 5s infinite ease-in-out;
-  border: 0 !important;
-}
-#bottom {
-  background: linear-gradient(${GlobalStyleDefault.colors.tertiary}, ${GlobalStyleDefault.colors.secondarystrong},white, ${GlobalStyleDefault.colors.tertiary});
-  left: 50px;
-  top: 0px;
-  width: 150px;
-  height: 150px;
-  animation-delay: -800ms;
-}
-
-#right {
-  background: linear-gradient( ${GlobalStyleDefault.colors.secondarystrong}, ${GlobalStyleDefault.colors.primary});
-  left: 160px;
-  top: -80px;
-  width: 30px;
-  height: 30px;
-  animation-delay: -1800ms;
-}
-
-.front-content{
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  background: linear-gradient( ${GlobalStyleDefault.colors.secondarystrong}, ${GlobalStyleDefault.colors.primary});
-  padding: 5px;
-  flex-direction: column;
-  justify-content: space-between;
-  ul{
-      list-style: none;
-      padding: 3px;
-      height: 80%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-
-      li{
-        color: #fff;
-        
-        /* === removing default button style ===*/
-.button {
-  width: fit-content;
-  margin: 0;
-  height: auto;
-  background: transparent;
-  padding: 0;
-  border: none;
-  cursor: pointer;
-  margin-bottom: 2%;
-}
-
-/* button styling */
-.button {
-  --border-right: 6px;
-  --text-stroke-color: ${GlobalStyleDefault.colors.textwhite};
-  --animation-color: #F76DBE66;
-  --fs-size: 1em;
-  letter-spacing: 3px;
-  text-decoration: none;
-  font-size: var(--fs-size);
-  font-family: "Arial";
-  position: relative;
-  text-transform: uppercase;
- color: #ffffff10;
-  -webkit-text-stroke: 0.5px var(--text-stroke-color);
-}
-/* this is the text, when you hover on button */
-.hover-text {
-  position: absolute;
-  box-sizing: border-box;
-  content: attr(data-text);
-  color: var(--animation-color);
-  width: 0%;
-  inset: 0;
-  border-right: var(--border-right) solid var(--animation-color);
-  overflow: hidden;
-  transition: 0.4s;
-  -webkit-text-stroke: 3px var(--animation-color);
-}
-/* hover */
-.button:hover .hover-text {
-  width: 100%;
-  filter: drop-shadow(0 20px 23px var(--animation-color))
-}
-      }
-      
-    }
-
-}
-
-@keyframes floating {
-  0% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(100px);
-  }
-
-  100% {
-    transform: translateY(0px);
-  }
-}
-}
-//-------------------------------------------------------------------@media-------------------------------------------------------------//
-@media (max-width: 770px) {
-    
-    
-  }
-
-
-
-
-`;
+`
 
 export const StyledContainer = styled.div`
 width: 100%;
@@ -273,20 +35,106 @@ export const StyledSlider = styled.div`
 
 
   #produtosSection{
-
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-items: center;
     align-content: center;
     width: 100vw;
-    
+    min-height: 500px;
+    height: fit-content;
+    @keyframes flutuacao {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes rotacao {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .elemento-flutuante {
+    animation: flutuacao 2s ease-in-out infinite;
+  }
+  
+  .elemento-flutuante:hover {
+    transform: scale(1.2);
+    animation: flutuacao 2s ease-in-out infinite, rotacao 5s linear infinite;
+    transform-origin: center;
+  }
+  
+  .elemento-flutuante:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  
+  .elemento-flutuante:nth-child(2) {
+    animation-delay: 0.3s; /* Delay de 0.3 segundos para o segundo elemento */
+  }
+  
+  .elemento-flutuante:nth-child(3) {
+    animation-delay: 0.5s; /* Delay de 0.5 segundo para o terceiro elemento */
+  }
+    .curvedTube{
+   
+   position: absolute;
+   width: 200px;
+   bottom: -25px;
+   left: -8%;
+   filter: drop-shadow(0 0 20px ${GlobalStyleDefault.colors.tertiarystrong});
+   z-index: -10;
+   }
+   
+   .ring{
+       position: absolute;
+       width: 300px;
+       top: -50px;
+       left: -7%;
+       filter: drop-shadow(0 0 20px ${GlobalStyleDefault.colors.tertiarystrong});
+       z-index: -10;
+   }
+   
+   .metatron{
+       position: absolute;
+       width: 350px;
+       bottom: -40%;
+       right: -15%;
+       filter: drop-shadow(0 0 20px ${GlobalStyleDefault.colors.tertiarystrong});
+  
+      z-index: -10;
+   
+   }
     
     .container-produtos {
-    width: 98%;
+      position: relative;
+    width: 90%;
     margin: 0 auto;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    height: fit-content;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: start;
+    
+  
 }
 .nossosProdutos{
-  text-align: center;
+    text-align: center;
     margin-bottom: 50px;
     position: relative;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -295,32 +143,69 @@ export const StyledSlider = styled.div`
     margin-top: 5%;
     letter-spacing: -3px;
 }
-
+.categoriasSlide {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
 .imagem-produto {
     background-size: cover;
-    background-position: center;
+    background-position: left;
     height: 350px;
-    transition: all 0.3s ease-in-out;
+    transition: all 1s ease-in-out, background-position 3s ease-in-out;
     border-radius: 5px;
     z-index: 1;
+    width: 100%;
+    position: relative;
+    max-height: 420px;
+}
+
+
+.imagem-produto:hover {
+  background-position: center;
+   
+   
+
+}
+.imagem-produto {
+    background-size: cover;
+    background-position: left;
+    transition: all 1s ease-in-out, max-height 1s ease-in-out, background-position cubic-bezier(0.215, 0.610, 0.355, 1) ease-in-out; /* Adiciona max-height e opacity na transição */
+    border-radius: 5px;
+    z-index: 1;
+    width: 100%;
+    position: relative;
+    overflow: hidden; /* Para esconder o conteúdo que ultrapassa a altura máxima */
 }
 
 .imagem-produto:hover {
-    height: 500px;
-    width: 320px;
-    z-index: 90;
-  
+    background-position: center;
+    max-height: 600px; /* Ajusta a altura máxima quando o elemento é focado */
+    opacity: 1; /* Torna o conteúdo completamente visível */
+    height: fit-content;
+}
 
-    
-      
-    
-   
+.slick-track{
+  @media (max-width: 800px) {
+      flex-direction: column;
+      align-items: center;
+    }
 }
 
 .slick-slide{
-  transition: all 0.3s ease-in-out;
+  transition: all 1s ease-in-out;
+  width: 35%;
   &:hover{
-    margin-right: 111px;
+  
+  }
+  @media (max-width: 800px) {
+    width: 50%;
+  }
+  @media (max-width: 600px) {
+    width: 70%;
+  }
+  @media (max-width: 400px) {
+    width: 90%;
   }
 }
 
@@ -328,23 +213,20 @@ export const StyledSlider = styled.div`
     width: 94%;
     height: 100%;
     margin-left: 3%;
-   
     background-color: rgba(0, 0, 0, 0.2);
-    
-   
-    transition: all 0.3s ease-in-out;
+    transition: all 1s ease-in-out;
     overflow: hidden;
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     background: rgba(255, 255, 255, 0.19);
-  border-radius: 2px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(2px);
--webkit-backdrop-filter: blur(2px);
-border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 2px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
 
 }
 
@@ -355,29 +237,35 @@ border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .informacoes {
-    display: none;
-    transition: all 0.3s ease-in-out;
+    display: block;
+    transform: translateY(150%);
+    transition: all 1s ease-in-out;
 
 
 }
 
+.overlay:hover h3 {
+  transform: translateY(0%);
+}
 .overlay:hover .informacoes {
     display: flex;
     width: 100%;
     flex-direction: column;
     justify-content: center;
+    transform: translateY(0%);
+    
 
     
     
 }
 .overlay:hover {
-   
+   height: 100%;
   background: rgba(255, 255, 255, 0.19);
   border-radius: 2px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(12px);
--webkit-backdrop-filter: blur(12px);
-border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
 
 }
 
@@ -386,6 +274,7 @@ border: 1px solid rgba(255, 255, 255, 0.25);
     font-weight: bold;
     color: #fff;
     margin-bottom: 10px;
+    transition: all 1s ease-in-out;
    
 }
 
@@ -405,7 +294,7 @@ border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 5px;
     font-weight: bold;
     text-decoration: none;
-    transition: background-color 0.3s ease-in-out;
+    transition: all 1s ease-in-out;
 }
 
 .btn-queensberry:hover {

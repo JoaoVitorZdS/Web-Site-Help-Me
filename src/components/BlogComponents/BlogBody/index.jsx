@@ -186,9 +186,7 @@ export const BlogBody = () => {
                     )}
                   </button>
                 </div>
-                <div className="SocialSharerContainer">
-                  <SocialSharer />
-                </div>
+                
               </div>
               </div>
             </li>

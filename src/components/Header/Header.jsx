@@ -36,7 +36,7 @@ export function Header() {
         <>
     {accessToken ? (
     <StyledHeaderContainer>
-        {windowWidth >= 770 && (<><div id="logoContainer">
+        {windowWidth >= 1012 && (<><div id="logoContainer">
                         <img src={Logo}
                             alt='Help Me Logo'
                             className='logo'
@@ -62,7 +62,7 @@ export function Header() {
 
                         </div></>)}
         
-        {windowWidth < 770 && (
+        {windowWidth < 1012 && (
           <><div id="logoContainer">
                 <img src={Logo}
                   alt='Help Me Logo'
@@ -97,7 +97,7 @@ export function Header() {
     </StyledHeaderContainer>   ) : (
         
         <StyledHeaderContainer>
-        {windowWidth >= 770 && (<><div id="logoContainer">
+        {windowWidth >= 1012 && (<><div id="logoContainer">
                         <img src={Logo}
                             alt='Help Me Logo'
                             className='logo'
@@ -122,7 +122,7 @@ export function Header() {
 
                         </div></>)}
         
-        {windowWidth < 770 && (
+        {windowWidth < 1012 && (
             <>
             <div id="logoContainer">
                         <img src={Logo}
@@ -139,7 +139,7 @@ export function Header() {
                             id="logoHeader"
                             onClick={() => { navigate("/"); } }></img>
                         </div>
-                    {windowWidth >= 770 && (
+                    {windowWidth >= 1012 && (
                     <div id="sloganContainer">
                             <img src={Slogan2}
                                 alt='Help Me Slogan'
@@ -154,9 +154,12 @@ export function Header() {
             {isMobileMenuOpen && (
               <div id="mobileMenuContent" className={isMobileMenuOpen ? "animate-on-scroll" : !isMobileMenuOpen  ? "animate-on-scroll-out" : "none"}>
                   <IoClose  style={{position: "absolute", left: "-3px", height: "100%",border: "1px double #9384D7 "}} size={22} color="#9384D7" onClick={toggleMobileMenu} />
-                <StyledButtonLogIn label={"Login"} destiny={"/Login"} icon={<CgProfile/>} />
-                <StyledButtonLogIn label={"Blog"} destiny={"/Blog"} icon={<FaBook/>} />
-                <StyledButtonLogIn label={"EMERGÊNCIA!"} destiny={"/emergency"} icon={<FaExclamationTriangle/>} />
+                  <StyledButtonLogIn label={"Perfil"} destiny={"/Dashboard"} icon={<CgProfile/>} />
+                      <StyledButtonLogIn label={"Blog"} destiny={"/Blog"} icon={<FaBook/>} />
+                      <StyledButtonLogIn label={"FAQ"} destiny={"/FAQ"} icon={<FaQuestion/>} />
+                      <StyledButtonLogIn label={"Fale Conosco"} destiny={"/FAQ"} icon={<CgPhone/>} />
+                      <StyledButtonLogIn label={"Agendar Consulta"} destiny={"/consultation"} icon={<FaUserDoctor/>} />
+                      <StyledButtonLogIn label={"EMERGÊNCIA!"} destiny={"/emergency"} icon={<FaTriangleExclamation/>} />
 
               </div>
             )}
