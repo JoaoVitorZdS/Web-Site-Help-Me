@@ -6,6 +6,7 @@ import { Footer } from "../../Footer/Footer";
 import { StyledBlogPostDetailBody } from "./style";
 import SocialSharer from "../../StyledButtons/LinkSocialSharer";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
+import { CgArrowLeft } from "react-icons/cg";
 
 const BlogPostDetail = () => {
   const { postId } = useParams();
@@ -42,13 +43,18 @@ const BlogPostDetail = () => {
   if (!selectedPost) {
     return <div>Carregando...</div>;
   }
+  function goBack() {
+    window.history.back();
+    console.log("voltei")
+  }
 
   return (
     <StyledBlogPostDetailBody>
       <Header />
       <div className="MainDiv">
+      <button onClick={goBack} className="backButton"><CgArrowLeft size={30}/><b style={{fontSize: "15px"}}>Voltar</b></button>
         <div className="PostDiv">
-          <h2>{selectedPost.title}</h2>
+          <h2 style={{marginTop: "10%"}}>{selectedPost.title}</h2>
           <div
             className="post-render"
             dangerouslySetInnerHTML={{ __html: selectedPost.content }}
@@ -71,6 +77,7 @@ const BlogPostDetail = () => {
               ))}
             </ul>
             <SocialSharer />
+            
           </div>
         </div>
       </div>

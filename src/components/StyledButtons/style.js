@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import GlobalStyleDefault from "../../GlobalStyles";
 
+
 export const StyledButtonContainer = styled.button`
   display: flex;
   justify-content: center;

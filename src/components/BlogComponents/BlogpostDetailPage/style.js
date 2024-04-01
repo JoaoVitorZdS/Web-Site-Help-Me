@@ -17,11 +17,26 @@ export const StyledBlogPostDetailBody = styled.div`
   gap: 20px;
   justify-content: space-between;
   align-items: center;
+.backButton{
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  background-color: transparent;
+  border: 0;
 
+  &:hover{
+    cursor: pointer;
+    text-decoration: underline 1px ${GlobalStyleDefault.colors.textwhite};
+  }
+ 
+}
   p{
     text-indent: 10px; /* Define o espaçamento de recuo de 10 pixels */
   }
   .MainDiv{
+    position: relative;
     display: grid;
     grid-template-columns: 3fr 1fr;
     padding: 1%;
@@ -46,20 +61,18 @@ export const StyledBlogPostDetailBody = styled.div`
     z-index: 1;
     position: sticky;
     top: 3%;
-    right: 15%;
-    
+    right:15%;
     background-color: #00000066;
     padding: 1%;
+    
     color: ${GlobalStyleDefault.colors.text};
     gap: 3%;
-
-    /* From https://css.glass */
-background: rgba(255, 255, 255, 0.19);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(7.7px);
--webkit-backdrop-filter: blur(7.7);
-border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.19);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.7px);
+    -webkit-backdrop-filter: blur(7.7);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     h5{
       margin-bottom: 1%;
     }
@@ -140,6 +153,7 @@ border: 1px solid rgba(255, 255, 255, 0.25);
     grid-template-columns: 1fr;
     grid-template-rows: 1fr auto;
     padding: 2%;
+    flex-direction: column-reverse;
   }
   .post-render{
  
