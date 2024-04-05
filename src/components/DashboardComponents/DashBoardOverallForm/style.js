@@ -14,7 +14,7 @@ export const StyledDashboardEventForm = styled.div`
   gap: 1px;
   justify-content: center;
   align-items: center;
-  background-color: ${GlobalStyleDefault.colors.offwhite};
+  
 
 
   .active{

@@ -10,20 +10,17 @@ const ButtonPlants = (props) => {
 .custom-button {
   position: relative;
   padding: 15px 15px;
-  width: 300px !important;
-  background-color: ${GlobalStyleDefault.colors.secondarystrong};
+  width: 100%;
+  background: ${GlobalStyleDefault.colors.secondarystrong};
   box-shadow: ${GlobalStyleDefault.shadows.large}, inset ${GlobalStyleDefault.shadows.innerButton};
-
- 
+  transition: all ease-in-out 1s;
   cursor: pointer;
   border: 0px ;
   border-radius: 8px;
   filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.2));
   font-size: calc(.8rem + 0.5vw) !important; /* Ajusta o tamanho da fonte conforme a largura da viewport */
 
-  @media (max-width: 991px) {
-    width: 200px !important;
-  }
+  
   font-weight: 700;
   i{
 
@@ -37,9 +34,7 @@ const ButtonPlants = (props) => {
 }
 
 .custom-button:hover {
-  
   background: radial-gradient( ${GlobalStyleDefault.colors.secondary},  ${GlobalStyleDefault.colors.secondarystrong});
-
   animation: wind 2s ease-in-out forwards;
   box-shadow: ${GlobalStyleDefault.shadows.card};
 }
@@ -172,18 +167,6 @@ button .icon-3 {
       <i style={{fontFamily: "DolceVita", color: `${GlobalStyleDefault.colors.textwhite}`}}>
       {props.name}
       </i>
-
-      <div className="icon-1">
-        <img src={hangingBasket} alt="hangingLeaf" />
-      </div>
-      <div className="icon-2">
-      <img src={hangingBasket} alt="hangingLeaf" />
-
-      </div>
-      <div className="icon-3">
-      <img src={hangingBasket} alt="hangingLeaf" />
-
-      </div>
     </button>
     </>
   );

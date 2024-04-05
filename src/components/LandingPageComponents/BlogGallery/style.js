@@ -5,17 +5,29 @@ export const StyledGalleryContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  gap: 20px;
-  
   justify-content: flex-start;
   align-items: center;
   margin: 0 auto;
   width: 100%;
+  gap: 20px;
   h3{
     color: ${GlobalStyleDefault.colors.secondarystrong};
     font-family: DolceVita;
-    font-size: 3em;
+    font-size: calc(1.2rem + 0.5vw) !important; /* Ajusta o tamanho da fonte conforme a largura da viewport */
     margin-bottom: 0;
+    
+  }
+
+  .titleCategory{
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 90vw;
+    text-align: center;
+    padding-block: 0.5vh;
   }
 `
 
@@ -23,7 +35,7 @@ export const StyledContainer = styled.div`
 width: 100%;
 display: grid;
 grid-template-rows: 1fr 1fr;
-gap: 5%;
+
 
 @media (max-width: 555px) {
   grid-template-columns: 1fr;
@@ -185,7 +197,7 @@ export const StyledSlider = styled.div`
     max-height: 600px; /* Ajusta a altura máxima quando o elemento é focado */
     opacity: 1; /* Torna o conteúdo completamente visível */
     height: 600px;
-    justify-content: center;
+    
     display: flex;
 }
 

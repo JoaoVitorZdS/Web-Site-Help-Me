@@ -81,7 +81,6 @@ export function Header() {
               <div id="mobileMenu">
               <IoMenu size={22} color="#9384D7" onClick={toggleMobileMenu} />
                   {isMobileMenuOpen && (
-                    
                     <div id="mobileMenuContent" className={isMobileMenuOpen ? "animate-on-scroll" : "none"}>
                        <IoClose  style={{position: "absolute", left: "0", height: "100%"}} size={22} color="#9384D7" onClick={toggleMobileMenu} />
                       <StyledButtonLogIn label={"Perfil"} destiny={"/Dashboard"} icon={<CgProfile/>} />

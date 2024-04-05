@@ -278,26 +278,14 @@ const ProfessionalConsultations = () => {
       <div>
       {/* Render cancelled consultations */}
       <p style={{color: GlobalStyleDefault.colors.secondarystrong, margin: 0, padding: 0, fontFamily: "DolceVita"}}>Canceladas {consultations.filter(consultation => consultation.status === 'cancelled').length} </p>
-      <div style={{display: "flex", flexDirection: "row", width: "auto", minWidth: "110vw", gap: "5px", overflowX: "auto"}} >
+      <div style={{display: "flex", flexDirection: "row", width: "auto", minWidth: "100vw", gap: "5px", overflowX: "auto"}} >
 
 
-      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto", minHeight: "100px", minWidth: "fit-content", marginBottom: "50px", padding: "20px", background: "rgba(255, 255, 255, 0.19)",borderRadius: "16px", boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",border: "1px solid rgba(255, 255, 255, 0.25)"}}>
+      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto", minHeight: "100px", minWidth: "90vw", marginBottom: "50px", padding: "20px", background: "rgba(255, 255, 255, 0.19)",borderRadius: "16px", boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",border: "1px solid rgba(255, 255, 255, 0.25)"}}>
 
       
       {renderByStatus("cancelled")}
-      {renderByStatus("cancelled")}
-      {renderByStatus("cancelled")}
-      {renderByStatus("cancelled")}
-      {renderByStatus("cancelled")}
-      {renderByStatus("cancelled")}
-      {renderByStatus("cancelled")}
-      {renderByStatus("cancelled")}
-      {renderByStatus("cancelled")}
-      {renderByStatus("cancelled")}
-      {renderByStatus("cancelled")}
-      {renderByStatus("cancelled")}
-      {renderByStatus("cancelled")}
-      {renderByStatus("cancelled")}
+    
       
       </ul>
       </div>

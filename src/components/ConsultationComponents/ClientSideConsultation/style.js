@@ -6,6 +6,7 @@ export const StyledConsultantContainer = styled.div`
   height: fit-content;
   background-color: transparent;
   margin: 0;
+  height: 50vh;
   min-width: 95vw;
   width: fit-content;
   padding: 25px;
@@ -21,12 +22,13 @@ export const StyledConsultantContainer = styled.div`
 
  .professionalUL{
   width: 90vw;
+  
   display: flex;
   flex-direction: row;
-  gap: 15px;
+ 
   overflow-x: auto;
   padding-top: 1%;
-  height: 90%;
+  height: 100%;
  
   
   
@@ -34,16 +36,17 @@ export const StyledConsultantContainer = styled.div`
   
 
   .doctorCard{
-    width: 320px;
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: max-content;
     border: 2px double grey;
     padding: 0;
+    margin-right: 4vw;
     border-radius: 15px;
     margin-bottom: 5%;
-    box-shadow: ${GlobalStyleDefault.shadows.card};
+    box-shadow: 4px 13px 10px 3px rgba(0, 0, 0, 0.6);
     p{
       margin: 0;
     }
@@ -55,8 +58,10 @@ export const StyledConsultantContainer = styled.div`
   }
  
   .doctorCardInfoContainer{
-    width: 320px;
-    display: flex;
+    width: 280px;
+    display: grid;
+    padding: 1vh;
+    grid-template-rows: 1fr 1fr;
     flex-wrap: wrap;
     justify-content: start;
     align-items: center;
@@ -70,18 +75,23 @@ backdrop-filter: blur(10.3px);
 border: 1px solid rgba(255, 255, 255, 0.25);
     gap: 0;
 
+.shortIntroContainer{
 
+}
     .doctorCardInfo{
       margin-top: 15px;
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      flex-direction: row;
+      justify-content: flex-start;
       margin-left: 10px;
+      line-height: 3vh;
+      gap: 1vw;
       height: 120px;
+      align-items: center;
       color: ${GlobalStyleDefault.colors.text};
      
     }
-
+ 
 
     p{
       font-family: DolceVita;
@@ -183,7 +193,7 @@ border: 1px solid rgba(255, 255, 255, 0.25);
           transform: scale(1);
         }
         50% {
-          transform: scale(1.1);
+          transform: scale(1.05);
         }
       } 
       @keyframes zoomPetaldiminished {
@@ -256,6 +266,9 @@ border: 1px solid rgba(255, 255, 255, 0.25);
         font-size: 1;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
         color: ${GlobalStyleDefault.colors.textwhite};
+        text-align: center;
+        width: 100%;
+        display: block;
       }
   }
 
@@ -283,6 +296,8 @@ border: 1px solid rgba(255, 255, 255, 0.25);
 
       .textFirstContainer{
         z-index: 9;
+        text-align: center;
+        
       }
      
       .petalDiv{

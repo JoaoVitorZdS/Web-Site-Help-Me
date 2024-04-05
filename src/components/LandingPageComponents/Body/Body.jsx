@@ -55,57 +55,19 @@ export function Body() {
           style={{
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center",
+            justifyContent: "space-around",
             alignItems: "center",
           }}
-        >
-          <img
-            className={"imgSecondContainer"}
-            src={OnlineTesting}
-      
-            alt=""
-            id="test_image"
-          />
-          <h4
-          className={isHovered ? "animate-on-scroll-left" : "none"}
-            style={{
-              width: "280px",
-              fontFamily: "DolceVita",
-              textAlign: "center",
-              color: `${GlobalStyleDefault.colors.text}`,
-            }}
-          >
-            Responda a algumas perguntas e descubra qual é o melhor atendimento
-            para você!
-          </h4>
-          <div
-          
-          className={isHovered ? "animate-on-scroll-left" : "none"}
-          >
-
-          <AnimatedPlantButton
-            name="Faça um teste"
-            destiny={"quiz"}
-            />
-            </div>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
+          className="containerOptions"
         >
           <img
             className={"imgSecondContainer"}
             src={consultationImage}
             alt=""
-           
             id="consultation_image"
           />
           <h4
-           className={isHovered ? "animate-on-scroll" : "none"}
+           className={isHovered ? "animate-on-scroll-left" : "none"}
             style={{
               width: "280px",
               fontFamily: "DolceVita",
@@ -117,8 +79,8 @@ export function Body() {
           </h4>
           <div
           
-          className={isHovered ? "animate-on-scroll" : "none"}
-          >
+          className={isHovered ? "animate-on-scroll-left" : "none"}
+          style={{width: "100%"}}>
 
           <AnimatedPlantButton
            
@@ -127,6 +89,45 @@ export function Body() {
           />
             </div>
         </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-around",
+            alignItems: "center",
+          }}
+          className="containerOptions"
+        >
+          <img
+            className={"imgSecondContainer"}
+            src={OnlineTesting}
+            alt=""
+            id="test_image"
+          />
+          <h4
+          className={isHovered ? "animate-on-scroll" : "none"}
+            style={{
+              width: "280px",
+              fontFamily: "DolceVita",
+              textAlign: "center",
+              color: `${GlobalStyleDefault.colors.text}`,
+            }}
+          >
+            Responda a algumas perguntas e descubra qual é o melhor atendimento
+            para você!
+          </h4>
+          <div
+          style={{width: "100%"}}
+          className={isHovered ? "animate-on-scroll" : "none"}
+          >
+
+          <AnimatedPlantButton
+            name="Faça um teste"
+            destiny={"quiz"}
+            />
+            </div>
+        </div>
+        
       </div>
       <div id="thirdContainer">
         <i id="TitleSecondContainer">Posts Recomendados</i>

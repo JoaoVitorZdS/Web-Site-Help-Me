@@ -18,12 +18,14 @@ display: grid;
 grid-template-columns: 1fr 1fr;
 align-items: center;
 height: 94vh;
+width: 100%;
 gap: 2%;
 justify-content: space-between;
 background-image: url(${backgroundImage});
 background-position: center;
 background-size: cover;
-overflow: hidden;
+justify-items: center;
+overflow: auto;
 animation: ${slideIn} 0.5s ease-in-out; /* Apply slide-in animation */
 
 input::placeholder{
@@ -45,7 +47,7 @@ backdrop-filter: blur(20px);
 -webkit-backdrop-filter: blur(20px);
 border: 1px solid rgba(255, 255, 255, 0.25);
 margin-bottom: 10px;
-width: 80%;
+width: 96%;
 
 
   
@@ -81,7 +83,7 @@ label{
   border-radius: 15px;
   align-self: center;
   cursor: pointer;
-  margin-bottom: 5px;
+  margin-bottom: 5vh;
  }
  @keyframes zoom {
         0% {
@@ -108,8 +110,8 @@ backdrop-filter: blur(20px);
 -webkit-backdrop-filter: blur(20px);
 border: 1px solid rgba(255, 255, 255, 0.25);
 
-width: 100%;
-margin-left: 15px;
+width: 96%;
+
 }
 
 p i {
@@ -136,8 +138,15 @@ border-radius: 15px;
  display: flex;
  flex-direction: column;
 margin-bottom: 4%;
- max-width: 420px;
+width: 90%;
+ min-width: 300px;
  justify-self: center;
+ background: rgba(255, 255, 255, 0.2);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.3);
 
  ul{
   
@@ -147,6 +156,7 @@ box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(20px);
 -webkit-backdrop-filter: blur(20px);
 border: 1px solid rgba(255, 255, 255, 0.25);
+
  }
  .AvaliableHoursOptions{
   background: rgba(255, 255, 255, 0.19);
@@ -172,11 +182,11 @@ border: 1px solid rgba(255, 255, 255, 0.25);
 
  @media (max-width: 660px) {
   margin-top: -5%;
-  transform: scale(0.8);
+  
  }
  @media (max-width: 510px) {
   margin-top: -5%;
-  transform: scale(0.8);
+  
 
  }
 `
