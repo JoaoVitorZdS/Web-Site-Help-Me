@@ -1,29 +1,17 @@
 import styled from "styled-components";
 import GlobalStyleDefault from "./GlobalStyles";
 import './App.css'
+import bck from "./assets/imgs/backgroudStained.png"
 
 export const StyledApp = styled.div`
   width: 100vw;
   height: 100vh;
   min-height: 90vh;
-  background-color: ${GlobalStyleDefault.colors.primary};
-  --gap: 4em;
-  --line: 1.5px;
-  --color: rgba(255, 255, 255, 0.2);
-
-  background-image: linear-gradient(
-      -90deg,
-      transparent calc(var(--gap) - var(--line)),
-      var(--color) calc(var(--gap) - var(--line) + 1px),
-      var(--color) var(--gap)
-    ),
-    linear-gradient(
-      0deg,
-      transparent calc(var(--gap) - var(--line)),
-      var(--color) calc(var(--gap) - var(--line) + 1px),
-      var(--color) var(--gap)
-    );
-    background-size: var(--gap) var(--gap);
+  transition: all ease-in-out 1s;
+  background-image: url(${bck});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   margin: 0;
   overflow-x: hidden;
   color: ${GlobalStyleDefault.colors.text};

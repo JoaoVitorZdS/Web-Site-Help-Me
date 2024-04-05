@@ -207,8 +207,9 @@ justify-content: space-between;
 
     .SocialSharerContainer{
       position: absolute;
-      right: -70px;
-      bottom: -70px;
+    right: 2px;
+    bottom: -25px;
+
     }
 
     .reactionCounterNumber{

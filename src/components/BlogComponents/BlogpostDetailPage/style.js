@@ -40,9 +40,17 @@ export const StyledBlogPostDetailBody = styled.div`
     display: grid;
     grid-template-columns: 3fr 1fr;
     padding: 1%;
+    gap: 1vw;
   }
   .post-render{
     width: 98%;
+    background: rgba(255, 255, 255, 0.2);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+padding-left: 2vw;
     
     
     display: flex;
@@ -51,11 +59,17 @@ export const StyledBlogPostDetailBody = styled.div`
     img{
       width: 96%;
       height: auto;
+      border-radius: 6px;
     }
     iframe{
       width: 96%;
       height: 400px;
+      border-radius: 6px;
     }
+  }
+  .tagsList{
+    display: flex;
+    flex-direction: column;
   }
   .postOwnerDiv{
     z-index: 1;
@@ -64,7 +78,8 @@ export const StyledBlogPostDetailBody = styled.div`
     right:15%;
     background-color: #00000066;
     padding: 1%;
-    
+    display: flex;
+    flex-direction: column;
     color: ${GlobalStyleDefault.colors.text};
     gap: 3%;
     background: rgba(255, 255, 255, 0.19);

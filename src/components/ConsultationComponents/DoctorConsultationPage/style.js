@@ -7,6 +7,7 @@ export const StyledDoctorConsultationContainer = styled.div`
   background-color: transparent;
   margin: 0;
   width: 100vw;
+  min-height: 130vh;
   
   padding-top: 25px;
   display: flex;
@@ -14,7 +15,7 @@ export const StyledDoctorConsultationContainer = styled.div`
   flex-wrap: nowrap;
   justify-content: center;
   align-items: start;
-  gap: 1px;
+  gap: 10px;
   grid-template-rows: 1fr 3fr;
 .ContainerStyledDoctorConsultationContainer{
   width: 50%;
@@ -22,6 +23,7 @@ export const StyledDoctorConsultationContainer = styled.div`
   flex-direction: row;
   align-content: start;
   justify-content: center;
+ 
 }
   
 
@@ -33,8 +35,8 @@ export const StyledDoctorConsultationContainer = styled.div`
     
     max-width: 420px;
     margin-bottom: 15px;
-    width: 100%;
-    min-width: 320px;
+    width: 90%;
+    min-width: 300px;
     justify-self: center;
     position: relative;
     background: rgba(255, 255, 255, 0.19);
@@ -43,11 +45,26 @@ export const StyledDoctorConsultationContainer = styled.div`
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.25);
+    h2, h3, h4{
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      width: fit-content;
+    }
+    h3{
 
+    }
+    h4{
+      
+    }
     .Imagewrapper{
       h2, h3, h4 {
           margin: 5px ;
-          padding-left: 10px;
+          padding-block: 0.5vh;
+          padding-inline: 1vw;
         }
         
         display: flex;
@@ -78,8 +95,8 @@ export const StyledDoctorConsultationContainer = styled.div`
 
     p{
       margin-top: 35px;
-      width: 94%;
-      min-width: 320px;
+      width: 90%;
+      min-width: 300px;
       text-indent: 10px;
       font-weight: 50;
       font-family: sans-serif, monospace;
@@ -103,7 +120,7 @@ export const StyledDoctorConsultationContainer = styled.div`
     .doctorInfo{
 
       margin-top: -5%;
-      transform: scale(0.9);
+      
     }
     }
   @media (max-width: 505px) {
@@ -130,7 +147,7 @@ export const StyledDoctorConsultationContainer = styled.div`
      
       
       margin-top: 5%;
-      transform: scale(0.9);
+      
       
       p{
         width: 95%;
@@ -148,7 +165,7 @@ export const StyledDoctorConsultationContainer = styled.div`
     
       
       margin-top: -5%;
-      transform: scale(0.9);
+     
       grid-template-columns: 0;
       grid-template-rows: 1fr 3fr;
       p{

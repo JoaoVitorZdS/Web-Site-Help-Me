@@ -1,24 +1,24 @@
 import styled from "styled-components";
 import GlobalStyleDefault from "../../GlobalStyles";
-
+import bck from "../../assets/imgs/backgroudStained.png"
 
 export const StyledHeaderContainer = styled.div`
   display: flex;
   width: 98vw;
-  height: 7vh;
+  height: 9vh;
   justify-content: space-between;
   align-items: center;
   //background-color: ${GlobalStyleDefault.colors.secondary};
   padding-top: 1%;
   z-index: 90;
+  position: relative;
   box-shadow: ${GlobalStyleDefault.shadows.medium};
-  background: rgb(255,255,255);
-  border-radius: 0px 0px 15px 15px;
-  background: ${GlobalStyleDefault.colors.gradientheader};
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(7.7px);
-  -webkit-backdrop-filter: blur(7.7px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.2);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.3);
   
   
 
@@ -83,7 +83,7 @@ export const StyledHeaderContainer = styled.div`
     border-radius: 500px;
    
     
-    background-color: #ffffff88;
+    background-color: #fff;
    
 
   }
@@ -137,7 +137,13 @@ export const StyledHeaderContainer = styled.div`
   }
  
   @media (max-width: 1012px) {
-    
+    .mobileMenuOverlay{
+      display: flex;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
     
   #mobileMenuContent{
     display: flex;
@@ -191,7 +197,7 @@ export const StyledHeaderContainer = styled.div`
 }
 .animate-on-scroll {
   opacity: 1;
-    animation: fadeInFromRight 1s ease-in-out forwards;
+    animation: fadeInFromRight 0.5s ease-in-out forwards;
   }
 @keyframes fadeInFromRight {
   from {

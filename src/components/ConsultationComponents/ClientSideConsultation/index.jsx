@@ -137,8 +137,8 @@ export function ClientSideConsultationComponent() {
                 
                 <div key={index} className="doctorCard" onClick={() => handleRedirectToConsultationPage(psychologist)}>
                   <div class="doctorCardInfoContainer">
-                    <img src={psychologist.picture || genericProfilePhoto} alt="Profile" />
                     <div className="doctorCardInfo">
+                    <img src={psychologist.picture || genericProfilePhoto} alt="Profile" />
                       <div>
 
                       <p>{psychologist.name}</p>
@@ -147,9 +147,11 @@ export function ClientSideConsultationComponent() {
                       
                       <p>Valor da consulta: R${psychologist.value}</p>
                       </div>
-                   
-                      <p>{psychologist.shortIntro}</p>
                     </div>
+                      <div className="shortIntroContainer">
+
+                      <p>{psychologist.shortIntro}</p>
+                      </div>
                   </div>
                 </div>
               ))}
@@ -164,14 +166,20 @@ export function ClientSideConsultationComponent() {
               {lawyers.map((lawyer, index) => (
                 <div key={index} className="doctorCard" onClick={() => handleRedirectToConsultationPage(lawyer)}>
                   <div class="doctorCardInfoContainer">
-                    <img src={lawyer.picture || genericProfilePhoto} alt="Profile" />
                     <div class="doctorCardInfo">
+                    <img src={lawyer.picture || genericProfilePhoto} alt="Profile" />
+                    <div>
+
                       <p>{lawyer.name}</p>
-                      <br />
+                   
                       <p>{lawyer.work_area}</p>
-                      <br/>
+                     
                       <p>Valor da consulta: R${lawyer.value}</p>
-                      <br />
+                     
+                    </div>
+                    </div>
+                    <div className="shortIntroContainer">
+
                       <p>{lawyer.shortIntro}</p>
                     </div>
                   </div>
