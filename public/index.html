@@ -26,27 +26,36 @@
   -->
   <title>Help Me</title>
   <link rel="stylesheet" href="styles.css">
-  <style>
-    .loading-circle {
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid #3498db;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      animation: spin 1s linear infinite;
-      margin: 0 auto;
-    }
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.8/lottie.min.js"></script>
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+  <style>
+    /* Estilo para o loader */
+    .loader {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.5);
+        text-align: center;
     }
-  </style>
+    
+    .loader .animation-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
 </head>
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
-  
+  <div class="loader" id="loader">
+    <div class="animation-container" id="loader-animation"></div>
+  </div>
   <!-- Componente de instalação e balão de conversa -->
   <div id="installComponent" class="chat-balloon">
     <div>
@@ -135,6 +144,30 @@
       console.log('Aplicativo instalado!', event);
     });
   </script>
+  <script>
+    // Mostrar o loader
+    function showLoader() {
+        document.getElementById("loader").style.display = "block";
+    }
+
+    // Carregar a animação do LottieFiles
+    const animation = bodymovin.loadAnimation({
+        container: document.getElementById('loader-animation'),
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: './Animation.json' // Substitua 'seu_arquivo.json' pelo caminho do seu arquivo JSON do LottieFiles
+    });
+
+    // Mostrar o loader após 1 segundo
+    setTimeout(showLoader, 1000);
+
+    // Evento de carregamento da página
+    window.addEventListener("load", function() {
+        // Ocultar o loader quando a página estiver completamente carregada
+        document.getElementById("loader").style.display = "none";
+    });
+</script>
   <script src="./index.js"></script>
 </body>
 </html>
