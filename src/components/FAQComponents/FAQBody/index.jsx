@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { StyledFAQBody } from "./style";
 import '../../../App.css'
+import faq from "../../../assets/imgs/banners/FAQ Help Me.png"
 export const FAQPageBody = () => {
   const [expandedItems, setExpandedItems] = useState([]);
 
@@ -95,25 +96,7 @@ export const FAQPageBody = () => {
 
   return (
     <StyledFAQBody>
-      <h2 style={{fontFamily: "DolceVita"}}>Perguntas Frequentes</h2>
-      <ul>
-        {faqItems.map((question, index) => (
-          <li key={index} className="FaqQuestions">
-            <div
-              className={`faq-question ${expandedItems.includes(index) ? "open" : ""}`}
-              onClick={() => toggleItem(index)}
-              style={{ cursor: "pointer" }}
-            >
-              {question}
-            </div>
-            {expandedItems.includes(index) && (
-              <div className={`faq-answer ${expandedItems.includes(index) ? "open" : ""}`}>
-                {faqAnswers[index]}
-              </div>
-            )}
-          </li>
-        ))}
-      </ul>
+      <img src={faq} alt="" />
     </StyledFAQBody>
   );
 };

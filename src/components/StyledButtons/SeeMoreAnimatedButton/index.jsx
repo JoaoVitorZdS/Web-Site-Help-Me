@@ -12,7 +12,8 @@ const StyledButton = styled.button`
   font-family: inherit;
   padding: 0.35em;
   padding-left: 1.2em;
-  font-size: 17px;
+  font-size: calc(.7rem + 0.5vw) !important; /* Ajusta o tamanho da fonte conforme a largura da viewport */
+
   font-weight: 500;
   border-radius: 5px ;
   border: none;

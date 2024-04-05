@@ -6,6 +6,7 @@ export const StyledBodyContainer = styled.div`
   grid-template-rows: auto 1fr auto; /* Header, Sections, Footer */
   min-height: 100vh;
   width: 100vw;
+  justify-items: center;
  
 
 
@@ -121,21 +122,28 @@ export const StyledBodyContainer = styled.div`
   }
   #secondContainer {
     display: grid; /* Alteração */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsivo: 300px min, 1fr max */
-    gap: 20px; /* Espaçamento entre as colunas */
+    grid-template-columns: 1fr 1fr; /* Responsivo: 300px min, 1fr max */
+    gap: 50%; /* Espaçamento entre as colunas */
     justify-content: center;
     justify-items: center;
     align-items: center;
     margin-top: 10%;
-    
-   
-    
-    font-size: large;
-    
+    font-size: calc(1rem + 0.5vw) !important; /* Ajusta o tamanho da fonte conforme a largura da viewport */
 
-    background-image: url()  ;
-    background-size: auto;
+    @media (max-width: 991px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 50px;
+    }
+   .imgSecondContainer{
+    width: 300px;
+    align-self: center;
+
+    @media (max-width: 991px) {
+      width: 250px;
+    }
    
+   }
  
     
   }
@@ -170,7 +178,9 @@ export const StyledBodyContainer = styled.div`
   .none{
     opacity: 0;
   }
-
+.categoryButton{
+  background-color: red !important;
+}
 
 
   #thirdContainer {

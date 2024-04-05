@@ -17,6 +17,11 @@ const CarouselContainer = styled.div`
   z-index: 0;
   border-radius: 25px;
 
+@media (max-width: 991px) {
+  width: 100%;
+  
+  
+}
 `;
 
 const Slide = styled.div`
@@ -38,7 +43,7 @@ const SlideItem = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%; /* Alteração: Utilizando 100% para largura e altura */
-  padding-bottom: 5%;
+  padding-bottom: 1%;
   z-index: 3;
   border-width: 4px;
   border-radius: 25px;

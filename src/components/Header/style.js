@@ -4,8 +4,8 @@ import GlobalStyleDefault from "../../GlobalStyles";
 
 export const StyledHeaderContainer = styled.div`
   display: flex;
-  width: 100vw;
-  height: 77px;
+  width: 98vw;
+  height: 7vh;
   justify-content: space-between;
   align-items: center;
   //background-color: ${GlobalStyleDefault.colors.secondary};
@@ -98,7 +98,7 @@ export const StyledHeaderContainer = styled.div`
     display: flex;
     width: 70%;
     width: fit-content;
-    height: 100%;
+    height: 80%;
     justify-content: center;
     align-items: center;
     z-index: 7;

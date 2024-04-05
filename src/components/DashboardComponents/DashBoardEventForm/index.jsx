@@ -5,6 +5,7 @@ import { AccessTokenContext } from "../../StyledButtons/ButtonLogInGoogle";
 import { StyledDashboardEventForm } from "./style";
 import ProfessionalConsultations from "../../ConsultationComponents/ProfessionalSideConsultation";
 import GlobalStyleDefault from "../../../GlobalStyles";
+import CalendarAPI from "../../CalendarApi";
 
 
 export const DashboardEventForm = () => {
@@ -14,6 +15,7 @@ export const DashboardEventForm = () => {
       {accessToken ? (
         
           <StyledDashboardEventForm>
+            
             <h1 style={{color: `${GlobalStyleDefault.colors.secondarystrong}`, fontFamily: "DolceVita"}}>Consultas</h1>
             <ProfessionalConsultations/>
           </StyledDashboardEventForm>

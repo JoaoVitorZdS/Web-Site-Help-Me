@@ -87,7 +87,6 @@ export function Header() {
                       <StyledButtonLogIn label={"Perfil"} destiny={"/Dashboard"} icon={<CgProfile/>} />
                       <StyledButtonLogIn label={"Blog"} destiny={"/Blog"} icon={<FaBook/>} />
                       <StyledButtonLogIn label={"FAQ"} destiny={"/FAQ"} icon={<FaQuestion/>} />
-                      <StyledButtonLogIn label={"Fale Conosco"} destiny={"/FAQ"} icon={<CgPhone/>} />
                       <StyledButtonLogIn label={"Agendar Consulta"} destiny={"/consultation"} icon={<FaUserDoctor/>} />
                       <StyledButtonLogIn label={"EMERGÊNCIA!"} destiny={"/emergency"} icon={<FaTriangleExclamation/>} />
                     </div>
@@ -157,7 +156,6 @@ export function Header() {
                   <StyledButtonLogIn label={"Perfil"} destiny={"/Dashboard"} icon={<CgProfile/>} />
                       <StyledButtonLogIn label={"Blog"} destiny={"/Blog"} icon={<FaBook/>} />
                       <StyledButtonLogIn label={"FAQ"} destiny={"/FAQ"} icon={<FaQuestion/>} />
-                      <StyledButtonLogIn label={"Fale Conosco"} destiny={"/FAQ"} icon={<CgPhone/>} />
                       <StyledButtonLogIn label={"Agendar Consulta"} destiny={"/consultation"} icon={<FaUserDoctor/>} />
                       <StyledButtonLogIn label={"EMERGÊNCIA!"} destiny={"/emergency"} icon={<FaTriangleExclamation/>} />
 

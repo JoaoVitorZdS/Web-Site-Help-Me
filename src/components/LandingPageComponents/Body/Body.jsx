@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FixedButtons } from "../../StyledButtons/FixedButtonsAllScreens";
 import { TestsButtonsLandingPage } from "../../StyledButtons/TestsButtons";
 import { Gallery } from "../BlogGallery/Gallery";
@@ -7,7 +7,8 @@ import { StyledBodyContainer } from "./style";
 import "../../../App.css";
 import consultationImage from "../../../assets/imgs/woman-talking-with-psychologist.png";
 import OnlineTesting from "../../../assets/imgs/online-testing.png";
-
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // Importe os estilos CSS da AOS
 import AnimatedPlantButton from "../../StyledButtons/AnimatedPlantButton";
 import { useNavigate } from "react-router-dom";
 import GlobalStyleDefault from "../../../GlobalStyles";
@@ -24,7 +25,19 @@ export function Body() {
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
+  useEffect(() => {
+    // Inicialize a AOS com suas opções de configuração
+    AOS.init({
+      // Opções de configuração aqui
+    });
 
+    // Retorne uma função de limpeza para desativar a AOS quando o componente for desmontado
+    return () => {
+      AOS.refresh(); // Reverta as animações para a posição original antes de desmontar o componente
+    };
+  }, []); // O segundo argumento [] garante que o useEffect seja executado apenas uma vez após a montagem do componente
+
+  
   return (
     <StyledBodyContainer>
       
@@ -43,14 +56,14 @@ export function Body() {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            alignContent: "center",
+            alignItems: "center",
           }}
         >
           <img
-            className={isHovered ? "animate-on-scroll-left" : "none"}
+            className={"imgSecondContainer"}
             src={OnlineTesting}
+      
             alt=""
-            style={{ width: "300px" }}
             id="test_image"
           />
           <h4
@@ -81,14 +94,14 @@ export function Body() {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            alignContent: "center",
+            alignItems: "center",
           }}
         >
           <img
-            className={isHovered ? "animate-on-scroll" : "none"}
+            className={"imgSecondContainer"}
             src={consultationImage}
             alt=""
-            style={{ width: "300px" }}
+           
             id="consultation_image"
           />
           <h4
