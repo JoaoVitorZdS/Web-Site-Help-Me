@@ -1,3 +1,7 @@
+//const CLIENT_ID = '752267844561-7d4860a0jkr77s0jal0cft1s0lbp2f8f.apps.googleusercontent.com';
+//const DISCOVERY_DOCS = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
+//const SCOPES = 'https://www.googleapis.com/auth/calendar.events';
+//const REDIRECT_URI = 'http://localhost:3000/callback';
 
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
@@ -15,10 +19,6 @@ const CalendarAPI = () => {
   const profissional = "Doctor uno"
   const API_KEY = 'AIzaSyCyPwbJLpBVm7FKBmvStuA_p8DZk7aZYIQ'; // Replace with your API key
   const CALENDAR_ID = 'primary'
-  //const CLIENT_ID = '752267844561-7d4860a0jkr77s0jal0cft1s0lbp2f8f.apps.googleusercontent.com';
-  //const DISCOVERY_DOCS = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
-  //const SCOPES = 'https://www.googleapis.com/auth/calendar.events';
-  //const REDIRECT_URI = 'http://localhost:3000/callback';
   const [events, setEvents] = useState([]);
   const [formData, setFormData] = useState({
     summary: '',
@@ -99,10 +99,12 @@ const CalendarAPI = () => {
       .catch(() => setLoading(false)); // Em caso de erro, também desativar
       // eslint-disable-next-line
   }, [accessToken] );
+
   const createEvent = async (e) => {
     e.preventDefault();
     try {
       // Criação automática do endDateTime
+      console.log(formData)
       const startDateTime = new Date(formData.startDateTime);
       const endDateTime = new Date(startDateTime.getTime() + 60 * 60 * 1000); // Adiciona 1 hora
 
@@ -112,11 +114,11 @@ const CalendarAPI = () => {
         description: formData.description,
         start: {
           dateTime: startDateTime.toISOString(),
-          timeZone: 'America/Los_Angeles',
+          timeZone: 'America/Sao_Paulo',
         },
         end: {
           dateTime: endDateTime.toISOString(),
-          timeZone: 'America/Los_Angeles',
+          timeZone: 'America/Sao_Paulo',
         },
         attendees: [{ email: userData.email }],
         reminders: {

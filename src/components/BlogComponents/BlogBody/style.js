@@ -73,7 +73,7 @@ export const StyledBlogBody = styled.div`
     grid-template-rows: repeat(auto-fill, minmax(320px, 1fr)); // Ajuste a altura conforme necessário
     gap: 0 3%;
     padding-bottom: 30%;
-   
+   justify-items: center;
   }
 
   li {
@@ -266,6 +266,7 @@ justify-content: space-between;
   li:hover{
     box-shadow: ${GlobalStyleDefault.shadows.card};
     transform: scale(1.2);
+    z-index: 10;
     
     .glassOverlay{
       background: rgba(255, 255, 255, 0.4);
@@ -301,10 +302,10 @@ justify-content: space-between;
     padding-left: 3%;
     list-style: none;
     display: grid;
-    
+    justify-items: center;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); // Ajuste a altura conforme necessário
     gap: 0 3%;
-    padding-bottom: 30%;
+   
    
   }
     

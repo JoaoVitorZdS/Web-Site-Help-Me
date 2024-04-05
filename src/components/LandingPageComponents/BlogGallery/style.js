@@ -174,7 +174,9 @@ export const StyledSlider = styled.div`
     border-radius: 5px;
     z-index: 1;
     width: 100%;
+    min-height: 300px;
     position: relative;
+    transition: all ease-in-out 1s ;
     overflow: hidden; /* Para esconder o conteúdo que ultrapassa a altura máxima */
 }
 
@@ -182,7 +184,9 @@ export const StyledSlider = styled.div`
     background-position: center;
     max-height: 600px; /* Ajusta a altura máxima quando o elemento é focado */
     opacity: 1; /* Torna o conteúdo completamente visível */
-    height: fit-content;
+    height: 600px;
+    justify-content: center;
+    display: flex;
 }
 
 .slick-track{
@@ -266,6 +270,7 @@ export const StyledSlider = styled.div`
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.25);
+  justify-content: center;
 
 }
 

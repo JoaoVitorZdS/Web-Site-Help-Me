@@ -19,7 +19,11 @@ const ButtonPlants = (props) => {
   border: 0px ;
   border-radius: 8px;
   filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.2));
-  font-size: 0.8rem;
+  font-size: calc(.8rem + 0.5vw) !important; /* Ajusta o tamanho da fonte conforme a largura da viewport */
+
+  @media (max-width: 991px) {
+    width: 200px !important;
+  }
   font-weight: 700;
   i{
 
