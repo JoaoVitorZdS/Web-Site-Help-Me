@@ -163,7 +163,7 @@
     setTimeout(showLoader, 1000);
 
     // Evento de carregamento da página
-    window.addEventListener("load", function() {
+    document.addEventListener("DOMContentLoaded", function() {
       // Ocultar o loader quando a página estiver completamente carregada
       document.getElementById("loader").style.display = "none";
     });
