@@ -126,7 +126,7 @@ export function ClientSideConsultationComponent() {
               <span></span>
             </div>
           </div>
-          <h1 style={{ color: `${GlobalStyleDefault.colors.secondarystrong}`, fontFamily: "DolceVita" }}>Selecione uma Profissional:</h1>
+          <h1 style={{ color: `${GlobalStyleDefault.colors.secondarystrong}`, fontFamily: "DolceVita", textAlign: "center" }}>Selecione uma Profissional:</h1>
 
           <StyledConsultantContainer>
             <div style={{ width: "100%" }}>

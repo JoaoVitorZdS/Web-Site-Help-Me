@@ -16,12 +16,11 @@ export const StyledDashboardBody = styled.div`
   align-items: center;
 
   .nonactive{
-    color: #ffffffdd;
+    color: grey;
     border-radius: 20px;
     box-shadow: ${GlobalStyleDefault.shadows.small};
     padding: 0.5rem;
     padding-left: 1rem;
-    
     font-family: DolceVita;
     display: flex;
     justify-content: center;
@@ -65,6 +64,7 @@ export const StyledDashboardBody = styled.div`
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.25);
+    margin-top: 5vh;
     
 
     
