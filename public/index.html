@@ -144,19 +144,19 @@
       console.log('Aplicativo instalado!', event);
     });
   </script>
-  <script>
+   <script>
     // Mostrar o loader
     function showLoader() {
-        document.getElementById("loader").style.display = "block";
+      document.getElementById("loader").style.display = "block";
     }
 
     // Carregar a animação do LottieFiles
     const animation = bodymovin.loadAnimation({
-        container: document.getElementById('loader-animation'),
-        renderer: 'svg',
-        loop: true,
-        autoplay: true,
-        path: './Animation.json' // Substitua 'seu_arquivo.json' pelo caminho do seu arquivo JSON do LottieFiles
+      container: document.getElementById('loader-animation'),
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: './Animation.json' // Substitua 'seu_arquivo.json' pelo caminho do seu arquivo JSON do LottieFiles
     });
 
     // Mostrar o loader após 1 segundo
@@ -164,10 +164,10 @@
 
     // Evento de carregamento da página
     window.addEventListener("load", function() {
-        // Ocultar o loader quando a página estiver completamente carregada
-        document.getElementById("loader").style.display = "none";
+      // Ocultar o loader quando a página estiver completamente carregada
+      document.getElementById("loader").style.display = "none";
     });
-</script>
+  </script>
   <script src="./index.js"></script>
 </body>
 </html>

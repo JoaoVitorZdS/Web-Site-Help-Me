@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyledFAQBody } from "./style";
 import '../../../App.css'
-import faq from "../../../assets/imgs/banners/FAQ Help Me.png"
+import faq from "../../../assets/imgs/banners/FAQ Help Me.webp"
 export const FAQPageBody = () => {
   const [expandedItems, setExpandedItems] = useState([]);
 

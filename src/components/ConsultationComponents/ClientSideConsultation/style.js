@@ -15,7 +15,13 @@ export const StyledConsultantContainer = styled.div`
   gap: 1px;
   justify-content: start;
   align-items: start;
-  
+  background: rgba(255, 255, 255, 0.19);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10.3px);
+    -webkit-backdrop-filter: blur(10.3px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    margin-bottom: 5vh;
   
 
 
@@ -65,14 +71,12 @@ export const StyledConsultantContainer = styled.div`
     flex-wrap: wrap;
     justify-content: start;
     align-items: center;
-    
-    /* From https://css.glass */
-background: rgba(255, 255, 255, 0.19);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(10.3px);
--webkit-backdrop-filter: blur(10.3px);
-border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.19);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10.3px);
+    -webkit-backdrop-filter: blur(10.3px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     gap: 0;
 
 .shortIntroContainer{
@@ -106,7 +110,7 @@ border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 15px;
   }
   h2{
-    color: ${GlobalStyleDefault.colors.tertiarystrong} !important;
+    color: ${GlobalStyleDefault.colors.secondarystrong} !important;
     font-family: "DolceVita";
   }
   `
