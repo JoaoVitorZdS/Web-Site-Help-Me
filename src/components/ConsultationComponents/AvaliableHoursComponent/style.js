@@ -1,6 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import GlobalStyleDefault from "../../../GlobalStyles";
 import backgroundImage from "../../../assets/imgs/HourModalBackground.jpg"
+import genericProfilePhoto from "../../../assets/imgs/GenericProfile.jpeg";
 const slideIn = keyframes`
   0% {
     transform: translateX(100%);
@@ -131,7 +132,7 @@ label p {
  }
 `;
 
-export const AvaliableHoursStyledDiv = styled.div`
+export const AvailableHoursStyledDiv = styled.div`
 box-shadow:0px 8px 16px rgba(0, 0, 0, 0.3), inset 0 0 10px rgba(62, 62, 62, 0.8);
 padding: 7px;
 border-radius: 15px;
@@ -190,6 +191,18 @@ border: 1px solid rgba(255, 255, 255, 0.25);
 
  }
 `
-
+export const DoctorInfoCard = ({ doctorInfo }) => {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "20px" }}>
+      <img
+        src={doctorInfo.picture || genericProfilePhoto }
+        alt="Profile"
+        style={{ borderRadius: "50%", width: "100px", height: "100px", objectFit: "cover" }}
+      />
+      <i>{doctorInfo.name}</i>
+      <i>{doctorInfo.work_area}</i>
+    </div>
+  );
+};
   
 

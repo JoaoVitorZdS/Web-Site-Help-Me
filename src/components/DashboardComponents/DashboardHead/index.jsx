@@ -38,6 +38,7 @@ export const DashboardHead = () => {
        
     <div id="userInfoContainer">
       <h3>{`${userData.name}`}</h3>
+      <h3>Usuário ADM</h3>
         
     </div>
       

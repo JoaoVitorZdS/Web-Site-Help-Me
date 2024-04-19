@@ -9,18 +9,23 @@ export const ClientSideConsultationStyledDiv = styled.div`
  justify-content: space-between;
  align-content: center;
  width: fit-content;
- height: 250px;
- padding: 1%;
- box-shadow: ${GlobalStyleDefault.shadows.large};
- background-color: ${GlobalStyleDefault.colors.secondary};
-  border-radius: 15px;
+ height: 240px;
+ padding: 5px;
+ box-shadow: ${GlobalStyleDefault.shadows.large}, inset 0 0 10px rgba(62, 62, 62, 0.8);
+ background: rgba(255, 255, 255, 0.8);
+  border-radius: 6px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
  
   &:hover{
-    box-shadow: ${GlobalStyleDefault.shadows.card};
+    box-shadow: ${GlobalStyleDefault.shadows.card}, inset 0 0 10px rgba(62, 62, 62, 0.8);
 
   }
  
  p{
+    padding: 0;
     margin-top: 2px;
     font-weight: 700 ;
     font-family: Arial, Helvetica, sans-serif;
@@ -33,7 +38,7 @@ export const ClientSideConsultationStyledDiv = styled.div`
   }
 
   textarea{
-    width: 100%;
+    width: 90%;
     resize: none;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 500;
@@ -41,15 +46,23 @@ export const ClientSideConsultationStyledDiv = styled.div`
     border-radius: 5px;
     padding: 2px;
     color: black;
+    text-indent: 10px;
    
     
     
   }
 
-
+ .glassConfirmed{
+  background: rgba(62, 225, 62, 0.78);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(62, 225, 62, 0.3);
+ }
  
  
- .Accept_Decline_or_Reject_Buttons_container{
+ .Cancel_Button_container{
   width: min-content;
   display: flex;
   justify-content: center;
@@ -63,12 +76,13 @@ export const ClientSideConsultationStyledDiv = styled.div`
     border: 0;
     width: 70px;
     height: 25px;
-    background-color: ${GlobalStyleDefault.colors.secondary};
+    background-color: ${GlobalStyleDefault.colors.secondarystrong};
     box-shadow: ${GlobalStyleDefault.shadows.large};
     color: white;
   }
 
   button:hover{
+    cursor: pointer;
     box-shadow: ${GlobalStyleDefault.shadows.card};
 
   }
@@ -106,6 +120,3 @@ export const ClientSideConsultationStyledDiv = styled.div`
   
  }
 `;
-
-  
-

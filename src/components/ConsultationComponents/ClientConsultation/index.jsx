@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AccessTokenContext } from "../../StyledButtons/ButtonLogInGoogle";
 import { getFirestore, collection, query, where, getDocs, updateDoc, doc } from "firebase/firestore";
-import { format, parse } from "date-fns";
-import ptBR from "date-fns/locale/pt-BR";
 import ConfirmationModal from "./ConfirmationModal";
 import GlobalStyleDefault from "../../../GlobalStyles";
 import "../../../App.css"
 import { ClientSideConsultationStyledDiv } from "./style";
+import { format, parseISO, isValid } from "date-fns";
+import ptBR from "date-fns/locale/pt-BR";
 
 const ClientConsultations = () => {
   const { userData } = useContext(AccessTokenContext);
@@ -98,6 +98,15 @@ const ClientConsultations = () => {
     }
   };
 
+  const formatDate = (dateString) => {
+    const date = parseISO(dateString);
+    if (isValid(date)) {
+      return format(date, "dd 'de' MMMM yyyy HH:mm", { locale: ptBR });
+    } else {
+      return "Data inválida";
+    }
+  };
+  
   const renderByStatus = (status) => {
     const sortedConsultations = [...consultations].sort((a, b) => {
       if (a.status === "pending" && (b.status === "confirmed" || b.status === "cancelled")) {
@@ -109,28 +118,28 @@ const ClientConsultations = () => {
       }
       return 0;
     });
-
+  
     return sortedConsultations
       .filter((consultation) => consultation.status === status)
       .map((consultation) => {
-        const formattedDateTime = format(
-          parse(consultation.date, "dd 'de' MMMM yyyy HH:mm", new Date(), { locale: ptBR }),
-          "dd 'de' MMMM yyyy HH:mm",
-          { locale: ptBR }
-        );
-
+        const formattedDateTime = formatDate(consultation.date);
+  
         let tagColor = "";
         let primaryButtonLabel = "";
         let primaryButtonAction = () => {};
-
-        if (consultation.status === "pending" || consultation.status === "confirmed") {
-          tagColor = "yellow";
+  
+        if (consultation.status === "pending") {
+          tagColor = "#ffd906";
           primaryButtonLabel = "Cancelar";
           primaryButtonAction = () => openCancelModal(consultation);
+        } else if (consultation.status === "confirmed") {
+          primaryButtonLabel = "Cancelar";
+          primaryButtonAction = () => openCancelModal(consultation);
+          tagColor = "#3ee13e";
         } else if (consultation.status === "cancelled") {
-          tagColor = "red";
+          tagColor = "#b30000";
         }
-
+  
         return (
           <ClientSideConsultationStyledDiv
             key={consultation.id}
@@ -140,17 +149,17 @@ const ClientConsultations = () => {
               border: `1px double ${tagColor}`,
               borderLeft: `15px solid ${tagColor}`,
               overflow: "hidden",
-              transition: "height 2s ease",
-              height: selectedConsultation === consultation ? "350px" : "50px", // Altura condicional com base na seleção
-              width: "280px", 
+              paddingLeft: "12px",
+              transition: "all 2s ease",
+              height: "fit-content", // Adjust the initial height as needed
+              width:  "280px", // Adjust the initial height as needed
             }}
           >
             <div style={{ fontFamily: "TimesBold" } }>
               <p>Consulta com <i>{consultation.client_name}</i></p>
               <p>{formattedDateTime}</p>
-              <p>Email do Profissional: <i>{consultation.profesional_email}</i></p>
-              <p>Celular do Cliente: <i>{consultation.client_phone}</i></p>
-              <textarea disabled readOnly  rows={5} style={{resize: "none", width: "100%"}}>{consultation.description}</textarea>
+              <p>Email do Profissional: <i>{consultation.professional_email}</i></p>
+              <textarea disabled readOnly rows={5} style={{resize: "none", width: "100%"}}>{consultation.description}</textarea>
               <p style={{ fontFamily: "Contacto", color: tagColor }}>{getStatusLabel(consultation.status)}</p>
             </div>
             <div className="Cancel_Button_container">
@@ -165,25 +174,33 @@ const ClientConsultations = () => {
 
   return (
     <div style={{display: "flex", flexDirection: "column", width: "95vw", paddingLeft: "5%", gap: "2%", justifyContent: "space-between" }}>
-      
-      <p style={{color: GlobalStyleDefault.colors.textwhite, fontFamily: "DolceVita"}}>Pendentes/Confirmadas</p>
-      <div style={{display: "flex", flexDirection: "row", width: "auto", gap: "5px", overflowX: "scroll", height: "auto", paddingBottom: "50px"}} >
+      <h1 style={{color: `${GlobalStyleDefault.colors.secondarystrong}`, fontFamily: "DolceVita", justifyContent: "center", display: "flex"}}>Consultas</h1>
+      <p style={{color: GlobalStyleDefault.colors.textwhite, textShadow: "black 1px 5px 5px",margin: 0, marginTop: "10vh", padding: 0, fontFamily: "DolceVita", fontSize: "1.5rem", textIndent: "5vw",background: "rgba(238, 204, 12, 0.78)",borderRadius: "6px 6px 0px 0px", boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",border: "1px solid rgba(255, 255, 255, 0.25)", textIndent: "5vw"}}>Pendentes {consultations.filter(consultation => consultation.status === 'pending').length}</p>
+      <div style={{display: "flex", flexDirection: "row", width: "auto", gap: "5px", overflowX: "auto", padding: 0, paddingRight: "50px"}} >
       {/* Render pending and confirmed consultations */}
-      <ul style={{display: "flex", flexDirection: "row", gap: "15px", height: "auto", padding: 0}}>
+      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto", minHeight: "100px", marginBottom: "5px", marginTop: "0", padding: "20px",paddingRight: "50px", background: "rgba(255, 255, 255, 0.19)",borderRadius: "0px 0px 6px 6px", boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",border: "1px solid rgba(255, 255, 255, 0.25)"}}>
+
         {renderByStatus("pending")}
+        
+      </ul>
+      </div>
+      <p style={{color: GlobalStyleDefault.colors.textwhite, textShadow: "black 5px 5px 5px",margin: 0, marginTop: "10vh", padding: 0, fontFamily: "DolceVita", fontSize: "1.5rem", textIndent: "5vw",background: "rgba(62, 225, 62, 0.78)",borderRadius: "6px 6px 0px 0px", boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",border: "1px solid rgba(255, 255, 255, 0.25)"}}>Confirmadas {consultations.filter(consultation => consultation.status === 'confirmed').length}</p>
+      <div style={{display: "flex", flexDirection: "row", width: "auto", gap: "5px", overflowX: "auto", padding: 0, paddingRight: "50px"}} >
+      {/* Render pending and confirmed consultations */}
+      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto", minHeight: "100px", marginBottom: "5px", marginTop: "0", padding: "20px",paddingRight: "50px", background: "rgba(255, 255, 255, 0.19)",borderRadius: "0px 0px 6px 6px", boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",border: "1px solid rgba(255, 255, 255, 0.25)"}}>
+
         {renderByStatus("confirmed")}
+        
       </ul>
       </div>
       <div>
       {/* Render cancelled consultations */}
-      <p style={{color: GlobalStyleDefault.colors.textwhite, fontFamily: "DolceVita"}}>Canceladas</p>
-      <div style={{display: "flex", flexDirection: "row", width: "auto", gap: "5px", overflowX: "scroll", height: "auto", paddingBottom: "50px"}} >
-      <ul style={{display: "flex", flexDirection: "row", gap: "15px", height: "auto", padding: 0}}>
+      <p style={{color: GlobalStyleDefault.colors.textwhite, textShadow: "black 5px 5px 5px",margin: 0, marginTop: "10vh", padding: 0, fontFamily: "DolceVita", fontSize: "1.5rem", textIndent: "5vw",background: "rgba(179, 0, 0, 0.78)",borderRadius: "6px 6px 0px 0px", boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",border: "1px solid rgba(255, 255, 255, 0.25)"}}>Canceladas {consultations.filter(consultation => consultation.status === 'cancelled').length}</p>
+      <div style={{display: "flex", flexDirection: "row", width: "auto", gap: "5px", overflowX: "auto", padding: 0, paddingRight: "50px"}} >
+      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto", minHeight: "100px", marginBottom: "5px", marginTop: "0", padding: "20px",paddingRight: "50px", background: "rgba(255, 255, 255, 0.19)",borderRadius: "0px 0px 6px 6px", boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",border: "1px solid rgba(255, 255, 255, 0.25)"}}>
+
         {renderByStatus("cancelled")}
-        {renderByStatus("cancelled")}
-        {renderByStatus("cancelled")}
-        {renderByStatus("cancelled")}
-        {renderByStatus("cancelled")}
+        
       </ul>
       </div>
       </div>
@@ -195,16 +212,7 @@ const ClientConsultations = () => {
           onConfirm={() => handleCancel(selectedConsultation.id)}
           actionLabel="Cancelar"
           consultationInfo={{
-            formattedDateTime: format(
-              parse(
-                selectedConsultation.date,
-                "dd 'de' MMMM yyyy HH:mm",
-                new Date(),
-                { locale: ptBR }
-              ),
-              "dd 'de' MMMM yyyy HH:mm",
-              { locale: ptBR }
-            ),
+            formattedDateTime: formatDate(selectedConsultation.date),
             status: selectedConsultation.status,
             // Adicione mais informações conforme necessário
           }}

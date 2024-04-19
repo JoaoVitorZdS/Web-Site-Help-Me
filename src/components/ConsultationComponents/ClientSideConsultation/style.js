@@ -3,10 +3,10 @@ import GlobalStyleDefault from "../../../GlobalStyles";
 import "../../../App.css"
 export const StyledConsultantContainer = styled.div`
   
-  height: fit-content;
+  
   background-color: transparent;
   margin: 0;
-  height: 50vh;
+ 
   min-width: 95vw;
   width: fit-content;
   padding: 25px;
@@ -42,7 +42,7 @@ export const StyledConsultantContainer = styled.div`
   
 
   .doctorCard{
-    
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -264,7 +264,9 @@ border: 1px solid rgba(255, 255, 255, 0.25);
       h1{
         font-family: DolceVita;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        color: ${GlobalStyleDefault.colors.textwhite}
+        color: ${GlobalStyleDefault.colors.textwhite};
+        text-shadow: #000 -1px 2px 2px ;
+        
       }
       span{
         font-size: 1;
@@ -273,6 +275,7 @@ border: 1px solid rgba(255, 255, 255, 0.25);
         text-align: center;
         width: 100%;
         display: block;
+        text-shadow: #000 -1px 2px 1.5px ;
       }
   }
 
@@ -301,6 +304,7 @@ border: 1px solid rgba(255, 255, 255, 0.25);
       .textFirstContainer{
         z-index: 9;
         text-align: center;
+       
         
       }
      

@@ -13,7 +13,7 @@ export const DashboardOverallForm = () => {
       {accessToken ? (
         <>
       <StyledDashboardEventForm>
-      <h1 style={{color: `${GlobalStyleDefault.colors.secondary}`, fontFamily: "DolceVita"}}>Histórico</h1>
+      <h1 style={{color: `${GlobalStyleDefault.colors.secondarystrong}`, fontFamily: "DolceVita", justifyContent: "center", display: "flex"}}>Históricos</h1>
 
       <ChartComponent/>
       

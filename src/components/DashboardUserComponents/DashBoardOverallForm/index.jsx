@@ -2,6 +2,7 @@ import React, { useContext} from "react";
 import { AccessTokenContext } from "../../StyledButtons/ButtonLogInGoogle";
 import "../../../firebaseconfig";
 import { StyledDashboardEventForm } from "./style";
+import GlobalStyleDefault from "../../../GlobalStyles";
 
 export const DashboardOverallForm = () => {
   const { accessToken } = useContext(AccessTokenContext)
@@ -10,7 +11,8 @@ export const DashboardOverallForm = () => {
       {accessToken ? (
         <>
       <StyledDashboardEventForm>
-      <h1>Gráfico</h1>
+      <h1 style={{color: `${GlobalStyleDefault.colors.secondarystrong}`, fontFamily: "DolceVita", justifyContent: "center", display: "flex"}}>Consultas</h1>
+
       </StyledDashboardEventForm>
         </>
       ) : (

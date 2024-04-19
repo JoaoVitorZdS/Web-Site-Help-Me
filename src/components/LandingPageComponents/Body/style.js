@@ -144,15 +144,20 @@ export const StyledBodyContainer = styled.div`
       backdrop-filter: blur(5px);
       -webkit-backdrop-filter: blur(5px);
       border: 1px solid rgba(255, 255, 255, 0.3);
-      height: 400px;
+      height: 100%;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       transition: all ease-in-out 1s;
       &:hover{
         border: 1px transparent solid;
         background: rgba(255, 255, 255, 0.4);
         box-shadow: 5px 7px 12px #000;
       }
+      @media (max-width: 991px) {
+      
+      height: fit-content;
+    }
     }
    .imgSecondContainer{
     width: 300px;
@@ -160,6 +165,7 @@ export const StyledBodyContainer = styled.div`
 
     @media (max-width: 991px) {
       width: 250px;
+      
     }
    
    }

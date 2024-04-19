@@ -5,5 +5,5 @@ export const StyledBlogContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 100vh;
+ 
 `;

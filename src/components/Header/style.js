@@ -4,21 +4,22 @@ import bck from "../../assets/imgs/backgroudStained.png"
 
 export const StyledHeaderContainer = styled.div`
   display: flex;
-  width: 98vw;
+  width: 100%;
   height: 9vh;
   justify-content: space-between;
   align-items: center;
   //background-color: ${GlobalStyleDefault.colors.secondary};
   padding-top: 1%;
+  padding-inline: 5vw;
   z-index: 90;
   position: relative;
   box-shadow: ${GlobalStyleDefault.shadows.medium};
   background: rgba(255, 255, 255, 0.2);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(5px);
--webkit-backdrop-filter: blur(5px);
-border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   
   
 
@@ -118,8 +119,8 @@ border: 1px solid rgba(255, 255, 255, 0.3);
   }
   #buttonsContainer {
     display: flex;
-    width: 40%;
-    max-width: 660px;
+    width: 50%;
+ 
     height: 100%;
     
   

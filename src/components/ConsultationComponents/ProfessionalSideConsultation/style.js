@@ -8,10 +8,10 @@ export const ProfessionalSideConsultationStyledDiv = styled.div`
  align-content: center;
  width: fit-content;
  height: 240px;
- padding: 2%;
+ padding: 5px;
  box-shadow: ${GlobalStyleDefault.shadows.large}, inset 0 0 10px rgba(62, 62, 62, 0.8);
- background: rgba(255, 255, 255, 0.19);
-  border-radius: 16px;
+ background: rgba(255, 255, 255, 0.8);
+  border-radius: 6px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -36,7 +36,7 @@ export const ProfessionalSideConsultationStyledDiv = styled.div`
   }
 
   textarea{
-    width: 100%;
+    width: 90%;
     resize: none;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 500;
@@ -44,6 +44,7 @@ export const ProfessionalSideConsultationStyledDiv = styled.div`
     border-radius: 5px;
     padding: 2px;
     color: black;
+    text-indent: 10px;
    
     
     
@@ -72,6 +73,7 @@ export const ProfessionalSideConsultationStyledDiv = styled.div`
   }
 
   button:hover{
+    cursor: pointer;
     box-shadow: ${GlobalStyleDefault.shadows.card};
 
   }
