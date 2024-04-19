@@ -8,34 +8,39 @@ import { GiBrain } from "react-icons/gi";
 import headImage from "../../../assets/imgs/womenPng.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import Modal from "react-modal";
-import { format, addDays } from "date-fns";
 import GlobalStyleDefault from "../../../GlobalStyles";
 import AvailableHoursComponent from "../AvaliableHoursComponent";
+import { startOfWeek, addDays, setHours } from 'date-fns';
 
 export const generateAvailableHours = () => {
-  const availableHours = [];
   const weekdays = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"];
-
   const startTimeMorning = 8;
   const endTimeMorning = 11;
   const startTimeAfternoon = 13;
   const endTimeAfternoon = 18;
 
-  weekdays.forEach((day) => {
+  // Finding the start of the current week (Monday)
+  const today = new Date();
+  const startOfWeekDate = startOfWeek(today, { weekStartsOn: 1 });
+
+  return weekdays.map((day, index) => {
     const dayHours = [];
+    const currentDate = addDays(startOfWeekDate, index); // Each day of the week
+
     for (let hour = startTimeMorning; hour < endTimeMorning; hour++) {
-      dayHours.push(`${day} ${hour.toString().padStart(2, "0")}:00`);
+      const dateWithHourSet = setHours(currentDate, hour);
+      dayHours.push(dateWithHourSet.toISOString());
     }
 
     for (let hour = startTimeAfternoon; hour < endTimeAfternoon; hour++) {
-      dayHours.push(`${day} ${hour.toString().padStart(2, "0")}:00`);
+      const dateWithHourSet = setHours(currentDate, hour);
+      dayHours.push(dateWithHourSet.toISOString());
     }
 
-    availableHours.push({ day, hours: dayHours });
+    return { day, hours: dayHours };
   });
-
-  return availableHours;
 };
+
 
 Modal.setAppElement("#root");
 const ProfessionalsContext = createContext();
@@ -116,7 +121,6 @@ export function ClientSideConsultationComponent() {
       {accessToken ? (
         <StyledClientSideConsultationComponent>
           <div className="petalWrapper">
-            <img src={headImage} alt="Mulher segurando um computador lap-top" onClick={() => navigate("/consultation")} />
             <div className="textFirstContainer">
               <h1>Agende agora sua consulta!</h1>
               <span>Diversas Profissionais Especializadas em Psicologia e/ou Advocacia </span>

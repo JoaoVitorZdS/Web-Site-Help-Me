@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AccessTokenContext } from "../../StyledButtons/ButtonLogInGoogle";
-import { StyledDashboardBody } from "./style";
+import { StyledDashboardUserBody } from "./style";
 import { DashboardEventForm } from "../DashBoardEventForm";
 import { DashboardPostForm } from "../DashBoardPostsForm";
 import { DashboardOverallForm } from "../DashBoardOverallForm";
@@ -39,7 +39,7 @@ export const DashboardUserBody = () => {
     <>
       {accessToken ? (
         <>
-        <StyledDashboardBody>
+        <StyledDashboardUserBody>
         <div className="userSectionsContainer">
             <div
               onClick={() => handleCategoryClick("Consultas")}
@@ -67,7 +67,7 @@ export const DashboardUserBody = () => {
           </div>
 
 
-</StyledDashboardBody>
+</StyledDashboardUserBody>
         </>
       ) : (
         <div style={{display: "flex",justifyContent: "center", alignContent: "center",flexWrap: "wrap" , width: "100vw", height: "90vh"}}>

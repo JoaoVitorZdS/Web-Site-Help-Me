@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';  // Importe a biblioteca styled-components
 import { useNavigate } from 'react-router-dom';
 import "../../../App.css";
 import GlobalStyleDefault from '../../../GlobalStyles';
+import Modal from 'react-modal';
+import { toast } from 'react-toastify';
+import Cookies from 'js-cookie';
+import { AccessTokenContext } from '../ButtonLogInGoogle';
 
 
 // Crie um componente estilizado para o botão
@@ -84,11 +88,12 @@ const StyledEmergencyButton = styled.button`
   align-items: center;
   box-shadow: ${GlobalStyleDefault.shadows.medium};
   transform: scale(0.8);
-  overflow: hidden;
+
   position: relative;
   height: 2.8em;
   padding-right: 3.3em;
   z-index: 99;
+  
   cursor: pointer;
  
 
@@ -133,7 +138,19 @@ const StyledEmergencyButton = styled.button`
 
 const ProfessionalConsultationInteractionButton = (props) => {
   const Navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { setUserData, setAccessToken } = useContext(AccessTokenContext);
 
+  const handleLogout = () => {
+    // Limpar o token de acesso do contexto e os cookies
+    setAccessToken(null);
+    Cookies.remove('token');
+    setUserData(null);
+
+    // Exibir uma notificação de sucesso e redirecionar
+    toast.success("Logout realizado com sucesso!");
+    Navigate('/');
+  };
   if(props.destiny === "/emergency"){
 
     return (
@@ -146,7 +163,44 @@ const ProfessionalConsultationInteractionButton = (props) => {
       </div>
     </StyledEmergencyButton>
   );
-}else{
+}else if( props.destiny === "logout" ){
+  return(<StyledButton onClick={() => setIsModalOpen(true)}>
+    <span>
+    {props.text}
+    </span>
+    <div className="icon">
+      {props.icon}
+    </div>
+    <Modal
+        isOpen={isModalOpen}
+        onRequestClose={() => setIsModalOpen(false)}
+        style={{
+          content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+            border: '1px solid #ccc',
+            background: '#fff',
+            overflow: 'auto',
+            WebkitOverflowScrolling: 'touch',
+            borderRadius: '4px',
+            outline: 'none',
+            padding: '20px'
+          }
+        }}
+      >
+        <h2>Confirmação</h2>
+        <p>Tem certeza de que deseja sair?</p>
+        <button onClick={handleLogout} style={{ marginRight: '10px' }}>Confirmar</button>
+        <button onClick={() => setIsModalOpen(false)}>Cancelar</button>
+      </Modal>
+  </StyledButton>)
+
+}
+else{
   return (
     <StyledButton onClick={() => Navigate(props.destiny)}>
     <span>

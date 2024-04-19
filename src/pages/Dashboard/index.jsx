@@ -8,6 +8,7 @@ import { FIREBASE_DB } from "../../firebaseconfig";
 import { collection, getDocs, query } from "firebase/firestore";
 import { DashboardUserBody } from "../../components/DashboardUserComponents/DashboardUserBody";
 import { Header} from "../../components/Header/Header";
+import { DashboardUserHead } from "../../components/DashboardUserComponents/DashboardHead";
 
 
 
@@ -58,7 +59,7 @@ const DashboardPage = () => {
             // Caso contrário, exiba a Dashboard padrão
             <StyledDashboardContainer>
               <Header/>
-              <DashboardHead />
+              <DashboardUserHead />
               <DashboardUserBody />
               <Footer />
             </StyledDashboardContainer>

@@ -10,6 +10,7 @@ import { IoMenu, IoClose  } from "react-icons/io5";
 import { CgPhone, CgProfile } from "react-icons/cg";
 import { FaBook, FaQuestion, FaTriangleExclamation, FaUserDoctor } from "react-icons/fa6";
 import { FaExclamationTriangle } from "react-icons/fa";
+import { IoMdLogOut } from "react-icons/io";
 export function Header() {
     const navigate = useNavigate()
     const { accessToken } = useContext(AccessTokenContext);
@@ -59,7 +60,7 @@ export function Header() {
                             <StyledButtonLogIn label={"Perfil"} destiny={"/Dashboard"} icon={<CgProfile/>} />
                             <StyledButtonLogIn label={"Blog"} destiny={"/Blog"} icon={<FaBook/>} />
                             <StyledButtonLogIn label={"EMERGÊNCIA!"} destiny={"/emergency"} icon={<FaExclamationTriangle/>} />
-
+                            <StyledButtonLogIn label={"Sair"} icon={<IoMdLogOut/>} destiny={"logout"}/>
                         </div></>)}
         
         {windowWidth < 1012 && (
@@ -88,6 +89,7 @@ export function Header() {
                       <StyledButtonLogIn label={"FAQ"} destiny={"/FAQ"} icon={<FaQuestion/>} />
                       <StyledButtonLogIn label={"Agendar Consulta"} destiny={"/consultation"} icon={<FaUserDoctor/>} />
                       <StyledButtonLogIn label={"EMERGÊNCIA!"} destiny={"/emergency"} icon={<FaTriangleExclamation/>} />
+                      <StyledButtonLogIn label={"Sair"} icon={<IoMdLogOut/>} destiny={"logout"}/>
                     </div>
                   )}
                 </div></>

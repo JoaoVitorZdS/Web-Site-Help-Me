@@ -3,7 +3,7 @@ import GlobalStyleDefault from "../../../GlobalStyles";
 import '../../../App.css'
 
 export const StyledFAQBody = styled.div`
-  height: auto;
+ 
   background-color: transparent;
   margin: 0;
   width: 100vw;

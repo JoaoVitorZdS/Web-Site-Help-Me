@@ -1,13 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AccessTokenContext } from "../../StyledButtons/ButtonLogInGoogle";
 import { getFirestore, collection, query, where, getDocs, deleteDoc, updateDoc, doc } from "firebase/firestore";
-import { format, parse } from "date-fns";
-import ptBR from "date-fns/locale/pt-BR";
 import ConfirmationModal from "./ConfirmationModal";
 import GlobalStyleDefault from "../../../GlobalStyles";
 import "../../../App.css"
 import { ProfessionalSideConsultationStyledDiv } from "./style";
-
+import { format, parseISO, isValid } from "date-fns";
+import ptBR from "date-fns/locale/pt-BR";
 const ProfessionalConsultations = () => {
   const { userData } = useContext(AccessTokenContext);
   const [consultations, setConsultations] = useState([]);
@@ -47,11 +46,12 @@ const ProfessionalConsultations = () => {
 
   useEffect(() => {
     const fetchConsultations = async () => {
+      console.log(userData.email)
       try {
         const db = getFirestore();
         const scheduleCollection = collection(db, "schedule");
         const professionalEmailCondition = where(
-          "profesional_email",
+          "professional_email",
           "==",
           userData.email
         );
@@ -173,7 +173,14 @@ const ProfessionalConsultations = () => {
         return 'Desconhecido';
     }
   };
-
+  const formatDate = (dateString) => {
+    const date = parseISO(dateString);
+    if (isValid(date)) {
+      return format(date, "dd 'de' MMMM yyyy HH:mm", { locale: ptBR });
+    } else {
+      return "Data inválida";
+    }
+  };
 
     const renderByStatus = (status) => {
 
@@ -191,13 +198,9 @@ const ProfessionalConsultations = () => {
         return 0;
       });
       return sortedConsultations
-        .filter((consultation) => consultation.status === status)
-        .map((consultation) => {
-          const formattedDateTime = format(
-            parse(consultation.date, "dd 'de' MMMM yyyy HH:mm", new Date(), { locale: ptBR }),
-            "dd 'de' MMMM yyyy HH:mm",
-            { locale: ptBR }
-          );
+      .filter((consultation) => consultation.status === status)
+      .map((consultation) => {
+        const formattedDateTime = formatDate(consultation.date);
   
           let tagColor = "";
           let primaryButtonLabel = "";
@@ -226,10 +229,10 @@ const ProfessionalConsultations = () => {
               border: `1px double ${tagColor}`,
               borderLeft: `15px solid ${tagColor}`,
               overflow: "hidden",
-              transition: "all 2s ease",
               paddingLeft: "12px",
-              height: isCardSelected ? "350px" : "70px", // Adjust the initial height as needed
-              width:  isCardSelected ? "280px" : "70px", // Adjust the initial height as needed
+              transition: "all 2s ease",
+              height: "fit-content", // Adjust the initial height as needed
+              width:  "280px", // Adjust the initial height as needed
             }}>
               
               <div style={{ fontFamily: "TimesBold" } } onClick={() => handleCardClick(consultation)}>
@@ -253,22 +256,23 @@ const ProfessionalConsultations = () => {
   return (
     <div style={{display: "flex", flexDirection: "column", width: "95vw", gap: "2%", justifyContent: "space-between" }}>
       
-      <p style={{color: GlobalStyleDefault.colors.secondarystrong, margin: 0, padding: 0, fontFamily: "DolceVita"}}> Pendentes {consultations.filter(consultation => consultation.status === 'pending').length}</p>
+      <p style={{color: GlobalStyleDefault.colors.textwhite, textShadow: "black 1px 5px 5px",margin: 0, marginTop: "10vh", padding: 0, fontFamily: "DolceVita", fontSize: "1.5rem", textIndent: "5vw",background: "rgba(238, 204, 12, 0.78)",borderRadius: "6px 6px 0px 0px", boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",border: "1px solid rgba(255, 255, 255, 0.25)", textIndent: "5vw"}}>Pendentes {consultations.filter(consultation => consultation.status === 'pending').length}</p>
       <div style={{display: "flex", flexDirection: "row", width: "auto", minWidth: "100vw", gap: "5px", overflowX: "auto", padding: 0, paddingRight: "50px"}} >
       {/* Render pending consultations */}
-      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto", minHeight: "100px",  minWidth: "90vw", marginBottom: "50px", padding: "20px",paddingRight: "50px", background: "rgba(255, 255, 255, 0.19)",borderRadius: "16px", boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",border: "1px solid rgba(255, 255, 255, 0.25)"}}>
+      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto", minHeight: "100px", marginBottom: "5px", marginTop: "0", padding: "20px",paddingRight: "50px", background: "rgba(255, 255, 255, 0.19)",borderRadius: "0px 0px 6px 6px", boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",border: "1px solid rgba(255, 255, 255, 0.25)"}}>
 
       {renderByStatus("pending")}
+      
      
    
       </ul>
       </div>
       <div>
       {/* Render confirmed consultations */}
-      <p style={{color: GlobalStyleDefault.colors.secondarystrong, margin: 0, padding: 0, fontFamily: "DolceVita"}}>Confirmadas {consultations.filter(consultation => consultation.status === 'confirmed').length} </p>
+      <p style={{color: GlobalStyleDefault.colors.textwhite, textShadow: "black 5px 5px 5px",margin: 0, marginTop: "10vh", padding: 0, fontFamily: "DolceVita", fontSize: "1.5rem", textIndent: "5vw",background: "rgba(62, 225, 62, 0.78)",borderRadius: "6px 6px 0px 0px", boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",border: "1px solid rgba(255, 255, 255, 0.25)"}}>Confirmadas {consultations.filter(consultation => consultation.status === 'confirmed').length}</p>
       <div style={{display: "flex", flexDirection: "row", width: "auto", minWidth: "100vw", gap: "5px", overflowX: "auto",paddingRight: "50px"}} >
 
-      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto", minHeight: "100px", minWidth: "90vw", marginBottom: "50px", padding: "20px", paddingRight: "50px", background: "rgba(255, 255, 255, 0.19)",borderRadius: "16px", boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",border: "1px solid rgba(255, 255, 255, 0.25)"}}>
+      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto", minHeight: "100px", marginBottom: "5px", marginTop: "0", padding: "20px",paddingRight: "50px", background: "rgba(255, 255, 255, 0.19)",borderRadius: "0px 0px 6px 6px", boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",border: "1px solid rgba(255, 255, 255, 0.25)"}}>
 
       {renderByStatus("confirmed")}
     
@@ -277,11 +281,11 @@ const ProfessionalConsultations = () => {
       </div>
       <div>
       {/* Render cancelled consultations */}
-      <p style={{color: GlobalStyleDefault.colors.secondarystrong, margin: 0, padding: 0, fontFamily: "DolceVita"}}>Canceladas {consultations.filter(consultation => consultation.status === 'cancelled').length} </p>
-      <div style={{display: "flex", flexDirection: "row", width: "auto", minWidth: "100vw", gap: "5px", overflowX: "auto"}} >
+      <p style={{color: GlobalStyleDefault.colors.textwhite, textShadow: "black 5px 5px 5px",margin: 0, marginTop: "10vh", padding: 0, fontFamily: "DolceVita", fontSize: "1.5rem", textIndent: "5vw",background: "rgba(179, 0, 0, 0.78)",borderRadius: "6px 6px 0px 0px", boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",border: "1px solid rgba(255, 255, 255, 0.25)"}}>Canceladas {consultations.filter(consultation => consultation.status === 'cancelled').length}</p>
+      <div style={{display: "flex", flexDirection: "row", width: "auto", minWidth: "100vw", gap: "5px", overflowX: "auto", paddingRight: "50px"}} >
 
 
-      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto", minHeight: "100px", minWidth: "90vw", marginBottom: "50px", padding: "20px", background: "rgba(255, 255, 255, 0.19)",borderRadius: "16px", boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",border: "1px solid rgba(255, 255, 255, 0.25)"}}>
+      <ul style={{display: "flex", flexDirection: "row",gap: "15px", height: "auto", minHeight: "100px", marginBottom: "5px", marginTop: "0", padding: "20px",paddingRight: "50px", background: "rgba(255, 255, 255, 0.19)",borderRadius: "0px 0px 6px 6px", boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",border: "1px solid rgba(255, 255, 255, 0.25)"}}>
 
       
       {renderByStatus("cancelled")}
@@ -299,16 +303,7 @@ const ProfessionalConsultations = () => {
       onConfirm={() => handleAccept(selectedConsultation.id)}
       actionLabel="Aceitar"
       consultationInfo={{
-        formattedDateTime: format(
-          parse(
-            selectedConsultation.date,
-            "dd 'de' MMMM yyyy HH:mm",
-            new Date(),
-            { locale: ptBR }
-          ),
-          "dd 'de' MMMM yyyy HH:mm",
-          { locale: ptBR }
-        ),
+        formattedDateTime: formatDate(selectedConsultation.date),
         status: selectedConsultation.status,
         // Adicione mais informações conforme necessário
       }}
@@ -319,16 +314,7 @@ const ProfessionalConsultations = () => {
       onConfirm={() => handleDecline(selectedConsultation.id)}
       actionLabel="Recusar"
       consultationInfo={{
-        formattedDateTime: format(
-          parse(
-            selectedConsultation.date,
-            "dd 'de' MMMM yyyy HH:mm",
-            new Date(),
-            { locale: ptBR }
-          ),
-          "dd 'de' MMMM yyyy HH:mm",
-          { locale: ptBR }
-        ),
+        formattedDateTime: formatDate(selectedConsultation.date),
         status: selectedConsultation.status,
         // Adicione mais informações conforme necessário
       }}
@@ -343,16 +329,7 @@ const ProfessionalConsultations = () => {
           onConfirm={(additionalInfo) => handleCancel(selectedConsultation.id, additionalInfo)}
           actionLabel="Cancelar"
           consultationInfo={{
-            formattedDateTime: format(
-              parse(
-                selectedConsultation.date,
-                "dd 'de' MMMM yyyy HH:mm",
-                new Date(),
-                { locale: ptBR }
-              ),
-              "dd 'de' MMMM yyyy HH:mm",
-              { locale: ptBR }
-            ),
+            formattedDateTime: formatDate(selectedConsultation.date),
             status: selectedConsultation.status,
             // Adicione mais informações conforme necessário
           }}
@@ -365,16 +342,7 @@ const ProfessionalConsultations = () => {
           onConfirm={() => handleDelete(selectedConsultation.id)}
           actionLabel="Apagar"
           consultationInfo={{
-            formattedDateTime: format(
-              parse(
-                selectedConsultation.date,
-                "dd 'de' MMMM yyyy HH:mm",
-                new Date(),
-                { locale: ptBR }
-              ),
-              "dd 'de' MMMM yyyy HH:mm",
-              { locale: ptBR }
-            ),
+            formattedDateTime: formatDate(selectedConsultation.date),
             status: selectedConsultation.status,
             // Adicione mais informações conforme necessário
           }}

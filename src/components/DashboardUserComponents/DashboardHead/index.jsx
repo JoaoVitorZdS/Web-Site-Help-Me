@@ -4,11 +4,12 @@ import { AccessTokenContext } from "../../StyledButtons/ButtonLogInGoogle";
 import genericProfile from "../../../assets/imgs/GenericProfile.jpg"
 import { GiCharm } from "react-icons/gi";
 import { GiFountainPen } from "react-icons/gi";
-import GlobalStyleDefault from "../../StyledButtons/GlobalStyles";
+
 import "../../../App.css"
 import plantProfile from "../../../assets/imgs/PlantProfile.png"
+import GlobalStyleDefault from "../../../GlobalStyles";
 
-export const DashboardHead = () => {
+export const DashboardUserHead = () => {
 
   const { userData, accessToken } = useContext(AccessTokenContext)
 
@@ -25,6 +26,7 @@ export const DashboardHead = () => {
        
     <div id="userInfoContainer">
       <h3>{`${userData.name}`}</h3>
+      <h3>Usuário Comum</h3>
         
     </div>
       

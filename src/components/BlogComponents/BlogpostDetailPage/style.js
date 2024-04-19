@@ -3,7 +3,6 @@ import GlobalStyleDefault from "../../../GlobalStyles";
 
 export const StyledBlogPostDetailBody = styled.div`
   min-height: 100vh;
-  height: 100vh;
   width: 99vw;
   background-color: transparent;
   margin: 0;

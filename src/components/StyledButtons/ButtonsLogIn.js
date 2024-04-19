@@ -10,7 +10,7 @@ export const StyledButtonLogIn = (props ) => {
     
     return(
         <>
-        <ButtonSeeMore destiny={props.destiny} text={props.label} icon={props.icon}>
+        <ButtonSeeMore destiny={props.destiny} text={props.label} icon={props.icon} action={props.onClick}>
         <p id="labelStyledButton">{props.label}</p>
         </ButtonSeeMore>
         </>

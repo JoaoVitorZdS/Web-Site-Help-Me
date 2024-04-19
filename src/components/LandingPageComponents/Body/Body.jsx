@@ -51,13 +51,8 @@ export function Body() {
         onLoad={handleMouseEnter}
 
       >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-around",
-            alignItems: "center",
-          }}
+        <div data-aos="fade-right"
+          
           className="containerOptions"
         >
           <img
@@ -89,13 +84,8 @@ export function Body() {
           />
             </div>
         </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-around",
-            alignItems: "center",
-          }}
+        <div data-aos="fade-left"
+          
           className="containerOptions"
         >
           <img
