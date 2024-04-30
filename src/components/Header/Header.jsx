@@ -154,7 +154,7 @@ export function Header() {
             {isMobileMenuOpen && (
               <div id="mobileMenuContent" className={isMobileMenuOpen ? "animate-on-scroll" : !isMobileMenuOpen  ? "animate-on-scroll-out" : "none"}>
                   <IoClose  style={{position: "absolute", left: "-3px", height: "100%",border: "1px double #9384D7 "}} size={22} color="#9384D7" onClick={toggleMobileMenu} />
-                  <StyledButtonLogIn label={"Perfil"} destiny={"/Dashboard"} icon={<CgProfile/>} />
+                      <StyledButtonLogIn label={"Login"} destiny={"/Login"} icon={<CgProfile/>} /> 
                       <StyledButtonLogIn label={"Blog"} destiny={"/Blog"} icon={<FaBook/>} />
                       <StyledButtonLogIn label={"FAQ"} destiny={"/FAQ"} icon={<FaQuestion/>} />
                       <StyledButtonLogIn label={"Agendar Consulta"} destiny={"/consultation"} icon={<FaUserDoctor/>} />

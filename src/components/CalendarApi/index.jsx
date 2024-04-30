@@ -76,7 +76,7 @@ export const EventProvider = ({ children }) => {
       );
   
       if (response.status === 200) {
-        toast.success("Consulta Marcada!");
+        toast.success("Consulta Solicitada! Verifique seu Email para a confirmação!");
         getEvents();
       }
     } catch (error) {

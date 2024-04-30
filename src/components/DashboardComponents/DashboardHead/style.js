@@ -9,13 +9,12 @@ export const StyledDashboardHead = styled.div`
   align-items: center;
   margin-top: 3%;
   gap: 3%;
-  background: rgba(255, 255, 255, 0.19);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-
+  background: rgba(255, 255, 255, 0.2);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+padding: 2vh 5vw;
  
   #userInfoContainer{
     width: fit-content;
