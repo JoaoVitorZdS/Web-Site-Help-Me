@@ -1,50 +1,56 @@
 import { useContext, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import { addDoc, collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
+import { addDoc, collection, getDocs, getFirestore, query, where, updateDoc, doc } from 'firebase/firestore';
 import { AccessTokenContext } from '../../StyledButtons/ButtonLogInGoogle';
 
 const AutoLogin = () => {
   const { setUserData, setAccessToken } = useContext(AccessTokenContext);
 
-  const saveUserDataToFirebase = async (userInfo) => {
+  const fetchAndSetUserData = async (email, googleData) => {
     const db = getFirestore();
     const clientsCollection = collection(db, "clients");
-    const { name, email, picture } = userInfo.data;
+    const clientQuery = query(clientsCollection, where("email", "==", email));
+    const querySnapshot = await getDocs(clientQuery);
 
-    try {
-      const querySnapshot = await getDocs(
-        query(clientsCollection, where("email", "==", email))
-      );
-
-      if (querySnapshot.empty) {
-        await addDoc(clientsCollection, { name, email, picture });
-        console.log("Novo usuário registrado no Firestore!");
+    if (querySnapshot.empty) {
+      // Se o usuário não estiver registrado, registre-o com a foto do Google
+      await addDoc(clientsCollection, googleData);
+      setUserData(googleData);
+    } else {
+      const userDataFromFirestore = querySnapshot.docs[0].data();
+      if (userDataFromFirestore.picture) {
+        // Use a foto do Firestore se disponível
+        setUserData({ ...googleData, picture: userDataFromFirestore.picture });
       } else {
-        console.log("Usuário já registrado no Firestore. Pulando a etapa de registro.");
+        // Se não houver foto no Firestore, atualize com a do Google e use-a
+        const docRef = doc(db, "clients", querySnapshot.docs[0].id);
+        await updateDoc(docRef, { picture: googleData.picture });
+        setUserData(googleData);
       }
-    } catch (error) {
-      console.error("Erro ao salvar dados do usuário no Firestore:", error);
     }
   };
 
   useEffect(() => {
     const token = Cookies.get('token');
     if (token) {
-      // Definir cookie com expiração de 30 dias
+      // Define o cookie com expiração de 30 dias
       const expiryDate = new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000);
       Cookies.set('token', token, { expires: expiryDate });
 
       const fetchData = async () => {
         try {
-          const userInfo = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
+          const userInfoResponse = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
             headers: { Authorization: `Bearer ${token}` }
           });
-          setUserData(userInfo.data);
+          const userInfoData = userInfoResponse.data;
+          const { name, email, picture } = userInfoData;
+
           setAccessToken(token);
+          // Prepara os dados conforme retornados do Google
+          const googleData = { name, email, picture };
 
-          await saveUserDataToFirebase(userInfo);
-
+          await fetchAndSetUserData(email, googleData);
         } catch (error) {
           console.error("Erro ao realizar login automático:", error);
         }
@@ -52,7 +58,7 @@ const AutoLogin = () => {
 
       fetchData();
     }
-  }, []);
+  }, [setAccessToken, setUserData]);
 
   return null; // Este componente não renderiza nada visualmente
 };
