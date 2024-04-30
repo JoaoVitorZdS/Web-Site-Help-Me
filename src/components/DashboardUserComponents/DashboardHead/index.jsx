@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import Modal from 'react-modal';
 import { useDropzone } from 'react-dropzone';
 import { AccessTokenContext } from "../../StyledButtons/ButtonLogInGoogle";
-import genericProfile from "../../../assets/imgs/GenericProfile.jpg"
+import genericProfile from "../../../assets/imgs/GenericProfile.jpg";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { StyledDashboardHead } from './style';
 import { toast } from 'react-toastify';
@@ -12,10 +12,12 @@ Modal.setAppElement('#root');
 export const DashboardUserHead = () => {
   const { userData, setUserData, accessToken } = useContext(AccessTokenContext);
   const [showModal, setShowModal] = useState(false);
-  const [preview, setPreview] = useState(userData.picture || 'path_to_default_image.jpg');
+  const [preview, setPreview] = useState(userData.picture || genericProfile);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: 'image/*',
+    multiple: false, // Garantir que apenas uma imagem possa ser selecionada
+    noClick: true, // Desativar a abertura do diálogo de arquivo ao clicar no dropzone
     onDrop: acceptedFiles => {
       const file = acceptedFiles[0];
       const reader = new FileReader();
@@ -26,13 +28,18 @@ export const DashboardUserHead = () => {
     }
   });
 
+  const handleOpenFileDialog = () => {
+    // Simula um clique no input
+    document.getElementById('fileInput').click();
+  };
+
   const handleSaveImage = async () => {
     if (preview) {
       const storage = getStorage();
       const storageRef = ref(storage, `profilePics/${userData.email}`);
       
       const response = await fetch(preview);
-      const blob = await response.blob(); // Converte a URL da pré-visualização em blob
+      const blob = await response.blob(); // Convert preview URL to blob
       await uploadBytes(storageRef, blob);
       const photoURL = await getDownloadURL(storageRef);
       setUserData({ ...userData, picture: photoURL });
@@ -68,11 +75,11 @@ export const DashboardUserHead = () => {
           >
             <h2>Atualize sua foto de perfil</h2>
             <div {...getRootProps()} style={{ border: '2px dashed #ccc', padding: '20px', textAlign: 'center' }}>
-              <input {...getInputProps()} />
-              {isDragActive ?
-                <p>Solte a imagem aqui...</p> :
-                <p>Clique aqui ou arraste uma imagem para este espaço</p>
-              }
+              <button onClick={handleOpenFileDialog} style={{ cursor: 'pointer' }}>
+                Clique aqui ou arraste uma imagem para este espaço
+              </button>
+              <input {...getInputProps()} id="fileInput" style={{ display: 'none' }} />
+              {isDragActive ? <p>Solte a imagem aqui...</p> : null}
             </div>
             <img src={preview} alt="Preview" style={{ width: '100%', height: 'auto', marginTop: '20px' }} />
             <button onClick={handleSaveImage} style={{ marginTop: '20px' }}>Salvar Foto</button>
