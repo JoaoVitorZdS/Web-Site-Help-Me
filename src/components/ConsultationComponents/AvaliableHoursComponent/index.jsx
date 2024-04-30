@@ -8,11 +8,16 @@ import { EventContext } from '../../CalendarApi';
 import { AccessTokenContext } from '../../StyledButtons/ButtonLogInGoogle';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useProfessionals } from '../ClientSideConsultation';
-
+import { DoctorConsultationClientInput } from './style';
+import { registerLocale } from 'react-datepicker';
+import ptBR from 'date-fns/locale/pt-BR';
+registerLocale('pt-BR', ptBR);
 const CalendarEventComponent = () => {
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(null);
   const [eventDescription, setEventDescription] = useState('');
   const [clientPhone, setClientPhone] = useState('');
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
   const { createEvent } = useContext(EventContext);
   const { userData, setAccessToken } = useContext(AccessTokenContext);
   const { doctorname } = useParams();
@@ -29,11 +34,7 @@ const CalendarEventComponent = () => {
       try {
         const chosenPsychologist = psychologists.filter((i) => i.name == doctorname)
         const chosenLawyers = lawyers.filter((i) => i.name == doctorname)
-        console.log(chosenPsychologist[0])
-        console.log(chosenLawyers[0])
-        console.log(doctorname)
         const professionalDoc = chosenLawyers[0] || chosenPsychologist[0];
-        console.log(professionalDoc)
         if (professionalDoc) {
           setProfessionalEmail(professionalDoc.email);
         } else {
@@ -52,7 +53,6 @@ const CalendarEventComponent = () => {
 
   const handleError = (error) => {
     if (error.response) {
-      // O servidor respondeu com um código de status que cai fora do intervalo de 2xx
       console.log(error.response.status);
       switch (error.response.status) {
         case 400:
@@ -61,7 +61,7 @@ const CalendarEventComponent = () => {
         case 401:
           toast.error("Sessão expirada. Por favor, faça login novamente.");
           setAccessToken(null);
-          navigate('/login'); // Adapte conforme a rota de login do seu aplicativo
+          navigate('/login');
           break;
         case 403:
           toast.error("Acesso negado. Você não tem permissão para realizar esta ação.");
@@ -70,10 +70,8 @@ const CalendarEventComponent = () => {
           toast.error("Ocorreu um erro. Por favor, tente novamente.");
       }
     } else if (error.request) {
-      // A requisição foi feita mas não houve resposta
       toast.error("Sem resposta do servidor. Verifique sua conexão de internet.");
     } else {
-      // Algum erro aconteceu ao configurar a requisição
       toast.error("Erro ao fazer a requisição. Por favor, tente novamente.");
     }
   };
@@ -87,10 +85,10 @@ const CalendarEventComponent = () => {
     const endDate = moment(startDate).add(1, 'hours').toDate();
 
     const eventDetails = {
-      summary: `Consulta agendada com ${doctorname}`,
+      summary: `Consulta agendada com ${doctorname} - Help Me`,
       startDateTime: moment(startDate).toISOString(),
       endDateTime: moment(endDate).toISOString(),
-      description: `Paciente: ${userData.name}, Tel: ${clientPhone}, ${eventDescription}`,
+      description: `Paciente: ${userData.name}, Celular: ${clientPhone}, Solicitação:${eventDescription}`,
       attendees: [userData.email, professionalEmail],
       conferenceData: {
         createRequest: { requestId: moment().format("X"), conferenceSolutionKey: { type: "hangoutsMeet" }, sendUpdates: true }
@@ -112,36 +110,115 @@ const CalendarEventComponent = () => {
       });
 
       await createEvent(eventDetails);
-      toast.success("Evento agendado com sucesso no Google Calendar!");
+      
+      
     } catch (error) {
       console.error("Erro ao agendar evento:", error);
       handleError(error);
     }
   };
 
+  const formatPhoneNumber = (input) => {
+    const cleaned = ('' + input).replace(/\D/g, '');
+    const formatted = cleaned.replace(/(\d{0,2})(\d{0,5})(\d{0,4})/, '($1) $2-$3');
+    return formatted;
+  };
+
+  const handleChange = (e) => {
+    const input = e.target.value;
+    const formatted = formatPhoneNumber(input);
+    setClientPhone(formatted);
+  };
+  const isFutureDate = (date) => {
+    const currentDate = new Date();
+    return date > currentDate;
+  };
+
+  const closeModal = () => {
+    setShowConfirmationModal(false);
+  };
+
+  const setHours = (date, hours) => {
+    const newDate = new Date(date);
+    newDate.setHours(hours);
+    return newDate;
+  };
+
+  const setMinutes = (date, minutes) => {
+    const newDate = new Date(date);
+    newDate.setMinutes(minutes);
+    return newDate;
+  };
+
+  const handleRequestConsultation = () => {
+    if (!startDate || !clientPhone || !eventDescription) {
+      toast.error("Por favor, preencha todos os campos antes de solicitar a consulta.");
+      return;
+    }
+    setShowConfirmationModal(true);
+  };
+
+  const handleConfirmConsultation = () => {
+    setShowConfirmationModal(false);
+    handleSubmit();
+  };
+
+  const handleCloseConfirmationModal = () => {
+    setShowConfirmationModal(false);
+  };
+
   return (
-    <div>
-      <h3>Agendar Evento no Google Calendar</h3>
+    <DoctorConsultationClientInput>
+      <h3>Marcar Consulta</h3>
       <DatePicker
         selected={startDate}
         onChange={date => setStartDate(date)}
         showTimeSelect
-        dateFormat="Pp"
+        required
+        minDate={new Date()}
+        timeFormat="HH:mm"
+        timeIntervals={60}
+        timeCaption="Hora"
+        dateFormat="dd/MM/yyyy HH:mm"
+        locale="pt-BR"
+        filterDate={isFutureDate}
+        minTime={setHours(setMinutes(new Date(), 0), 8)}
+        maxTime={setHours(setMinutes(new Date(), 0), 19)}
+        maxDate={new Date().setDate(new Date().getDate() + 30)}
+        placeholderText="Selecione uma data e hora"
       />
       <input
-        type="text"
-        placeholder="Telefone do Cliente"
+        maxLength={15}
+        required
+        type="tel"
+        placeholder="Seu telefone"
         value={clientPhone}
-        onChange={e => setClientPhone(e.target.value)}
+        onChange={handleChange}
       />
-      <input
+      <textarea
+        required
         type="text"
-        placeholder="Descrição do Evento"
+        placeholder="Descreva o motivo da sua consulta"
         value={eventDescription}
         onChange={e => setEventDescription(e.target.value)}
-      />
-      <button onClick={handleSubmit}>Agendar Evento</button>
-    </div>
+        rows={10}
+      ></textarea>
+      <button onClick={handleRequestConsultation} type='button' className='ScheduleButton'>Solicitar Consulta</button>
+      {showConfirmationModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={handleCloseConfirmationModal}>&times;</span>
+            <p>Deseja confirmar a solicitação da consulta com {doctorname}?</p>
+
+            <p><b>ATENÇÃO:</b> O Valor de {}</p>
+            <div className="modal-buttons">
+              <button onClick={handleConfirmConsultation}>Confirmar</button>
+              <button onClick={handleCloseConfirmationModal}>Cancelar</button>
+            </div>
+          </div>
+        </div>
+      )}
+    </DoctorConsultationClientInput>
   );
 };
 

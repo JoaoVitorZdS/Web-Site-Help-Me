@@ -5,7 +5,7 @@ import genericProfilePhoto from "../../../assets/imgs/GenericProfile.jpeg";
 import { generateAvailableHours, useProfessionals } from "../ClientSideConsultation";
 import { Header } from "../../Header/Header";
 import { Footer } from "../../Footer/Footer";
-import { StyledDoctorConsultationContainer } from "./style";
+import { StyledContainer, StyledDoctorConsultationContainer } from "./style";
 import { AccessTokenContext } from "../../StyledButtons/ButtonLogInGoogle";
 import { EventContext } from "../../CalendarApi";
 import CalendarEventComponent from "../AvaliableHoursComponent";
@@ -16,9 +16,7 @@ const DoctorConsultationPage = () => {
   const { accessToken, userData } = useContext(AccessTokenContext); // Use accessToken and userData
   const { psychologists, lawyers } = useProfessionals();
   const { doctorname } = useParams();
-  console.log(doctorname)
-  console.log(psychologists)
-  console.log(lawyers)
+
  
   const professional = [...psychologists, ...lawyers].find(
     prof => prof.name === doctorname
@@ -34,7 +32,7 @@ const DoctorConsultationPage = () => {
  
 
   return (
-    <div>
+    <StyledContainer>
       {accessToken ? (
         <>
         <Header/>
@@ -60,19 +58,23 @@ const DoctorConsultationPage = () => {
           <CalendarEventComponent/>
         </div>
       </StyledDoctorConsultationContainer>
-      <Footer/></>
+      <Footer/>
+      </>
       ) : (
       
       <>
       <Header/>
       <StyledDoctorConsultationContainer>
-      <h1>Faça login</h1>
+      <div style={{display: "flex",justifyContent: "center", alignContent: "center",flexWrap: "wrap" , width: "100vw", height: "90vh"}}>
+        <h1 style={{fontFamily: "DolceVita"}}>Faça <a href="/login">login</a> para continuar.</h1>
+      </div>
       </StyledDoctorConsultationContainer>
-      <Footer/></>
+      <Footer/>
+      </>
       
       )}
       
-    </div>
+    </StyledContainer>
   );
 };
 

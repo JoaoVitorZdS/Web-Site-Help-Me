@@ -12,125 +12,98 @@ const slideIn = keyframes`
     opacity: 1;
   }
 `;
-export const ConfirmationDoctorConsultationStyledModal = styled.div`
-
-
-display: grid;
-grid-template-columns: 1fr 1fr;
-align-items: center;
-height: 94vh;
-width: 100%;
-gap: 2%;
-justify-content: space-between;
-background-image: url(${backgroundImage});
-background-position: center;
-background-size: cover;
-justify-items: center;
-overflow: auto;
-animation: ${slideIn} 0.5s ease-in-out; /* Apply slide-in animation */
-
-input::placeholder{
-  color: ${GlobalStyleDefault.colors.textwhite};
-}
-textarea::placeholder{
-  color: ${GlobalStyleDefault.colors.textwhite};
-}
-input, textarea{
-  border-radius: 15px;
-  border: 0;
-  background-color: #0c0c0c1c;
-  color: ${GlobalStyleDefault.colors.text};
-  padding: 5px;
+export const DoctorConsultationClientInput = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  align-self: center;
+  gap: 15px;
   background: rgba(255, 255, 255, 0.19);
-border-radius: 2px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(20px);
--webkit-backdrop-filter: blur(20px);
-border: 1px solid rgba(255, 255, 255, 0.25);
-margin-bottom: 10px;
-width: 96%;
-
-
-  
-}
-label{
-  margin-top: 15px;
-  text-indent: 5px;
-}
+  border-radius: 20px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  margin-top: 2vh;
+  padding: 25px 10px;
  
 
- button.zoom{
-  border: 0;
-  width: 50%;
-  background-color: ${GlobalStyleDefault.colors.secondarystrong};
-  color: ${GlobalStyleDefault.colors.textwhite};
-  font-weight: 700;
-  font-size: 1rem;
-  padding: 3px;
-  border-radius: 15px;
-  align-self: center;
-  animation: zoom 2s infinite;
-  cursor: pointer;
-  margin-bottom: 5px;
- }
- button.cancel{
-  border: 0;
-  width: 50%;
-  background-color: #b30000;
-  color: ${GlobalStyleDefault.colors.textwhite};
-  font-weight: 700;
-  font-size: 1rem;
-  padding: 3px;
-  border-radius: 15px;
-  align-self: center;
-  cursor: pointer;
-  margin-bottom: 5vh;
- }
- @keyframes zoom {
-        0% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.1);
-        }
-        100% {
-          transform: scale(1);
-        }
-      } 
+h3{
+  text-align: center;
+}
 
-.doctorInfo{
-  
+input{
+  border: none;
+  width: 90%;
+  padding: 5px 5px;
+  border-radius: 5px;
+}
+textarea{
+  border: none;
+  width: 90%;
+  padding: 5px 5px;
+  border-radius: 5px;
+  resize: vertical;
+}
+.ScheduleButton{
+  border: none;
+  width: 90%;
+  padding: 5px 5px;
+  border-radius: 5px;
+  background-color: ${GlobalStyleDefault.colors.secondary};
+      color: ${GlobalStyleDefault.colors.text};
+      font-family: 'DolceVita';
+      cursor: pointer;
+
+}
+
+.modal{
+  width: 100%;
+  height: 100%;
+  background-color: whitesmoke;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  top: 0;
+  padding: 2vw;
+  box-sizing: border-box;
+  border-radius: 15px;
+  .modal-content{
+    width: 100%;
+  height: 100%;
+  background-color: whitesmoke;
+  display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.19);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(20px);
--webkit-backdrop-filter: blur(20px);
-border: 1px solid rgba(255, 255, 255, 0.25);
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 15px;
+  
+  }
 
-width: 96%;
-
+  .close{
+    position: absolute;
+    right: 15px;
+    top: 15px;
+  }
+  .modal-buttons{
+    width: 100%;
+  }
+  button{
+    border: none;
+    margin: 2%;
+    width: 200px;
+  padding: 5px 5px;
+  border-radius: 5px;
+  background-color: ${GlobalStyleDefault.colors.secondary};
+      color: ${GlobalStyleDefault.colors.text};
+      font-family: 'DolceVita';
+      cursor: pointer;
+  }
 }
+`
 
-p i {
-  font-weight: 800;
-  color: ${GlobalStyleDefault.colors.textwhite};
-  padding-right: 5px;
-  animation: all ease-in-out 2s;
-}
-
-label p {
-  margin: 0;
-  color: ${GlobalStyleDefault.colors.textwhite};
-}
-@media (max-width: 510px) {
- grid-template-columns: 1fr;
-
- }
-`;
 
 export const AvailableHoursStyledDiv = styled.div`
 box-shadow:0px 8px 16px rgba(0, 0, 0, 0.3), inset 0 0 10px rgba(62, 62, 62, 0.8);

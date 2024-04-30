@@ -1,10 +1,8 @@
-import React, { useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { addDoc, collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
-import { toast } from 'react-toastify';
 import { AccessTokenContext } from '../../StyledButtons/ButtonLogInGoogle';
-import { useGoogleLogin } from '@react-oauth/google';
 
 const AutoLogin = () => {
   const { setUserData, setAccessToken } = useContext(AccessTokenContext);
@@ -12,17 +10,14 @@ const AutoLogin = () => {
   const saveUserDataToFirebase = async (userInfo) => {
     const db = getFirestore();
     const clientsCollection = collection(db, "clients");
+    const { name, email, picture } = userInfo.data;
 
     try {
-      const { name, email, picture } = userInfo.data;
-
-      // Verificar se o email já está registrado na coleção
       const querySnapshot = await getDocs(
         query(clientsCollection, where("email", "==", email))
       );
 
       if (querySnapshot.empty) {
-        // Se não houver documentos com o mesmo email, então o usuário não está registrado
         await addDoc(clientsCollection, { name, email, picture });
         console.log("Novo usuário registrado no Firestore!");
       } else {
@@ -36,24 +31,19 @@ const AutoLogin = () => {
   useEffect(() => {
     const token = Cookies.get('token');
     if (token) {
+      // Definir cookie com expiração de 30 dias
+      const expiryDate = new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000);
+      Cookies.set('token', token, { expires: expiryDate });
+
       const fetchData = async () => {
         try {
-          const userInfo = await axios.get(
-            "https://www.googleapis.com/oauth2/v3/userinfo",
-            {
-              headers: { Authorization: `Bearer ${token}` },
-            }
-          );
-          const { name, email, picture } = userInfo.data;
+          const userInfo = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
+            headers: { Authorization: `Bearer ${token}` }
+          });
+          setUserData(userInfo.data);
+          setAccessToken(token);
 
-          setUserData({ name, email, picture });
-          
-        setAccessToken(token);
-
-          // Save user data to Firebase before redirection
           await saveUserDataToFirebase(userInfo);
-
-       
 
         } catch (error) {
           console.error("Erro ao realizar login automático:", error);

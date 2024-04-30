@@ -10,10 +10,12 @@ import axios from "axios";
 import { getFirestore, collection, addDoc, getDocs, query, where } from "firebase/firestore";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
+
 const AccessTokenContext = createContext();
 
 const AccessTokenProvider = ({ children }) => {
   const [accessToken, setAccessToken] = useState("");
+  const [refreshToken, setRefreshToken] = useState(""); // Adicione estado para refreshToken
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -22,7 +24,7 @@ const AccessTokenProvider = ({ children }) => {
 
   return (
     <AccessTokenContext.Provider
-      value={{ accessToken, setAccessToken, userData, setUserData }}
+      value={{ accessToken, setAccessToken, refreshToken, setRefreshToken, userData, setUserData }}
     >
       {children}
     </AccessTokenContext.Provider>
@@ -30,7 +32,7 @@ const AccessTokenProvider = ({ children }) => {
 };
 
 export const StyledGoogleSignInButton = (props) => {
-  const { setUserData, setAccessToken } = React.useContext(AccessTokenContext);
+  const { setUserData, setAccessToken, setRefreshToken } = React.useContext(AccessTokenContext);
   const navigate = useNavigate();
 
   const saveUserDataToFirebase = async (userInfo) => {
@@ -57,10 +59,8 @@ export const StyledGoogleSignInButton = (props) => {
     }
   };
   
-
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
-    
       const userInfo = await axios.get(
         "https://www.googleapis.com/oauth2/v3/userinfo",
         {
@@ -71,18 +71,22 @@ export const StyledGoogleSignInButton = (props) => {
 
       setUserData({ name, email, picture });
       setAccessToken(tokenResponse.access_token);
+      setRefreshToken(tokenResponse.refresh_token); // Armazene o refresh token
 
       // Save user data to Firebase before redirection
       await saveUserDataToFirebase(userInfo);
-      Cookies.set('token', `${tokenResponse.access_token}`);
+      Cookies.set('token', `${tokenResponse.access_token}`, { expires: 30 }); // Define a expiração para 30 dias
+      if (tokenResponse.refresh_token) {
+        Cookies.set('refresh_token', `${tokenResponse.refresh_token}`, { expires: 365 }); // Armazena o refresh token com uma expiração longa
+      }
       toast("Login bem sucedido!", {type: "success"})
       navigate("/");
     },
     onError: (errorResponse) => console.log(errorResponse),
     scope: "https://www.googleapis.com/auth/calendar",
+    access_type: 'offline', // Solicitar acesso offline para receber refresh token
   });
   
-
   return (
     <>
       <StyledGoogleButtonContainer onClick={googleLogin}>
@@ -90,24 +94,6 @@ export const StyledGoogleSignInButton = (props) => {
         <p id="labelStyledGoogleButton">Continuar pelo Google</p>
         <FcGoogle size={22} />
       </StyledGoogleButtonContainer>
-      
-      {/* Add similar code blocks for other authentication providers
-      <StyledGoogleButtonContainer onClick={googleLogin}>
-        <FaApple  size={22}/>
-        <p id="labelStyledGoogleButton">Continuar pelo Apple Id</p>
-        <FaApple  size={22}/>
-        </StyledGoogleButtonContainer>
-        <StyledGoogleButtonContainer onClick={googleLogin}>
-        <FaFacebook   size={22}/>
-        <p id="labelStyledGoogleButton">Continuar pelo Facebook</p>
-        <FaFacebook   size={22}/>
-        </StyledGoogleButtonContainer>
-        <StyledGoogleButtonContainer onClick={googleLogin}>
-        <IoIosMail    size={22}/>
-        <p id="labelStyledGoogleButton">Continuar com credenciais</p>
-        <IoIosMail    size={22}/>
-        </StyledGoogleButtonContainer>
-      */}
     </>
   );
 };
